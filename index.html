@@ -2094,6 +2094,155 @@
         }
 
         /* Additional JavaScript to handle the scroll event */
+
+        /* ================================================
+           MODERNIZATION — 2025 Design Refresh
+           ================================================ */
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        /* NAVBAR */
+        nav.navbar { transition: background 0.35s ease, box-shadow 0.35s ease; }
+        nav.navbar.scrolled {
+            background: rgba(255,255,255,0.88) !important;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 2px 28px rgba(0,0,0,0.08) !important;
+        }
+        nav.navbar .nav-link { font-weight: 500; font-size: 0.9rem; letter-spacing: 0.01em; }
+        nav.navbar.scrolled .nav-link { color: var(--dark) !important; }
+        nav.navbar.scrolled .nav-link:hover { color: var(--primary) !important; }
+
+        /* HERO */
+        .hero-header::before { background: linear-gradient(135deg, #0a5fbf 0%, #1a80e0 45%, #1e9960 100%) !important; }
+        .hero-orb {
+            position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+        }
+        .hero-orb-1 {
+            width: 520px; height: 520px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            top: -160px; right: -80px;
+            animation: orbFloat 11s ease-in-out infinite;
+        }
+        .hero-orb-2 {
+            width: 360px; height: 360px;
+            background: radial-gradient(circle, rgba(56,193,114,0.14) 0%, transparent 70%);
+            bottom: -60px; left: 3%;
+            animation: orbFloat 14s ease-in-out infinite reverse;
+        }
+        @keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-28px) scale(1.05);} }
+        .hero-header h1.animated {
+            font-size: clamp(2rem, 4.5vw, 3.5rem) !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.03em !important;
+            line-height: 1.1 !important;
+            text-shadow: 0 2px 24px rgba(0,0,0,0.18);
+        }
+        .hero-header p.animated.slideInDown {
+            font-size: 1.08rem !important;
+            opacity: 0.92;
+            max-width: 580px;
+            margin-left: auto; margin-right: auto;
+            line-height: 1.7 !important;
+        }
+        .hero-header .btn-light {
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+            transition: all 0.3s ease;
+        }
+        .hero-header .btn-light:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,0.22); }
+
+        /* STATS BAR */
+        .stats-bar-wrap { background: #fff !important; box-shadow: 0 4px 24px rgba(0,0,0,0.05); border: none !important; }
+        .stat-item { padding: 1.5rem 1rem; }
+        @media (min-width: 768px) { .stat-item:not(:last-child) { border-right: 1px solid var(--gray-100); } }
+        .stat-number { font-size: 2.6rem !important; font-family: 'Jost',sans-serif; font-weight: 800 !important; line-height: 1; margin-bottom: 0.35rem; display: block; }
+        .stat-label { font-size: 0.78rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+
+        /* FEATURES */
+        #feature { background: var(--gray-100) !important; }
+        .feature-item {
+            background: #fff !important;
+            border: 1px solid rgba(0,0,0,0.06) !important;
+            border-radius: 20px !important;
+            padding: 2rem !important;
+            position: relative; overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1) !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04) !important;
+        }
+        .feature-item::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.35s ease;
+            border-radius: 20px 20px 0 0;
+        }
+        .feature-item:hover { transform: translateY(-10px) !important; box-shadow: 0 24px 60px rgba(28,133,232,0.13) !important; border-color: rgba(28,133,232,0.15) !important; }
+        .feature-item:hover::before { transform: scaleX(1); }
+        .feature-item .d-inline-flex.rounded-circle { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-item:hover .d-inline-flex.rounded-circle { transform: scale(1.1) rotate(-5deg); box-shadow: 0 8px 24px rgba(28,133,232,0.3); }
+        .feature-item h5 { font-size: 1.05rem !important; font-weight: 700 !important; letter-spacing: -0.01em; }
+        .feature-item p { font-size: 0.93rem !important; line-height: 1.65; }
+
+        /* HOW IT WORKS 3-STEP */
+        #how-it-works { background: #fff !important; }
+        .hiw-card {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.07);
+            border-radius: 20px;
+            padding: 2.5rem 1.75rem 2rem;
+            text-align: center; height: 100%;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .hiw-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(28,133,232,0.12); border-color: rgba(28,133,232,0.15); }
+        .hiw-card h4 { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; }
+        .hiw-card p { font-size: 0.93rem; line-height: 1.65; }
+
+        /* APP SHOWCASE */
+        .how-it-works { background: var(--gray-100) !important; padding: 80px 0 !important; }
+        .how-it-works .step-title { font-size: 1.65rem !important; font-weight: 800 !important; letter-spacing: -0.02em; }
+        .how-it-works .step-description { font-size: 0.97rem !important; line-height: 1.7 !important; color: var(--gray-500); }
+        .health-data-direct-image { border-radius: 20px !important; box-shadow: 0 20px 60px rgba(0,0,0,0.13) !important; transition: all 0.4s ease !important; }
+        .health-data-direct-image:hover { transform: translateY(-8px) scale(1.02) !important; box-shadow: 0 32px 80px rgba(28,133,232,0.2) !important; }
+
+        /* TESTIMONIALS */
+        .testimonial-card {
+            background: #fff; border-radius: 20px; padding: 2rem;
+            height: 100%; position: relative; overflow: hidden;
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(28,133,232,0.12); }
+        .testimonial-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 20px 20px 0 0; }
+        .testimonial-card.accent-blue::before { background: linear-gradient(to right, #1C85E8, #4ba1ff); }
+        .testimonial-card.accent-green::before { background: linear-gradient(to right, #38C172, #5fe698); }
+        .testimonial-quote { font-size: 5rem; line-height: 0.8; color: rgba(28,133,232,0.08); font-family: Georgia,serif; font-weight: 900; position: absolute; top: 14px; right: 18px; user-select: none; pointer-events: none; }
+        .testimonial-card.accent-green .testimonial-quote { color: rgba(56,193,114,0.1); }
+        .testimonial-stars { color: var(--accent); font-size: 0.85rem; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+
+        /* WAITLIST */
+        #waitlist-section { background: linear-gradient(135deg, #f0f7ff 0%, #f0fdf4 100%) !important; }
+        .waitlist-container { border-radius: 24px !important; box-shadow: 0 24px 80px rgba(28,133,232,0.1) !important; border: 1px solid rgba(28,133,232,0.08) !important; }
+        .waitlist-container .form-control { border-radius: 10px !important; border: 1.5px solid var(--gray-300) !important; }
+        .waitlist-container .form-control:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 4px rgba(28,133,232,0.1) !important; }
+
+        /* BUTTONS */
+        .btn-primary-gradient { background: linear-gradient(135deg, #1C85E8, #4ba1ff) !important; border: none !important; border-radius: 50px !important; font-weight: 700 !important; letter-spacing: 0.02em !important; box-shadow: 0 6px 20px rgba(28,133,232,0.3) !important; transition: all 0.3s ease !important; }
+        .btn-primary-gradient:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 32px rgba(28,133,232,0.4) !important; filter: brightness(1.05) !important; }
+        .btn-secondary-gradient { background: linear-gradient(135deg, #38C172, #5fe698) !important; border: none !important; border-radius: 50px !important; font-weight: 700 !important; box-shadow: 0 6px 20px rgba(56,193,114,0.3) !important; transition: all 0.3s ease !important; }
+
+        /* SECTION LABELS */
+        .text-primary-gradient.fw-medium { font-size: 0.75rem !important; font-weight: 800 !important; letter-spacing: 0.15em !important; text-transform: uppercase !important; }
+
+        /* FOOTER */
+        .footer.bg-primary { background: linear-gradient(135deg, #0a5fbf 0%, #0d7a4c 100%) !important; }
+
+        /* CONTACT */
+        #contact { background: #fff !important; }
+        .contact-container { border-radius: 20px !important; box-shadow: 0 16px 60px rgba(0,0,0,0.08) !important; border: 1px solid rgba(0,0,0,0.05) !important; }
     </style>
 
     <script type="application/ld+json">
@@ -2172,6 +2321,9 @@
             </nav>
 
             <div class="container-xxl bg-primary hero-header">
+                <!-- Background orbs for depth -->
+                <div class="hero-orb hero-orb-1"></div>
+                <div class="hero-orb hero-orb-2"></div>
                 <div class="container px-lg-5">
                     <div class="row">
                         <div class="col-12">
@@ -2268,31 +2420,31 @@
         <!-- About End -->
 
         <!-- Stats Bar Start -->
-        <div class="container-xxl py-4" style="background: #f8fafc; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
+        <div class="container-xxl stats-bar-wrap">
             <div class="container px-lg-5">
-                <div class="row g-4 text-center justify-content-center align-items-center">
-                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="py-2">
-                            <div class="fw-bold mb-1 text-primary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">300+</div>
-                            <div class="text-muted" style="font-size:0.9rem;">Early Members</div>
+                <div class="row g-0 text-center justify-content-center align-items-stretch">
+                    <div class="col-6 col-md-3 wow fadeInUp stat-item" data-wow-delay="0.1s">
+                        <div class="d-flex flex-column align-items-center">
+                            <span class="stat-number text-primary-gradient">300+</span>
+                            <span class="stat-label">Early Members</span>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="py-2">
-                            <div class="fw-bold mb-1 text-secondary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">15+</div>
-                            <div class="text-muted" style="font-size:0.9rem;">Health Modules</div>
+                    <div class="col-6 col-md-3 wow fadeInUp stat-item" data-wow-delay="0.2s">
+                        <div class="d-flex flex-column align-items-center">
+                            <span class="stat-number text-secondary-gradient">15+</span>
+                            <span class="stat-label">Health Modules</span>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="py-2">
-                            <div class="fw-bold mb-1 text-primary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">6</div>
-                            <div class="text-muted" style="font-size:0.9rem;">Tracked Biomarkers</div>
+                    <div class="col-6 col-md-3 wow fadeInUp stat-item" data-wow-delay="0.3s">
+                        <div class="d-flex flex-column align-items-center">
+                            <span class="stat-number text-primary-gradient">6</span>
+                            <span class="stat-label">Tracked Biomarkers</span>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="py-2">
-                            <div class="fw-bold mb-1 text-secondary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">AI</div>
-                            <div class="text-muted" style="font-size:0.9rem;">Pattern Correlations</div>
+                    <div class="col-6 col-md-3 wow fadeInUp stat-item" data-wow-delay="0.4s">
+                        <div class="d-flex flex-column align-items-center">
+                            <span class="stat-number text-secondary-gradient">AI</span>
+                            <span class="stat-label">Pattern Correlations</span>
                         </div>
                     </div>
                 </div>
@@ -2399,15 +2551,14 @@
                     <h1 class="mb-2">Up and Running in 3 Steps</h1>
                     <p class="mb-5 text-muted">No complicated setup. PeakRoutine gets to know you, connects to your data, and starts working on day one.</p>
                 </div>
-                <div class="row g-5 justify-content-center">
+                <div class="row g-4 justify-content-center">
                     <!-- Step 1 -->
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="text-center p-4">
-                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4 position-relative"
-                                style="width: 80px; height: 80px;">
-                                <i class="fa fa-clipboard-list text-white" style="font-size: 2rem;"></i>
-                                <span class="position-absolute top-0 end-0 badge rounded-circle bg-dark"
-                                    style="width:28px;height:28px;font-size:0.85rem;line-height:28px;padding:0;">1</span>
+                        <div class="hiw-card">
+                            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill" style="background:var(--dark);font-size:0.75rem;padding:0.35em 0.8em;">Step 1</span>
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
+                                style="width: 72px; height: 72px;">
+                                <i class="fa fa-clipboard-list text-white" style="font-size: 1.7rem;"></i>
                             </div>
                             <h4 class="mb-3">Tell us about your lifestyle</h4>
                             <p class="text-muted">A quick 5-step questionnaire covers your exercise habits, sleep schedule, wake time, sunlight exposure, and dinner timing. Your personalized baseline is ready immediately.</p>
@@ -2415,12 +2566,11 @@
                     </div>
                     <!-- Step 2 -->
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="text-center p-4">
-                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4 position-relative"
-                                style="width: 80px; height: 80px;">
-                                <i class="fa fa-heartbeat text-white" style="font-size: 2rem;"></i>
-                                <span class="position-absolute top-0 end-0 badge rounded-circle bg-dark"
-                                    style="width:28px;height:28px;font-size:0.85rem;line-height:28px;padding:0;">2</span>
+                        <div class="hiw-card">
+                            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill" style="background:var(--secondary);font-size:0.75rem;padding:0.35em 0.8em;">Step 2</span>
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
+                                style="width: 72px; height: 72px;">
+                                <i class="fa fa-heartbeat text-white" style="font-size: 1.7rem;"></i>
                             </div>
                             <h4 class="mb-3">Connect Apple Health</h4>
                             <p class="text-muted">Grant one-time permission and PeakRoutine automatically syncs your sleep, HRV, steps, resting heart rate, and calorie data. No manual logging needed — ever.</p>
@@ -2428,12 +2578,11 @@
                     </div>
                     <!-- Step 3 -->
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="text-center p-4">
-                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4 position-relative"
-                                style="width: 80px; height: 80px;">
-                                <i class="fa fa-robot text-white" style="font-size: 2rem;"></i>
-                                <span class="position-absolute top-0 end-0 badge rounded-circle bg-dark"
-                                    style="width:28px;height:28px;font-size:0.85rem;line-height:28px;padding:0;">3</span>
+                        <div class="hiw-card">
+                            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill" style="background:var(--primary);font-size:0.75rem;padding:0.35em 0.8em;">Step 3</span>
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
+                                style="width: 72px; height: 72px;">
+                                <i class="fa fa-robot text-white" style="font-size: 1.7rem;"></i>
                             </div>
                             <h4 class="mb-3">Get your personalized plan</h4>
                             <p class="text-muted">AI analyzes your patterns and surfaces insights like "Your recovery improves 23% when you sleep before 11PM." Daily health scores and habit recommendations update as you grow.</p>
@@ -2612,19 +2761,14 @@
                         <div class="row g-4">
                             <!-- Testimonial 1 -->
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="bg-light rounded p-4 h-100" style="border-left: 4px solid #1C85E8;">
-                                    <div class="d-flex mb-3">
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                    </div>
-                                    <p class="fst-italic mb-4">"I never realized how much my late dinners were wrecking my sleep until PeakRoutine showed me the correlation. My HRV is up 18% in 6 weeks."</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3" style="width:44px;height:44px;color:#fff;font-weight:700;">S</div>
+                                <div class="testimonial-card accent-blue">
+                                    <span class="testimonial-quote">"</span>
+                                    <div class="testimonial-stars mb-3">★★★★★</div>
+                                    <blockquote class="mb-4">"I never realized how much my late dinners were wrecking my sleep until PeakRoutine showed me the correlation. My HRV is up 18% in 6 weeks."</blockquote>
+                                    <div class="d-flex align-items-center mt-auto">
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3 flex-shrink-0" style="width:44px;height:44px;color:#fff;font-weight:700;font-size:1.1rem;">S</div>
                                         <div>
-                                            <div class="fw-bold">Sarah K.</div>
+                                            <div class="fw-bold" style="font-size:0.95rem;">Sarah K.</div>
                                             <small class="text-muted">Beta User · Seattle, WA</small>
                                         </div>
                                     </div>
@@ -2632,19 +2776,14 @@
                             </div>
                             <!-- Testimonial 2 -->
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="bg-light rounded p-4 h-100" style="border-left: 4px solid #38C172;">
-                                    <div class="d-flex mb-3">
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                    </div>
-                                    <p class="fst-italic mb-4">"I've tried every health app. PeakRoutine is the first one that actually connects the dots between my stress, sleep, and exercise. The AI insights are genuinely surprising."</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle me-3" style="width:44px;height:44px;color:#fff;font-weight:700;">M</div>
+                                <div class="testimonial-card accent-green">
+                                    <span class="testimonial-quote">"</span>
+                                    <div class="testimonial-stars mb-3">★★★★★</div>
+                                    <blockquote class="mb-4">"I've tried every health app. PeakRoutine is the first one that actually connects the dots between my stress, sleep, and exercise. The AI insights are genuinely surprising."</blockquote>
+                                    <div class="d-flex align-items-center mt-auto">
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle me-3 flex-shrink-0" style="width:44px;height:44px;color:#fff;font-weight:700;font-size:1.1rem;">M</div>
                                         <div>
-                                            <div class="fw-bold">Marcus T.</div>
+                                            <div class="fw-bold" style="font-size:0.95rem;">Marcus T.</div>
                                             <small class="text-muted">Beta User · San Francisco, CA</small>
                                         </div>
                                     </div>
@@ -2652,19 +2791,14 @@
                             </div>
                             <!-- Testimonial 3 -->
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <div class="bg-light rounded p-4 h-100" style="border-left: 4px solid #1C85E8;">
-                                    <div class="d-flex mb-3">
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                        <i class="fa fa-star text-warning"></i>
-                                    </div>
-                                    <p class="fst-italic mb-4">"The 30-day habit streaks and badges make it feel like a game. I haven't missed my morning walk in 47 days. My doctor noticed the difference in my resting heart rate."</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3" style="width:44px;height:44px;color:#fff;font-weight:700;">P</div>
+                                <div class="testimonial-card accent-blue">
+                                    <span class="testimonial-quote">"</span>
+                                    <div class="testimonial-stars mb-3">★★★★★</div>
+                                    <blockquote class="mb-4">"The 30-day habit streaks and badges make it feel like a game. I haven't missed my morning walk in 47 days. My doctor noticed the difference in my resting heart rate."</blockquote>
+                                    <div class="d-flex align-items-center mt-auto">
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3 flex-shrink-0" style="width:44px;height:44px;color:#fff;font-weight:700;font-size:1.1rem;">P</div>
                                         <div>
-                                            <div class="fw-bold">Priya N.</div>
+                                            <div class="fw-bold" style="font-size:0.95rem;">Priya N.</div>
                                             <small class="text-muted">Beta User · Austin, TX</small>
                                         </div>
                                     </div>
@@ -3134,23 +3268,21 @@
                     if (overlay) {
                         overlay.addEventListener('click', closeContactPopup);
                     }
-                    // Function to change the logo text color on scroll
-                    function handleScroll() {
-                        const logoText = document.querySelector('.logo-text');
+                    // Navbar scroll: glassmorphism + logo color
+                    const navbar = document.querySelector('nav.navbar');
+                    const logoText = document.querySelector('.logo-text');
 
+                    function handleScroll() {
                         if (window.scrollY > 50) {
-                            // After scrolling down 50px, change color to #435cdd
+                            navbar.classList.add('scrolled');
                             logoText.style.color = '#435cdd';
                         } else {
-                            // At the top of the page, keep it white
+                            navbar.classList.remove('scrolled');
                             logoText.style.color = '#ffffff';
                         }
                     }
 
-                    // Listen for scroll events
                     window.addEventListener('scroll', handleScroll);
-
-                    // Initialize on page load
                     handleScroll();
 
                 });
