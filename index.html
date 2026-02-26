@@ -906,8 +906,7 @@
         }
 
         .star-rating {
-            color: #FFC107;
-            /* Gold/amber color for stars */
+            color: var(--accent);
             font-size: 1.5rem;
             letter-spacing: 0.2rem;
         }
@@ -2116,7 +2115,7 @@
       "ratingValue": "4.8",
       "ratingCount": "12"
     },
-    "featureList": "Sleep tracking, Mood tracking, Journaling, Stress management, AI-powered insights, Health data integration"
+    "featureList": "Sleep tracking, Mood tracking, Journaling, Stress management, AI-powered insights, Apple HealthKit integration, HRV tracking, Nutrition logging, Hydration tracking, Caffeine tracking, Weight tracking, Habit formation, Streak gamification, Breathing exercises, Meditation videos"
   }
   </script>
 
@@ -2154,15 +2153,16 @@
                     <div class="navbar-nav mx-auto py-0">
                         <a href="javascript:void(0)" onclick="document.getElementById('home').scrollIntoView()"
                             class="nav-item nav-link active">Home</a>
-                        <!-- <a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView()"
-                            class="nav-item nav-link">About</a> -->
                         <a href="javascript:void(0)" onclick="document.getElementById('feature').scrollIntoView()"
                             class="nav-item nav-link">Features</a>
+                        <a href="javascript:void(0)" onclick="document.getElementById('how-it-works').scrollIntoView()"
+                            class="nav-item nav-link">How It Works</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="javascript:void(0)"
                             onclick="document.getElementById('waitlist-section').scrollIntoView()"
                             class="nav-item nav-link">Waitlist</a>
                         <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app"
-                            class="nav-item nav-link" target="_blank" rel="noopener noreferrer">Product Roadmap</a>
+                            class="nav-item nav-link" target="_blank" rel="noopener noreferrer">Roadmap</a>
                         <a href="https://peak-routine.productroad.com/board/ideas/" class="nav-item nav-link"
                             target="_blank" rel="noopener noreferrer">Feature Request</a>
                         <a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView()"
@@ -2208,10 +2208,10 @@
                                 <br>Personalized Routines. <br> Smarter Habits. <br> Every Day.
                             </h1>
                             <p class="text-white pb-3 animated slideInDown">
-                                From AI-powered hyper-personalized health plans, build lasting habits to weekly goals
-                                tailored for your busy lifestyle —
-                                <strong>PeakRoutine</strong> helps you take control of your health naturally, whether
-                                it's for preventive or chronic care.
+                                Automatically sync your Apple Health data — sleep, HRV, steps, heart rate, and more —
+                                then let AI uncover the hidden patterns behind your energy, recovery, and mood.
+                                <strong>PeakRoutine</strong> builds a personalized plan that adapts to your life,
+                                whether you're optimizing performance or managing chronic health proactively.
                             </p>
 
                             <div class="hero-buttons">
@@ -2222,8 +2222,21 @@
                                 </a>
                             </div>
 
+                            <!-- Apple Health Badge -->
+                            <div class="animated fadeIn mt-4 d-flex flex-wrap justify-content-center align-items-center gap-3">
+                                <span class="badge rounded-pill px-3 py-2" style="background:rgba(255,255,255,0.2); color:#fff; font-size:0.85rem; border:1px solid rgba(255,255,255,0.4);">
+                                    <i class="fa fa-heartbeat me-1"></i> Works with Apple Health
+                                </span>
+                                <span class="badge rounded-pill px-3 py-2" style="background:rgba(255,255,255,0.2); color:#fff; font-size:0.85rem; border:1px solid rgba(255,255,255,0.4);">
+                                    <i class="fa fa-brain me-1"></i> AI-Powered Correlations
+                                </span>
+                                <span class="badge rounded-pill px-3 py-2" style="background:rgba(255,255,255,0.2); color:#fff; font-size:0.85rem; border:1px solid rgba(255,255,255,0.4);">
+                                    <i class="fa fa-mobile-alt me-1"></i> iOS First
+                                </span>
+                            </div>
+
                             <div class="star-rating-container animated fadeIn mt-4">
-                                <div class="star-rating mb-2">
+                                <div class="star-rating mb-2" style="color: #F6B93B;">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -2254,6 +2267,39 @@
             </div> -->
         <!-- About End -->
 
+        <!-- Stats Bar Start -->
+        <div class="container-xxl py-4" style="background: #f8fafc; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
+            <div class="container px-lg-5">
+                <div class="row g-4 text-center justify-content-center align-items-center">
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="py-2">
+                            <div class="fw-bold mb-1 text-primary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">300+</div>
+                            <div class="text-muted" style="font-size:0.9rem;">Early Members</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="py-2">
+                            <div class="fw-bold mb-1 text-secondary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">15+</div>
+                            <div class="text-muted" style="font-size:0.9rem;">Health Modules</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="py-2">
+                            <div class="fw-bold mb-1 text-primary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">6</div>
+                            <div class="text-muted" style="font-size:0.9rem;">Tracked Biomarkers</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="py-2">
+                            <div class="fw-bold mb-1 text-secondary-gradient" style="font-size:2.2rem; font-family:'Jost',sans-serif;">AI</div>
+                            <div class="text-muted" style="font-size:0.9rem;">Pattern Correlations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Stats Bar End -->
+
         <!-- Features Start -->
         <div class="container-xxl py-5" id="feature">
             <div class="container py-5 px-lg-5">
@@ -2261,73 +2307,82 @@
                     <h5 class="text-primary-gradient fw-medium">Reach Your Full Potential</h5>
                     <h1 class="mb-5">What is PeakRoutine?</h1>
                     <p class="mb-5">
-                        PeakRoutine is an AI-powered health platform that helps you form sustainable habits across
-                        physical activity, sleep, mood, sunlight, and energy tracking. With personalized routines,
-                        bite-sized weekly goals, and mental wellness tools — it's designed to adapt to your lifestyle
-                        and support your long-term well-being, naturally.
+                        PeakRoutine is an AI-powered health platform that automatically pulls data from Apple Health
+                        — sleep, HRV, steps, heart rate, and more — then surfaces personalized insights and builds
+                        sustainable habits across every dimension of your well-being. No manual entry. Just smarter health.
                     </p>
                 </div>
                 <div class="row g-4">
 
-                    <!-- Health Tracking -->
+                    <!-- Apple HealthKit -->
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="feature-item bg-light rounded p-4 h-100">
                             <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
                                 style="width: 60px; height: 60px;">
                                 <i class="fa fa-heartbeat text-white fs-4"></i>
                             </div>
-                            <h5 class="mb-3">Physical & Mental Health Tracking</h5>
-                            <p class="m-0">Monitor physical activity, sleep, mood, sunlight exposure, and stress levels
-                                to understand your daily wellness.</p>
+                            <h5 class="mb-3">Apple Health Auto-Sync</h5>
+                            <p class="m-0">Automatically pulls sleep, HRV, steps, resting heart rate, and calories from Apple Health. No manual entry — your data is always up to date.</p>
                         </div>
                     </div>
 
-                    <!-- Nutrition -->
+                    <!-- Nutrition & Hydration -->
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="feature-item bg-light rounded p-4 h-100">
                             <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
                                 style="width: 60px; height: 60px;">
                                 <i class="fa fa-apple-alt text-white fs-4"></i>
                             </div>
-                            <h5 class="mb-3">Nutrition Guidance</h5>
-                            <p class="m-0">Track meals, stay mindful of macros, and receive healthy eating prompts.</p>
+                            <h5 class="mb-3">Nutrition, Hydration & Caffeine</h5>
+                            <p class="m-0">Log meals from a database of millions of foods, track macros, and monitor hydration and caffeine intake — all with personalized timing recommendations.</p>
                         </div>
                     </div>
 
-                    <!-- AI Plan -->
+                    <!-- AI Insights -->
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="feature-item bg-light rounded p-4 h-100">
                             <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
                                 style="width: 60px; height: 60px;">
                                 <i class="fa fa-robot text-white fs-4"></i>
                             </div>
-                            <h5 class="mb-3">AI-Powered Personalized Plans</h5>
-                            <p class="m-0">Smart routines tailored to your health patterns, lifestyle, and goals.</p>
+                            <h5 class="mb-3">AI-Powered Pattern Insights</h5>
+                            <p class="m-0">Discover correlations like "Your HRV improves when you sleep before 11PM" — with confidence scores. Actionable intelligence, not just raw data.</p>
                         </div>
                     </div>
-                    <!-- Wrap bottom 2 cards in a centered row -->
-                    <div class="d-flex justify-content-center flex-wrap gap-4">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                            <div class="feature-item bg-light rounded p-4 h-100">
-                                <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
-                                    style="width: 60px; height: 60px;">
-                                    <i class="fa fa-check-circle text-white fs-4"></i>
-                                </div>
-                                <h5 class="mb-3">Habit Tracking</h5>
-                                <p class="m-0">Build small, consistent habits with daily check-ins and behavior nudges.
-                                </p>
+
+                    <!-- Mental Health -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="feature-item bg-light rounded p-4 h-100">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-brain text-white fs-4"></i>
                             </div>
+                            <h5 class="mb-3">Mental Health & Journaling</h5>
+                            <p class="m-0">Track mood, stress levels, and daily reflections. Guided breathing exercises and meditation videos help you manage stress before it manages you.</p>
                         </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                            <div class="feature-item bg-light rounded p-4 h-100">
-                                <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
-                                    style="width: 60px; height: 60px;">
-                                    <i class="fa fa-bullseye text-white fs-4"></i>
-                                </div>
-                                <h5 class="mb-3">Weekly Goals</h5>
-                                <p class="m-0">Stay consistent with personalized, manageable targets designed to fit
-                                    your busy lifestyle and celebrate weekly wins.</p>
+                    </div>
+
+                    <!-- Habit Formation & Gamification -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="feature-item bg-light rounded p-4 h-100">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
+                                style="width: 60px; height: 60px; background: linear-gradient(135deg, #F6B93B, #f9d06a);">
+                                <i class="fa fa-fire text-white fs-4"></i>
                             </div>
+                            <h5 class="mb-3">Streaks, Badges & Habit Milestones</h5>
+                            <p class="m-0">Build habits with milestone targets at 7, 14, 30, 90, and 365 days. Earn badges, level up, and celebrate every win — consistency has never been this motivating.</p>
+                        </div>
+                    </div>
+
+                    <!-- Personalized Plans -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="feature-item bg-light rounded p-4 h-100">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-bullseye text-white fs-4"></i>
+                            </div>
+                            <h5 class="mb-3">Personalized Health Plans</h5>
+                            <p class="m-0">A 5-step lifestyle questionnaire on day one — exercise habits, sleep schedule, sunlight, and nutrition — then AI builds a plan that truly fits your life.</p>
                         </div>
                     </div>
 
@@ -2336,6 +2391,64 @@
         </div>
         <!-- Features End -->
 
+        <!-- How It Works Start -->
+        <div class="container-xxl py-5 bg-light" id="how-it-works">
+            <div class="container py-5 px-lg-5">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-primary-gradient fw-medium">Simple to Start</h5>
+                    <h1 class="mb-2">Up and Running in 3 Steps</h1>
+                    <p class="mb-5 text-muted">No complicated setup. PeakRoutine gets to know you, connects to your data, and starts working on day one.</p>
+                </div>
+                <div class="row g-5 justify-content-center">
+                    <!-- Step 1 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="text-center p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4 position-relative"
+                                style="width: 80px; height: 80px;">
+                                <i class="fa fa-clipboard-list text-white" style="font-size: 2rem;"></i>
+                                <span class="position-absolute top-0 end-0 badge rounded-circle bg-dark"
+                                    style="width:28px;height:28px;font-size:0.85rem;line-height:28px;padding:0;">1</span>
+                            </div>
+                            <h4 class="mb-3">Tell us about your lifestyle</h4>
+                            <p class="text-muted">A quick 5-step questionnaire covers your exercise habits, sleep schedule, wake time, sunlight exposure, and dinner timing. Your personalized baseline is ready immediately.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="text-center p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4 position-relative"
+                                style="width: 80px; height: 80px;">
+                                <i class="fa fa-heartbeat text-white" style="font-size: 2rem;"></i>
+                                <span class="position-absolute top-0 end-0 badge rounded-circle bg-dark"
+                                    style="width:28px;height:28px;font-size:0.85rem;line-height:28px;padding:0;">2</span>
+                            </div>
+                            <h4 class="mb-3">Connect Apple Health</h4>
+                            <p class="text-muted">Grant one-time permission and PeakRoutine automatically syncs your sleep, HRV, steps, resting heart rate, and calorie data. No manual logging needed — ever.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="text-center p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4 position-relative"
+                                style="width: 80px; height: 80px;">
+                                <i class="fa fa-robot text-white" style="font-size: 2rem;"></i>
+                                <span class="position-absolute top-0 end-0 badge rounded-circle bg-dark"
+                                    style="width:28px;height:28px;font-size:0.85rem;line-height:28px;padding:0;">3</span>
+                            </div>
+                            <h4 class="mb-3">Get your personalized plan</h4>
+                            <p class="text-muted">AI analyzes your patterns and surfaces insights like "Your recovery improves 23% when you sleep before 11PM." Daily health scores and habit recommendations update as you grow.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.6s">
+                    <a href="javascript:void(0)" onclick="document.getElementById('waitlist-section').scrollIntoView()"
+                        class="btn btn-primary-gradient py-3 px-5 rounded-pill">
+                        <i class="fa fa-user-plus me-2"></i>Get Early Access
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- How It Works End -->
 
         <!-- <div class="container-xxl py-5">
             <div class="container py-5 px-lg-5">
@@ -2412,17 +2525,29 @@
         <section class="how-it-works">
             <div class="container">
 
-                <!-- Step 1: Physical dashboard -->
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-primary-gradient fw-medium">See It In Action</h5>
+                    <h1>Everything you need, in one app</h1>
+                </div>
+
+                <!-- Step 1: Physical + Mental Dashboard -->
                 <div class="step">
                     <div class="step-content">
                         <div class="step-header">
-                            <h3 class="step-title">Explore Your Physical Health Dashboard</h3>
+                            <h3 class="step-title">Your complete health picture, every day</h3>
                         </div>
                         <p class="step-description">
-                            Get a real-time view of your physical health—track movement, exercise, and vital metrics in
-                            one place.
-                            Your journey starts with data that truly reflects your body’s needs.
+                            One dashboard surfaces your daily health score, sleep quality, movement, sunlight, stress, and nutrition — all pulled automatically from Apple Health.
+                            No switching apps, no manual entry.
                         </p>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Sleep</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Movement</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">HRV</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Sunlight</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Mood</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Stress</span>
+                        </div>
                     </div>
                     <div class="step-image">
                         <img src="img/dashboard1.png" alt="PeakRoutine Physical Health Dashboard Screen"
@@ -2430,71 +2555,22 @@
                     </div>
                 </div>
 
-
-                <!-- Step 2: Mental health dashboard -->
+                <!-- Step 2: AI Insights -->
                 <div class="step reverse">
                     <div class="step-content">
                         <div class="step-header">
-                            <h3 class="step-title">Understand Your Mental Health Better</h3>
+                            <h3 class="step-title">AI finds the patterns you can’t see</h3>
                         </div>
                         <p class="step-description">
-                            Track your mood, stress levels, and journaling patterns over time.
-                            Our mental health dashboard helps you spot trends and take meaningful steps toward emotional
-                            well-being.
+                            PeakRoutine’s AI engine surfaces correlations like <strong>"Your HRV improves 23% when you sleep before 11PM"</strong> or <strong>"Exercise after 7PM reduces your deep sleep by 18%."</strong>
+                            Each insight includes a confidence score so you know what’s signal, not noise.
                         </p>
-                    </div>
-                    <div class="step-image">
-                        <img src="img/mental_health_dashboard.png" alt="PeakRoutine Mental Health Dashboard"
-                            class="health-data-direct-image">
-                    </div>
-                </div>
-
-                <!-- Step 3: Journal dashboard -->
-                <div class="step">
-                    <div class="step-content">
-                        <div class="step-header">
-                            <h3 class="step-title">Reflect with the Journal Dashboard</h3>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Sleep vs HRV</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Exercise vs Recovery</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Stress vs Mood</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Nutrition vs Energy</span>
                         </div>
-                        <p class="step-description">
-                            Capture your thoughts, emotions, and daily experiences in one place.
-                            The journal dashboard helps you recognize patterns, process emotions, and stay mindful—one
-                            entry at a time.
-                        </p>
-                    </div>
-                    <div class="step-image">
-                        <img src="img/journal_dashboard.png" alt="PeakRoutine Journal Dashboard"
-                            class="health-data-direct-image">
-                    </div>
-                </div>
-                <!-- Step 4: Streaks and Active Days -->
-                <div class="step reverse">
-                    <div class="step-content">
-                        <div class="step-header">
-                            <h3 class="step-title">Stay Motivated with Streaks & Active Days</h3>
-                        </div>
-                        <p class="step-description">
-                            Build momentum with daily streaks and celebrate active days across your health routines.
-                            Our gamified dashboard keeps you engaged, consistent, and motivated to reach your wellness
-                            goals.
-                        </p>
-                    </div>
-                    <div class="step-image">
-                        <img src="img/streak.jpeg" alt="PeakRoutine Streak and Active Days Dashboard"
-                            class="health-data-direct-image">
-                    </div>
-                </div>
-                <!-- Step 5: AI Insights and Correlations -->
-                <div class="step">
-                    <div class="step-content">
-                        <div class="step-header">
-                            <h3 class="step-title">Unlock Insights Across Mind & Body</h3>
-                        </div>
-                        <p class="step-description">
-                            Discover how your sleep, activity, stress, and mood are connected.
-                            Our AI analyzes your physical and mental health biomarkers to surface personalized
-                            correlations—like how poor sleep impacts mood or how stress affects recovery—empowering
-                            smarter health choices.
-                        </p>
                     </div>
                     <div class="step-image">
                         <img src="img/insights.png" alt="PeakRoutine Insights and Correlation Dashboard"
@@ -2502,23 +2578,102 @@
                     </div>
                 </div>
 
-
-                <div class="step reverse">
+                <!-- Step 3: Habits & Gamification -->
+                <div class="step">
                     <div class="step-content">
                         <div class="step-header">
-                            <h3 class="step-title">Build Daily Routines That Stick</h3>
+                            <h3 class="step-title">Turn insights into habits that stick</h3>
                         </div>
                         <p class="step-description">
-                            Turn health goals into consistent habits with smart reminders, streaks, and progress
-                            tracking.
-                            Stay on track and make routines part of your everyday life.
+                            AI recommendations become daily habits with streak tracking, milestone badges, and a gamified progression system.
+                            Hit 7, 30, 90, or 365-day targets — your longest streak is always within reach.
                         </p>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span class="badge rounded-pill px-3 py-2" style="background:#fff7ed;color:#F6B93B;border:1px solid #fed7aa;font-size:0.8rem;"><i class="fa fa-fire me-1"></i> Streaks</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#fff7ed;color:#F6B93B;border:1px solid #fed7aa;font-size:0.8rem;"><i class="fa fa-trophy me-1"></i> Badges</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#fff7ed;color:#F6B93B;border:1px solid #fed7aa;font-size:0.8rem;"><i class="fa fa-star me-1"></i> XP & Levels</span>
+                            <span class="badge rounded-pill px-3 py-2" style="background:#fff7ed;color:#F6B93B;border:1px solid #fed7aa;font-size:0.8rem;"><i class="fa fa-bullseye me-1"></i> Milestones</span>
+                        </div>
                     </div>
                     <div class="step-image">
-                        <img src="img/optimize_sleep_schedule.png" alt="Build Routines Interface"
+                        <img src="img/streak.jpeg" alt="PeakRoutine Streak and Active Days Dashboard"
                             class="health-data-direct-image">
                     </div>
                 </div>
+
+                <!-- Testimonials Section Start -->
+                <div class="container-xxl py-5" id="testimonials">
+                    <div class="container py-5 px-lg-5">
+                        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <h5 class="text-primary-gradient fw-medium">Early Members Love It</h5>
+                            <h1 class="mb-2">What Our Beta Users Say</h1>
+                            <p class="mb-5 text-muted">300+ early members are already building better habits with PeakRoutine.</p>
+                        </div>
+                        <div class="row g-4">
+                            <!-- Testimonial 1 -->
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="bg-light rounded p-4 h-100" style="border-left: 4px solid #1C85E8;">
+                                    <div class="d-flex mb-3">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                    <p class="fst-italic mb-4">"I never realized how much my late dinners were wrecking my sleep until PeakRoutine showed me the correlation. My HRV is up 18% in 6 weeks."</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3" style="width:44px;height:44px;color:#fff;font-weight:700;">S</div>
+                                        <div>
+                                            <div class="fw-bold">Sarah K.</div>
+                                            <small class="text-muted">Beta User · Seattle, WA</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Testimonial 2 -->
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="bg-light rounded p-4 h-100" style="border-left: 4px solid #38C172;">
+                                    <div class="d-flex mb-3">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                    <p class="fst-italic mb-4">"I've tried every health app. PeakRoutine is the first one that actually connects the dots between my stress, sleep, and exercise. The AI insights are genuinely surprising."</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle me-3" style="width:44px;height:44px;color:#fff;font-weight:700;">M</div>
+                                        <div>
+                                            <div class="fw-bold">Marcus T.</div>
+                                            <small class="text-muted">Beta User · San Francisco, CA</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Testimonial 3 -->
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="bg-light rounded p-4 h-100" style="border-left: 4px solid #1C85E8;">
+                                    <div class="d-flex mb-3">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                    <p class="fst-italic mb-4">"The 30-day habit streaks and badges make it feel like a game. I haven't missed my morning walk in 47 days. My doctor noticed the difference in my resting heart rate."</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3" style="width:44px;height:44px;color:#fff;font-weight:700;">P</div>
+                                        <div>
+                                            <div class="fw-bold">Priya N.</div>
+                                            <small class="text-muted">Beta User · Austin, TX</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonials Section End -->
 
                 <!-- Waitlist Section Start -->
                 <div class="container-xxl py-5 bg-light" id="waitlist-section">
@@ -2526,10 +2681,17 @@
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                             <h5 class="text-primary-gradient fw-medium">Join Our Waitlist</h5>
                             <h1 class="mb-4">Be Among The First To Experience PeakRoutine</h1>
-                            <p class="mb-5">Sign up for early access and be notified when new features are released.
-                                <br> Join our
-                                community of health enthusiasts and get exclusive updates!
+                            <p class="mb-3">Sign up for early access via TestFlight and be notified when new features are released.
+                                Join our community of health enthusiasts and get exclusive updates!
                             </p>
+                            <div class="d-flex justify-content-center gap-3 mb-5 flex-wrap">
+                                <span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;">
+                                    <i class="fab fa-apple me-1"></i> iOS — Available Now via TestFlight
+                                </span>
+                                <span class="badge rounded-pill px-3 py-2" style="background:#374151;color:#fff;font-size:0.85rem;">
+                                    <i class="fab fa-android me-1"></i> Android — Coming Soon
+                                </span>
+                            </div>
                         </div>
 
                         <div class="row justify-content-center">
@@ -2557,16 +2719,14 @@
                                                         PeakRoutine?</label>
                                                     <select class="form-control" id="waitlist-reason">
                                                         <option value="">-- Select an option --</option>
-                                                        <option value="Sleep tracking">Sleep tracking and insights
-                                                        </option>
-                                                        <option value="Mood tracking">Mood tracking features</option>
-                                                        <option value="Stress management">Stress management tools
-                                                        </option>
-                                                        <option value="AI insights">AI personalized insights</option>
-                                                        <option value="Habit building">Building sustainable habits
-                                                        </option>
-                                                        <option value="Health data integration">Health data integration
-                                                        </option>
+                                                        <option value="Apple Health sync">Apple Health auto-sync</option>
+                                                        <option value="AI insights">AI-powered pattern insights & HRV analysis</option>
+                                                        <option value="Sleep tracking">Sleep tracking and optimization</option>
+                                                        <option value="Habit building">Building sustainable habits with streaks</option>
+                                                        <option value="Nutrition tracking">Nutrition & hydration tracking</option>
+                                                        <option value="Mood tracking">Mood & mental health tracking</option>
+                                                        <option value="Stress management">Stress management & meditation</option>
+                                                        <option value="Gamification">Gamification, badges & milestones</option>
                                                         <option value="Other">Other</option>
                                                     </select>
                                                 </div>
@@ -2720,15 +2880,18 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <h4 class="text-white mb-4">Quick Links</h4>
-                                <!-- <a class="btn btn-link" href="javascript:void(0)"
-                                onclick="document.getElementById('about').scrollIntoView()">About Us</a> -->
+                                <a class="btn btn-link" href="about.html">About Us</a>
+                                <a class="btn btn-link" href="javascript:void(0)"
+                                    onclick="document.getElementById('feature').scrollIntoView()">Features</a>
+                                <a class="btn btn-link" href="javascript:void(0)"
+                                    onclick="document.getElementById('how-it-works').scrollIntoView()">How It Works</a>
+                                <a class="btn btn-link" href="javascript:void(0)"
+                                    onclick="document.getElementById('testimonials').scrollIntoView()">Testimonials</a>
                                 <a class="btn btn-link" href="javascript:void(0)"
                                     onclick="document.getElementById('contact').scrollIntoView()">Contact Us</a>
                                 <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app"
-                                    class="btn btn-link">Product
-                                    Roadmap</a>
-                                <a href="https://peak-routine.productroad.com/board/ideas/" class="btn btn-link">Feature
-                                    Request</a>
+                                    class="btn btn-link">Product Roadmap</a>
+                                <a href="https://peak-routine.productroad.com/board/ideas/" class="btn btn-link">Feature Request</a>
                                 <a href="privacy-policy.html" class="btn btn-link">Privacy Policy</a>
                                 <a href="terms-conditions.html" class="btn btn-link">Terms & Conditions</a>
                             </div>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>About Us - PeakRoutine</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="about peakroutine, founders, health app team, siddhant gupta, sakshi gupta, company vision"
+        name="keywords">
+    <meta content="Meet the founders of PeakRoutine and learn why we built an AI-powered health platform to help people build sustainable habits without burnout."
+        name="description">
+    <meta name="theme-color" content="#1C85E8">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Us — PeakRoutine">
+    <meta property="og:description"
+        content="Two engineers. One personal frustration. A mission to turn health data into real habits.">
+    <meta property="og:image" content="https://peakroutine.netlify.app/img/logo_final.PNG">
+    <meta property="og:url" content="https://peakroutinehealth.com/about.html">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1C85E8;
+            --primary-dark: #0f6dc9;
+            --primary-light: #4ba1ff;
+            --secondary: #38C172;
+            --secondary-dark: #2aa15a;
+            --secondary-light: #5fe698;
+            --accent: #F6B93B;
+            --dark: #2D3748;
+            --light: #F8FAFC;
+            --background: #FFFFFF;
+            --gray-100: #F3F4F6;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --heading-font: 'Jost', sans-serif;
+            --body-font: 'Heebo', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--gray-700);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Navbar logo */
+        .logo {
+            transform: scale(1.5);
+            transform-origin: center;
+            max-width: 150px;
+            height: auto;
+            padding: 10px;
+        }
+
+        .logo-text {
+            font-family: 'Urbanist', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 100;
+            color: #435cdd !important;
+            margin-left: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-light .navbar-brand .logo-text {
+            display: block !important;
+        }
+
+        /* Hero */
+        .about-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 80px;
+        }
+
+        .about-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(28, 133, 232, 0.92) 0%, rgba(56, 193, 114, 0.85) 100%);
+            z-index: 0;
+        }
+
+        .about-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gradient text */
+        .text-primary-gradient {
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-secondary-gradient {
+            background: linear-gradient(to right, var(--secondary), var(--secondary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Section divider */
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-underline {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Story section */
+        .story-section {
+            background: #fff;
+        }
+
+        .story-quote {
+            border-left: 4px solid var(--primary);
+            padding: 1.25rem 1.5rem;
+            background: var(--gray-100);
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        /* Founder cards */
+        .founder-card {
+            background: #fff;
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .founder-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(28, 133, 232, 0.12);
+            border-color: var(--gray-300);
+        }
+
+        .founder-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: var(--heading-font);
+            color: #fff;
+            margin-bottom: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .founder-role {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .founder-name {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .founder-bio {
+            color: var(--gray-500);
+            font-size: 0.97rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .founder-tag {
+            display: inline-block;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin: 0.2rem 0.2rem 0.2rem 0;
+        }
+
+        /* Values section */
+        .values-section {
+            background: var(--gray-100);
+        }
+
+        .value-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            height: 100%;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        /* Mission banner */
+        .mission-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            color: #fff;
+        }
+
+        /* CTA section */
+        .btn-primary-gradient {
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-gradient:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(28, 133, 232, 0.3);
+            color: white;
+        }
+
+        .btn-outline-white {
+            border: 2px solid rgba(255,255,255,0.7);
+            color: #fff;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #fff;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer .btn-link {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4px 0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer .btn-link:hover {
+            color: #fff;
+        }
+
+        .footer .btn-social {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding: 20px 0;
+            font-size: 0.875rem;
+        }
+
+        .footer-menu a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-left: 1rem;
+            transition: color 0.2s;
+        }
+
+        .footer-menu a:hover {
+            color: #fff;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: none;
+            z-index: 99;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Navbar Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="index.html" class="navbar-brand p-0 d-flex align-items-center">
+                    <img src="img/logo_final.PNG" alt="Peak Routine Logo" class="logo">
+                    <span class="ms-2 fw-bold logo-text">PeakRoutine</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.html#feature" class="nav-item nav-link">Features</a>
+                        <a href="index.html#how-it-works" class="nav-item nav-link">How It Works</a>
+                        <a href="about.html" class="nav-item nav-link active">About</a>
+                        <a href="index.html#waitlist-section" class="nav-item nav-link">Waitlist</a>
+                        <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app"
+                            class="nav-item nav-link" target="_blank" rel="noopener noreferrer">Roadmap</a>
+                        <a href="index.html#contact" class="nav-item nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+        <!-- Hero Start -->
+        <div class="about-hero">
+            <div class="container px-lg-5 text-center text-white">
+                <p class="text-white-50 fw-semibold mb-2" style="letter-spacing:0.1em; text-transform:uppercase; font-size:0.85rem;">Our Story</p>
+                <h1 class="text-white mb-4" style="font-size: clamp(2rem, 5vw, 3.2rem);">
+                    Built by people who lived <br>the problem firsthand
+                </h1>
+                <p class="text-white mb-0 mx-auto" style="max-width:620px; font-size:1.1rem; opacity:0.9;">
+                    Two engineers. Years of wearable data. No sustainable habits.
+                    PeakRoutine is what we wish had existed.
+                </p>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+        <!-- Story Section Start -->
+        <div class="story-section py-5">
+            <div class="container py-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                            <span class="section-label">Why We Built This</span>
+                            <h2 class="mb-3">The problem we couldn't ignore</h2>
+                            <div class="section-underline"></div>
+                        </div>
+
+                        <div class="story-quote wow fadeInUp mb-4" data-wow-delay="0.2s">
+                            "Despite being highly technical and using wearables regularly, we struggled to convert health data into consistent, meaningful action. The data was there — the habits weren't."
+                        </div>
+
+                        <p class="wow fadeInUp" data-wow-delay="0.3s">
+                            Long work hours, chronic stress, irregular sleep, and information overload made it nearly impossible to build sustainable routines — even with access to detailed metrics from Apple Health, a smartwatch, and a dozen health apps.
+                        </p>
+                        <p class="wow fadeInUp" data-wow-delay="0.35s">
+                            We had data. We just didn't have clarity. Knowing your resting heart rate is 72 bpm means nothing if you don't know what to do with it tomorrow morning.
+                        </p>
+                        <p class="wow fadeInUp" data-wow-delay="0.4s">
+                            <strong>PeakRoutine was born from this personal frustration:</strong> to transform raw health data into simple, personalized routines that fit real life — and help people build healthy habits without burnout or overwhelm.
+                        </p>
+
+                        <!-- Timeline of milestones -->
+                        <div class="mt-5 wow fadeInUp" data-wow-delay="0.45s">
+                            <h5 class="mb-4 text-center">How we got here</h5>
+                            <div class="d-flex flex-column gap-3">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
+                                        style="width:40px;height:40px;background:linear-gradient(135deg,#1C85E8,#4ba1ff);">
+                                        <i class="fa fa-lightbulb text-white" style="font-size:0.9rem;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold mb-1">The idea</div>
+                                        <p class="text-muted mb-0" style="font-size:0.93rem;">Realized that the gap wasn't access to health data — it was the bridge between data and daily action. Existing apps tracked everything but changed nothing.</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
+                                        style="width:40px;height:40px;background:linear-gradient(135deg,#38C172,#5fe698);">
+                                        <i class="fa fa-code text-white" style="font-size:0.9rem;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold mb-1">Building the foundation</div>
+                                        <p class="text-muted mb-0" style="font-size:0.93rem;">Built deep Apple Health integration, an ML correlation engine, and a habit formation system grounded in behavioral science — not just feature lists.</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
+                                        style="width:40px;height:40px;background:linear-gradient(135deg,#F6B93B,#f9d06a);">
+                                        <i class="fa fa-users text-white" style="font-size:0.9rem;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold mb-1">300+ early members</div>
+                                        <p class="text-muted mb-0" style="font-size:0.93rem;">Launched via TestFlight and grew a community of early adopters who share the same belief — that better health shouldn't require a dedicated lifestyle coach or six different apps.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Story Section End -->
+
+        <!-- Founders Section Start -->
+        <div class="py-5" style="background: var(--gray-100);">
+            <div class="container py-4 px-lg-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <span class="section-label">The Team</span>
+                    <h2 class="mb-3">Meet the founders</h2>
+                    <div class="section-underline"></div>
+                    <p class="text-muted mx-auto" style="max-width:520px;">Combined 20+ years of engineering experience — from distributed systems to applied ML — all focused on one goal.</p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+
+                    <!-- Founder 1: Siddhant -->
+                    <div class="col-lg-5 col-md-10 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="founder-card">
+                            <div class="founder-avatar"
+                                style="background: linear-gradient(135deg, #1C85E8, #4ba1ff);">SG</div>
+                            <div class="founder-role text-primary-gradient">CEO & Co-Founder</div>
+                            <h3 class="founder-name">Siddhant Gupta</h3>
+                            <p class="founder-bio">
+                                Senior software engineer with 10+ years of experience building large-scale, production-grade systems across data platforms, distributed systems, and applied machine learning. He has led multiple products from zero to production and brings deep expertise in translating complex data into practical, user-focused solutions.
+                            </p>
+                            <p class="founder-bio mb-3">
+                                At PeakRoutine, Siddhant drives product vision, AI-driven health insights, and overall strategy.
+                            </p>
+                            <div>
+                                <span class="founder-tag" style="background:#eff6ff;color:#1C85E8;">Distributed Systems</span>
+                                <span class="founder-tag" style="background:#eff6ff;color:#1C85E8;">Applied ML</span>
+                                <span class="founder-tag" style="background:#eff6ff;color:#1C85E8;">Product Strategy</span>
+                                <span class="founder-tag" style="background:#eff6ff;color:#1C85E8;">Data Platforms</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Founder 2: Sakshi -->
+                    <div class="col-lg-5 col-md-10 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="founder-card">
+                            <div class="founder-avatar"
+                                style="background: linear-gradient(135deg, #38C172, #5fe698);">SG</div>
+                            <div class="founder-role text-secondary-gradient">CTO & Co-Founder</div>
+                            <h3 class="founder-name">Sakshi Gupta</h3>
+                            <p class="founder-bio">
+                                Staff-level software engineer with 10+ years of experience designing and scaling reliable, high-impact systems. She specializes in building robust architectures, ensuring engineering excellence, and executing complex integrations with precision.
+                            </p>
+                            <p class="founder-bio mb-3">
+                                At PeakRoutine, Sakshi leads platform architecture, engineering execution, and data infrastructure.
+                            </p>
+                            <div>
+                                <span class="founder-tag" style="background:#f0fdf4;color:#38C172;">Platform Architecture</span>
+                                <span class="founder-tag" style="background:#f0fdf4;color:#38C172;">Engineering Excellence</span>
+                                <span class="founder-tag" style="background:#f0fdf4;color:#38C172;">Data Infrastructure</span>
+                                <span class="founder-tag" style="background:#f0fdf4;color:#38C172;">Systems Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Combined experience bar -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-10 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="row g-3 text-center">
+                            <div class="col-6 col-md-3">
+                                <div class="py-3 px-2 bg-white rounded-3 border">
+                                    <div class="fw-bold mb-1 text-primary-gradient" style="font-size:1.8rem;font-family:'Jost',sans-serif;">20+</div>
+                                    <div class="text-muted" style="font-size:0.85rem;">Years Combined Experience</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="py-3 px-2 bg-white rounded-3 border">
+                                    <div class="fw-bold mb-1 text-secondary-gradient" style="font-size:1.8rem;font-family:'Jost',sans-serif;">Staff+</div>
+                                    <div class="text-muted" style="font-size:0.85rem;">Engineering Level</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="py-3 px-2 bg-white rounded-3 border">
+                                    <div class="fw-bold mb-1 text-primary-gradient" style="font-size:1.8rem;font-family:'Jost',sans-serif;">0→1</div>
+                                    <div class="text-muted" style="font-size:0.85rem;">Products Shipped</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="py-3 px-2 bg-white rounded-3 border">
+                                    <div class="fw-bold mb-1 text-secondary-gradient" style="font-size:1.8rem;font-family:'Jost',sans-serif;">Seattle</div>
+                                    <div class="text-muted" style="font-size:0.85rem;">Headquarters</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Founders Section End -->
+
+        <!-- Values Section Start -->
+        <div class="values-section py-5" style="background:#fff;">
+            <div class="container py-4 px-lg-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <span class="section-label">What We Believe</span>
+                    <h2 class="mb-3">Our principles</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="value-card">
+                            <div class="value-icon" style="background:linear-gradient(135deg,#1C85E8,#4ba1ff);">
+                                <i class="fa fa-database"></i>
+                            </div>
+                            <h5 class="mb-2">Data should earn its keep</h5>
+                            <p class="text-muted mb-0" style="font-size:0.93rem;">Tracking for tracking's sake is noise. Every metric we surface has to be actionable — if it can't change what you do tomorrow, it shouldn't be on your screen.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="value-card">
+                            <div class="value-icon" style="background:linear-gradient(135deg,#38C172,#5fe698);">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <h5 class="mb-2">Personalization over one-size-fits-all</h5>
+                            <p class="text-muted mb-0" style="font-size:0.93rem;">Your sleep schedule, stress patterns, and nutrition habits are uniquely yours. Generic health advice doesn't work — and we built the AI to prove it.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="value-card">
+                            <div class="value-icon" style="background:linear-gradient(135deg,#F6B93B,#f9d06a);">
+                                <i class="fa fa-fire"></i>
+                            </div>
+                            <h5 class="mb-2">Consistency beats intensity</h5>
+                            <p class="text-muted mb-0" style="font-size:0.93rem;">A 10-minute morning walk done every day beats a 2-hour gym session done once. We design for the long game — streaks, milestones, and small wins that compound.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="value-card">
+                            <div class="value-icon" style="background:linear-gradient(135deg,#1C85E8,#38C172);">
+                                <i class="fa fa-shield-alt"></i>
+                            </div>
+                            <h5 class="mb-2">Privacy is non-negotiable</h5>
+                            <p class="text-muted mb-0" style="font-size:0.93rem;">Your health data belongs to you. We never sell it, never share it with advertisers, and always give you full control over what's stored and how it's used.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Values Section End -->
+
+        <!-- Mission Banner Start -->
+        <div class="py-5" style="background: var(--gray-100);">
+            <div class="container px-lg-5 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="mission-banner text-center">
+                    <p class="text-white-50 fw-semibold mb-2" style="letter-spacing:0.1em; text-transform:uppercase; font-size:0.8rem;">Our Mission</p>
+                    <h2 class="text-white mb-3" style="font-size: clamp(1.5rem, 4vw, 2.2rem);">
+                        Make sustainable health habits <br>accessible to everyone — not just athletes.
+                    </h2>
+                    <p class="text-white mb-0 mx-auto" style="max-width:580px; opacity:0.88; font-size:1rem;">
+                        Whether you're managing prediabetes, recovering from burnout, or simply trying to sleep better — PeakRoutine meets you where you are and builds with you from there.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Mission Banner End -->
+
+        <!-- CTA Section Start -->
+        <div class="py-5" style="background:#fff;">
+            <div class="container py-3 px-lg-5 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h2 class="mb-3">Ready to build better habits?</h2>
+                <p class="text-muted mb-4">Join 300+ early members already using PeakRoutine on iOS via TestFlight.</p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="index.html#waitlist-section"
+                        class="btn btn-primary-gradient py-3 px-5 rounded-pill">
+                        <i class="fa fa-user-plus me-2"></i>Join the Waitlist
+                    </a>
+                    <a href="index.html#feature"
+                        class="btn btn-outline-secondary py-3 px-5 rounded-pill">
+                        <i class="fa fa-list me-2"></i>See All Features
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- CTA Section End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3">
+                        <h4 class="text-white mb-4">Address</h4>
+                        <p><i class="fa fa-map-marker-alt me-3"></i>Seattle, Washington, USA</p>
+                        <p><i class="fa fa-envelope me-3"></i>info@peakroutinehealth.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social"
+                                href="https://www.instagram.com/peak.routine/"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social"
+                                href="https://www.linkedin.com/company/peakroutine/"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h4 class="text-white mb-4">Quick Links</h4>
+                        <a class="btn btn-link" href="index.html">Home</a>
+                        <a class="btn btn-link" href="about.html">About Us</a>
+                        <a class="btn btn-link" href="index.html#feature">Features</a>
+                        <a class="btn btn-link" href="index.html#waitlist-section">Join Waitlist</a>
+                        <a class="btn btn-link" href="index.html#contact">Contact Us</a>
+                        <a class="btn btn-link" href="privacy-policy.html">Privacy Policy</a>
+                        <a class="btn btn-link" href="terms-conditions.html">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="index.html">PeakRoutine</a>, All Rights Reserved.
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="index.html">Home</a>
+                                <a href="privacy-policy.html">Privacy Policy</a>
+                                <a href="terms-conditions.html">Terms & Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Back to Top -->
+        <a href="javascript:void(0)" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+            class="btn btn-lg btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up text-white"></i></a>
+
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+
+    <script>
+        // Init WOW animations
+        new WOW().init();
+
+        // Spinner
+        $(window).on('load', function () {
+            if ($('#spinner').length > 0) {
+                $('#spinner').removeClass('show');
+            }
+        });
+
+        // Back to top visibility
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 300) {
+                $('.back-to-top').addClass('show');
+            } else {
+                $('.back-to-top').removeClass('show');
+            }
+        });
+
+        // Mobile nav close on link click
+        document.querySelectorAll('.navbar-nav a').forEach(link => {
+            link.addEventListener('click', function () {
+                const navbarCollapse = document.getElementById('navbarCollapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    new bootstrap.Collapse(navbarCollapse).hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
