@@ -827,6 +827,130 @@
             padding: 10px;
         }
 
+        /* Pricing Section */
+        .pricing-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 0;
+            border: 2px solid var(--gray-100);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--gray-300);
+        }
+
+        .pricing-card-featured {
+            border-color: var(--secondary);
+            box-shadow: 0 10px 30px rgba(56, 193, 114, 0.15);
+        }
+
+        .pricing-card-featured:hover {
+            border-color: var(--secondary-dark);
+            box-shadow: 0 20px 40px rgba(56, 193, 114, 0.25);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 16px;
+            right: -32px;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 40px;
+            transform: rotate(45deg);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .pricing-header {
+            text-align: center;
+            padding: 32px 24px 16px;
+        }
+
+        .pricing-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .pricing-plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pricing-body {
+            padding: 0 32px 32px;
+        }
+
+        .pricing-amount {
+            text-align: center;
+            margin-bottom: 24px;
+            padding: 16px 0;
+            border-top: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .pricing-original {
+            display: block;
+            font-size: 1rem;
+            color: var(--gray-500);
+            margin-bottom: 2px;
+        }
+
+        .pricing-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            font-family: var(--heading-font);
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 767px) {
+            .pricing-price {
+                font-size: 2.2rem;
+            }
+            .pricing-body {
+                padding: 0 20px 24px;
+            }
+            .pricing-header {
+                padding: 24px 20px 12px;
+            }
+        }
+
         /* Contact form styling */
         .contact-container {
             max-width: 800px;
@@ -2306,6 +2430,8 @@
                             class="nav-item nav-link">Features</a>
                         <a href="javascript:void(0)" onclick="document.getElementById('how-it-works').scrollIntoView()"
                             class="nav-item nav-link">How It Works</a>
+                        <a href="javascript:void(0)" onclick="document.getElementById('pricing').scrollIntoView()"
+                            class="nav-item nav-link">Pricing</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="javascript:void(0)"
                             onclick="document.getElementById('waitlist-section').scrollIntoView()"
@@ -2808,6 +2934,98 @@
                     </div>
                 </div>
                 <!-- Testimonials Section End -->
+
+                <!-- Pricing Section Start -->
+                <div class="container-xxl py-5" id="pricing">
+                    <div class="container py-5 px-lg-5">
+                        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <h5 class="text-primary-gradient fw-medium">Choose Your Plan</h5>
+                            <h1 class="mb-2">Simple, Transparent Pricing</h1>
+                            <p class="mb-5 text-muted">Invest in your health. Cancel anytime.</p>
+                        </div>
+
+                        <!-- Promo Code -->
+                        <div class="row justify-content-center mb-4 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="col-md-5 col-lg-4">
+                                <div class="d-flex gap-2">
+                                    <input type="text" id="promoCodeInput" class="form-control rounded-pill px-4" placeholder="Have a promo code?" style="border:2px solid var(--gray-300);font-size:0.95rem;">
+                                    <button id="applyPromoBtn" onclick="applyPromoCode()" class="btn btn-primary-gradient rounded-pill px-4 flex-shrink-0" style="font-size:0.9rem;font-weight:600;">Apply</button>
+                                </div>
+                                <div id="promoMessage" class="text-center mt-2" style="font-size:0.85rem;display:none;"></div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4 justify-content-center">
+                            <!-- Pro Plan -->
+                            <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="pricing-card" id="proCard">
+                                    <div class="pricing-header">
+                                        <div class="pricing-icon bg-primary-gradient">
+                                            <i class="fas fa-chart-line" style="color:#fff;font-size:1.5rem;"></i>
+                                        </div>
+                                        <h3 class="pricing-plan-name">Pro</h3>
+                                        <p class="text-muted mb-0" style="font-size:0.9rem;">AI-powered health analytics</p>
+                                    </div>
+                                    <div class="pricing-body">
+                                        <div class="pricing-amount">
+                                            <span class="pricing-original" id="proOriginal" style="display:none;"><s>$49.99</s></span>
+                                            <span class="pricing-price" id="proPrice">$49.99</span>
+                                            <span class="pricing-period">/year</span>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Personalized AI health insights</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Sleep, stress & activity analytics</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>30-day habit streak tracking</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Weekly & monthly trend reports</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Health score & biomarker dashboard</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Gamification: badges, XP & levels</li>
+                                        </ul>
+                                        <button class="btn btn-primary-gradient w-100 py-3 rounded-pill fw-bold" onclick="initiatePurchase('pro')">
+                                            Get Pro
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Elite Plan -->
+                            <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="pricing-card pricing-card-featured" id="eliteCard">
+                                    <div class="pricing-badge">Most Popular</div>
+                                    <div class="pricing-header">
+                                        <div class="pricing-icon bg-secondary-gradient">
+                                            <i class="fas fa-robot" style="color:#fff;font-size:1.5rem;"></i>
+                                        </div>
+                                        <h3 class="pricing-plan-name">Elite</h3>
+                                        <p class="text-muted mb-0" style="font-size:0.9rem;">Everything in Pro + AI coaching</p>
+                                    </div>
+                                    <div class="pricing-body">
+                                        <div class="pricing-amount">
+                                            <span class="pricing-original" id="eliteOriginal" style="display:none;"><s>$99.99</s></span>
+                                            <span class="pricing-price" id="elitePrice">$99.99</span>
+                                            <span class="pricing-period">/year</span>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Everything in Pro</li>
+                                            <li><i class="fas fa-star text-warning me-2"></i>AI coaching chatbots (20 msgs/day)</li>
+                                            <li><i class="fas fa-star text-warning me-2"></i>Personalized action plans</li>
+                                            <li><i class="fas fa-star text-warning me-2"></i>Advanced sleep & recovery coach</li>
+                                            <li><i class="fas fa-star text-warning me-2"></i>Nutrition & fitness guidance</li>
+                                            <li><i class="fas fa-star text-warning me-2"></i>Priority support</li>
+                                        </ul>
+                                        <button class="btn btn-secondary-gradient w-100 py-3 rounded-pill fw-bold" onclick="initiatePurchase('elite')">
+                                            Get Elite
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.6s">
+                            <p class="text-muted" style="font-size:0.85rem;"><i class="fas fa-shield-alt me-1"></i> Secure payments powered by Razorpay. Cancel anytime from the app.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pricing Section End -->
 
                 <!-- Waitlist Section Start -->
                 <div class="container-xxl py-5 bg-light" id="waitlist-section">
@@ -3700,6 +3918,238 @@
                     <button class="popup-close-btn" id="errorPopupCloseBtn">Try Again</button>
                 </div>
             </div>
+
+            <!-- Razorpay Checkout -->
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+            <!-- Pricing & Promo Code Logic -->
+            <script>
+                // Backend API base URL (context path: /app)
+                // const PAYMENT_API_BASE = 'https://peakroutine-hfffebbwc4bjbcer.westus-01.azurewebsites.net/app/website/payment';
+                const PAYMENT_API_BASE = 'http://localhost:8083/app/website/payment';
+
+                // Razorpay Key ID (public key — safe for frontend)
+                const RAZORPAY_KEY_ID = 'rzp_live_SRewKwEFpjSJpD'; // TODO: Replace with your actual Razorpay Key ID
+
+                // Pricing configuration (amounts in cents for USD) — base prices
+                const pricingConfig = {
+                    pro: { name: 'Pro', price: 4999, display: '$49.99' },
+                    elite: { name: 'Elite', price: 9999, display: '$99.99' }
+                };
+
+                let promoApplied = false;
+                let appliedPromoCode = null;
+
+                async function applyPromoCode() {
+                    const input = document.getElementById('promoCodeInput');
+                    const message = document.getElementById('promoMessage');
+                    const btn = document.getElementById('applyPromoBtn');
+                    const code = input.value.trim().toUpperCase();
+
+                    if (!code) {
+                        message.style.display = 'block';
+                        message.style.color = '#ef4444';
+                        message.textContent = 'Please enter a promo code.';
+                        return;
+                    }
+
+                    // Disable inputs while validating
+                    input.disabled = true;
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+
+                    try {
+                        const response = await fetch(PAYMENT_API_BASE + '/validatePromo', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ code: code })
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.status !== 'FAILED') {
+                            promoApplied = true;
+                            appliedPromoCode = code;
+
+                            // Update prices from backend response
+                            pricingConfig.pro.promoPrice = data.payload.proPrice;
+                            pricingConfig.pro.promoDisplay = data.payload.proDisplay;
+                            pricingConfig.elite.promoPrice = data.payload.elitePrice;
+                            pricingConfig.elite.promoDisplay = data.payload.eliteDisplay;
+
+                            document.getElementById('proOriginal').style.display = 'block';
+                            document.getElementById('proPrice').textContent = data.payload.proDisplay;
+
+                            document.getElementById('eliteOriginal').style.display = 'block';
+                            document.getElementById('elitePrice').textContent = data.payload.eliteDisplay;
+
+                            message.style.display = 'block';
+                            message.style.color = '#38C172';
+                            message.innerHTML = '<i class="fas fa-check-circle me-1"></i>Promo code applied! Prices updated.';
+
+                            btn.textContent = 'Applied';
+                        } else {
+                            input.disabled = false;
+                            btn.disabled = false;
+                            btn.textContent = 'Apply';
+                            message.style.display = 'block';
+                            message.style.color = '#ef4444';
+                            message.textContent = data.message?.info || data.message?.error || 'Invalid promo code. Please try again.';
+                        }
+                    } catch (err) {
+                        input.disabled = false;
+                        btn.disabled = false;
+                        btn.textContent = 'Apply';
+                        message.style.display = 'block';
+                        message.style.color = '#ef4444';
+                        message.textContent = 'Could not validate promo code. Please try again.';
+                    }
+                }
+
+                /**
+                 * Razorpay Standard Checkout — Correct Integration Flow:
+                 * Step 1: Create order on server (POST /createOrder)
+                 * Step 2: Open Razorpay Checkout with order_id
+                 * Step 3: On success, verify signature on server (POST /verifyPayment)
+                 */
+                async function initiatePurchase(plan) {
+                    const config = pricingConfig[plan];
+                    if (!config) return;
+
+                    const amount = promoApplied ? config.promoPrice : config.price;
+
+                    // Disable button and show loading
+                    const btn = event.target;
+                    const originalText = btn.textContent;
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i>Processing...';
+
+                    try {
+                        // Step 1: Create order on server
+                        const orderResponse = await fetch(PAYMENT_API_BASE + '/createOrder', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                amount: amount,
+                                currency: 'USD',
+                                plan: plan,
+                                promoCode: appliedPromoCode
+                            })
+                        });
+
+                        if (!orderResponse.ok) {
+                            throw new Error('Failed to create order. Please try again.');
+                        }
+
+                        const orderData = await orderResponse.json();
+                        const orderId = orderData.payload.orderId;
+
+                        // Step 2: Open Razorpay Checkout with order_id
+                        const options = {
+                            key: RAZORPAY_KEY_ID,
+                            amount: amount,
+                            currency: 'USD',
+                            name: 'PeakRoutine',
+                            description: config.name + ' Plan \u2014 Annual Subscription',
+                            image: 'https://peakroutine.netlify.app/img/logo_final.PNG',
+                            order_id: orderId, // MANDATORY: ties payment to order
+                            handler: async function (response) {
+                                // Step 3: Verify payment signature on server
+                                try {
+                                    const verifyResponse = await fetch(PAYMENT_API_BASE + '/verifyPayment', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({
+                                            razorpay_order_id: response.razorpay_order_id,
+                                            razorpay_payment_id: response.razorpay_payment_id,
+                                            razorpay_signature: response.razorpay_signature
+                                        })
+                                    });
+
+                                    const verifyData = await verifyResponse.json();
+
+                                    if (verifyResponse.ok && verifyData.status !== 'FAILED') {
+                                        showPricingPopup(
+                                            'Payment Successful!',
+                                            'Thank you for subscribing to PeakRoutine ' + config.name + '! Payment ID: ' + response.razorpay_payment_id + '. You will receive a confirmation email shortly.',
+                                            'success'
+                                        );
+                                    } else {
+                                        showPricingPopup(
+                                            'Verification Failed',
+                                            'Your payment was received but could not be verified. Please contact us at info@peakroutinehealth.com with Payment ID: ' + response.razorpay_payment_id,
+                                            'error'
+                                        );
+                                    }
+                                } catch (verifyErr) {
+                                    showPricingPopup(
+                                        'Verification Error',
+                                        'Payment received but verification encountered an error. Please contact us at info@peakroutinehealth.com with Payment ID: ' + response.razorpay_payment_id,
+                                        'error'
+                                    );
+                                }
+                            },
+                            prefill: {
+                                name: '',
+                                email: ''
+                            },
+                            theme: {
+                                color: plan === 'pro' ? '#1C85E8' : '#38C172'
+                            },
+                            modal: {
+                                ondismiss: function () {
+                                    // User closed the payment modal — reset button
+                                    btn.disabled = false;
+                                    btn.textContent = originalText;
+                                }
+                            }
+                        };
+
+                        const rzp = new Razorpay(options);
+                        rzp.on('payment.failed', function (response) {
+                            showPricingPopup(
+                                'Payment Failed',
+                                'Error: ' + response.error.description + '. Please try again.',
+                                'error'
+                            );
+                            btn.disabled = false;
+                            btn.textContent = originalText;
+                        });
+                        rzp.open();
+
+                    } catch (e) {
+                        showPricingPopup(
+                            'Payment Unavailable',
+                            e.message || 'Payment processing is temporarily unavailable. Please try again later or contact us at info@peakroutinehealth.com.',
+                            'error'
+                        );
+                    } finally {
+                        // Reset button after a delay (checkout may still be open)
+                        setTimeout(() => {
+                            btn.disabled = false;
+                            btn.textContent = originalText;
+                        }, 2000);
+                    }
+                }
+
+                function showPricingPopup(title, message, type) {
+                    if (type === 'success') {
+                        const popup = document.getElementById('contactSuccessPopup');
+                        const overlay = document.getElementById('contactPopupOverlay');
+                        popup.querySelector('.popup-title').textContent = title;
+                        popup.querySelector('.popup-message').textContent = message;
+                        popup.classList.add('show');
+                        overlay.classList.add('show');
+                    } else {
+                        const popup = document.getElementById('contactErrorPopup');
+                        const overlay = document.getElementById('contactPopupOverlay');
+                        popup.querySelector('.popup-title').textContent = title;
+                        popup.querySelector('.popup-message').textContent = message;
+                        popup.classList.add('show');
+                        overlay.classList.add('show');
+                    }
+                }
+            </script>
 </body>
 
 </html>
