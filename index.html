@@ -17,8 +17,9 @@
     <meta property="og:title" content="PeakRoutine - Build Daily Habits for Long-Term Health">
     <meta property="og:description"
         content="Powered by AI, PeakRoutine analyzes your biomarkers to create personalized plans that reduce the risk of prediabetes, type 2 diabetes, PCOS, and stress-related burnout.">
-    <meta property="og:image" content="https://peakroutine.netlify.app/img/logo_final.PNG">
-    <meta property="og:url" content="https://peakroutine.netlify.app">
+    <!-- TODO: Replace og:image with a 1270x760 landscape banner featuring app screenshots + tagline -->
+    <meta property="og:image" content="https://www.peakroutinehealth.com/img/Peak_Routine_Logo.png">
+    <meta property="og:url" content="https://www.peakroutinehealth.com">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
@@ -26,7 +27,8 @@
     <meta name="twitter:title" content="PeakRoutine - Build Daily Habits for Long-Term Health">
     <meta name="twitter:description"
         content="Powered by AI, PeakRoutine analyzes your biomarkers to create personalized plans that reduce the risk of prediabetes, type 2 diabetes, PCOS, and stress-related burnout.">
-    <meta name="twitter:image" content="https://peakroutine.netlify.app/img/logo_final.PNG">
+    <!-- TODO: Replace twitter:image with the same 1270x760 landscape banner -->
+    <meta name="twitter:image" content="https://www.peakroutinehealth.com/img/Peak_Routine_Logo.png">
 
     <!-- Favicon -->
     <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
@@ -820,11 +822,13 @@
 
         /* Logo styling */
         .logo {
-            transform: scale(1.5);
-            transform-origin: center;
-            max-width: 150px;
-            height: auto;
-            padding: 10px;
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 50%;
+            padding: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         /* Pricing Section */
@@ -1055,21 +1059,20 @@
         }
 
         /* Add these styles to your CSS file */
-        @media (max-width: 576px) {
+        @media (max-width: 991.98px) {
             .navbar-brand .logo-text {
                 display: block !important;
-                /* Force display */
                 opacity: 1 !important;
                 visibility: visible !important;
                 font-size: 1.2rem;
-                /* Slightly smaller for mobile */
+                color: #1C85E8 !important;
             }
 
             /* Adjust logo image size on mobile if needed */
             .navbar-brand .logo {
-                transform: scale(1.2);
-                /* Slightly smaller scale for mobile */
-                max-width: 40px;
+                width: 36px;
+                height: 36px;
+                padding: 5px;
             }
 
             /* Make sure flex layout doesn't hide logo text */
@@ -1078,6 +1081,8 @@
                 align-items: center !important;
                 justify-content: flex-start !important;
                 width: auto !important;
+                max-width: none !important;
+                overflow: visible !important;
             }
         }
 
@@ -1465,113 +1470,6 @@
                 transform: rotateX(60deg) translateX(-40px) scale(1);
                 opacity: 0.3;
             }
-        }
-
-        /* Waitlist Section Styling */
-        .waitlist-container {
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .waitlist-container:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        .waitlist-container .form-control {
-            padding: 12px 15px;
-            border: 1px solid var(--gray-300);
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            font-family: var(--body-font);
-            transition: all 0.3s ease;
-        }
-
-        .waitlist-container .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(28, 133, 232, 0.2);
-            outline: none;
-        }
-
-        .waitlist-container .form-check-input:checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .form-check-inline {
-            margin-right: 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-check-inline .form-check-input {
-            margin: 0;
-            width: 16px;
-            /* ← Specific smaller width */
-            height: 16px;
-            /* ← Specific smaller height */
-            transform: scale(0.8);
-            /* ← Additional 20% size reduction */
-        }
-
-        .form-check-inline .form-check-label {
-            margin-bottom: 0;
-            font-family: var(--body-font);
-            color: var(--gray-700);
-            font-weight: 400;
-            cursor: pointer;
-        }
-
-        /* Responsive device checkboxes - keep inline on all screen sizes */
-        @media (max-width: 576px) {
-            .device-checkboxes {
-                gap: 15px;
-            }
-        }
-
-        .waitlist-counter {
-            position: relative;
-            padding-top: 20px;
-        }
-
-        .apple-id-container {
-            transition: opacity 0.3s ease;
-        }
-
-        .waitlist-container .form-check-input:checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .waitlist-counter:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 2px;
-            background-color: var(--gray-300);
-        }
-
-        .counter-number {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        #waitlist-response.success {
-            color: var(--secondary);
-            padding: 15px;
-            border-radius: 8px;
-            background-color: rgba(56, 193, 114, 0.1);
-        }
-
-        #waitlist-response.error {
-            color: #E53E3E;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: rgba(229, 62, 62, 0.1);
         }
 
         /* Success Popup Styling */
@@ -2091,14 +1989,14 @@
             color: #ffffff !important;
         }
 
-        /* When navbar is sticky (after scroll) - change to #435cdd */
+        /* When navbar is sticky (after scroll) - match logo blue */
         .sticky-top .logo-text {
-            color: #435cdd !important;
+            color: #1C85E8 !important;
         }
 
         /* If you're using Bootstrap's fixed-top class instead of sticky-top */
         .fixed-top .logo-text {
-            color: #435cdd !important;
+            color: #1C85E8 !important;
         }
 
         /* Make sure the text is displayed in all states */
@@ -2347,12 +2245,6 @@
         .testimonial-card.accent-green .testimonial-quote { color: rgba(56,193,114,0.1); }
         .testimonial-stars { color: var(--accent); font-size: 0.85rem; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
 
-        /* WAITLIST */
-        #waitlist-section { background: linear-gradient(135deg, #f0f7ff 0%, #f0fdf4 100%) !important; }
-        .waitlist-container { border-radius: 24px !important; box-shadow: 0 24px 80px rgba(28,133,232,0.1) !important; border: 1px solid rgba(28,133,232,0.08) !important; }
-        .waitlist-container .form-control { border-radius: 10px !important; border: 1.5px solid var(--gray-300) !important; }
-        .waitlist-container .form-control:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 4px rgba(28,133,232,0.1) !important; }
-
         /* BUTTONS */
         .btn-primary-gradient { background: linear-gradient(135deg, #1C85E8, #4ba1ff) !important; border: none !important; border-radius: 50px !important; font-weight: 700 !important; letter-spacing: 0.02em !important; box-shadow: 0 6px 20px rgba(28,133,232,0.3) !important; transition: all 0.3s ease !important; }
         .btn-primary-gradient:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 32px rgba(28,133,232,0.4) !important; filter: brightness(1.05) !important; }
@@ -2392,7 +2284,7 @@
   }
   </script>
 
-    <link rel="canonical" href="https://peakroutine.netlify.app/" />
+    <link rel="canonical" href="https://www.peakroutinehealth.com/" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="PeakRoutine" />
     <meta name="keywords"
@@ -2401,7 +2293,7 @@
 </head>
 
 <body>
-    <div class="container-xxl bg-white p-0">
+    <div class="container-fluid bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner"
             class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -2412,10 +2304,10 @@
         <!-- Spinner End -->
 
         <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0" id="home">
+        <div class="container-fluid position-relative p-0" id="home">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="index.html" class="navbar-brand p-0 d-flex align-items-center">
-                    <img src="img/logo_final.PNG" alt="Peak Routine Logo" class="logo">
+                    <img src="img/Peak_Routine_Logo.png" alt="Peak Routine Logo" class="logo">
                     <span class="ms-2 fw-bold logo-text">PeakRoutine</span>
                 </a>
 
@@ -2424,29 +2316,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="javascript:void(0)" onclick="document.getElementById('home').scrollIntoView()"
-                            class="nav-item nav-link active">Home</a>
                         <a href="javascript:void(0)" onclick="document.getElementById('feature').scrollIntoView()"
                             class="nav-item nav-link">Features</a>
-                        <a href="javascript:void(0)" onclick="document.getElementById('how-it-works').scrollIntoView()"
-                            class="nav-item nav-link">How It Works</a>
                         <a href="javascript:void(0)" onclick="document.getElementById('pricing').scrollIntoView()"
                             class="nav-item nav-link">Pricing</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="javascript:void(0)"
-                            onclick="document.getElementById('waitlist-section').scrollIntoView()"
-                            class="nav-item nav-link">Waitlist</a>
                         <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app"
                             class="nav-item nav-link" target="_blank" rel="noopener noreferrer">Roadmap</a>
-                        <a href="https://peak-routine.productroad.com/board/ideas/" class="nav-item nav-link"
-                            target="_blank" rel="noopener noreferrer">Feature Request</a>
                         <a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView()"
                             class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
             </nav>
 
-            <div class="container-xxl bg-primary hero-header">
+            <div class="container-fluid bg-primary hero-header">
                 <!-- Background orbs for depth -->
                 <div class="hero-orb hero-orb-1"></div>
                 <div class="hero-orb hero-orb-2"></div>
@@ -2486,17 +2369,14 @@
                                 <br>Personalized Routines. <br> Smarter Habits. <br> Every Day.
                             </h1>
                             <p class="text-white pb-3 animated slideInDown">
-                                Automatically sync your Apple Health data — sleep, HRV, steps, heart rate, and more —
-                                then let AI uncover the hidden patterns behind your energy, recovery, and mood.
-                                <strong>PeakRoutine</strong> builds a personalized plan that adapts to your life,
-                                whether you're optimizing performance or managing chronic health proactively.
+                                Sync Apple Health data. Let AI find the patterns behind your energy, sleep, and recovery — then build habits that stick.
                             </p>
 
                             <div class="hero-buttons">
                                 <a href="javascript:void(0)"
-                                    onclick="document.getElementById('waitlist-section').scrollIntoView()"
+                                    onclick="document.getElementById('pricing').scrollIntoView()"
                                     class="btn btn-light py-sm-3 px-4 px-sm-5 rounded-pill me-3 animated slideInRight">
-                                    <i class="fa fa-user-plus me-2"></i>Join the Waitlist Now
+                                    <i class="fa fa-rocket me-2"></i>Get Started
                                 </a>
                             </div>
 
@@ -2521,7 +2401,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="member-count">Join over 300+ early members</p>
+                                <p class="member-count">Trusted by 75+ early members</p>
                                 <br>
                             </div>
                         </div>
@@ -2546,12 +2426,12 @@
         <!-- About End -->
 
         <!-- Stats Bar Start -->
-        <div class="container-xxl stats-bar-wrap">
+        <div class="container-fluid stats-bar-wrap">
             <div class="container px-lg-5">
                 <div class="row g-0 text-center justify-content-center align-items-stretch">
                     <div class="col-6 col-md-3 wow fadeInUp stat-item" data-wow-delay="0.1s">
                         <div class="d-flex flex-column align-items-center">
-                            <span class="stat-number text-primary-gradient">300+</span>
+                            <span class="stat-number text-primary-gradient">75+</span>
                             <span class="stat-label">Early Members</span>
                         </div>
                     </div>
@@ -2563,8 +2443,8 @@
                     </div>
                     <div class="col-6 col-md-3 wow fadeInUp stat-item" data-wow-delay="0.3s">
                         <div class="d-flex flex-column align-items-center">
-                            <span class="stat-number text-primary-gradient">6</span>
-                            <span class="stat-label">Tracked Biomarkers</span>
+                            <span class="stat-number text-primary-gradient">25+</span>
+                            <span class="stat-label">Health Metrics</span>
                         </div>
                     </div>
                     <div class="col-6 col-md-3 wow fadeInUp stat-item" data-wow-delay="0.4s">
@@ -2579,7 +2459,7 @@
         <!-- Stats Bar End -->
 
         <!-- Features Start -->
-        <div class="container-xxl py-5" id="feature">
+        <div class="container-fluid py-5" id="feature">
             <div class="container py-5 px-lg-5">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">Reach Your Full Potential</h5>
@@ -2670,7 +2550,7 @@
         <!-- Features End -->
 
         <!-- How It Works Start -->
-        <div class="container-xxl py-5 bg-light" id="how-it-works">
+        <div class="container-fluid py-5 bg-light" id="how-it-works">
             <div class="container py-5 px-lg-5">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">Simple to Start</h5>
@@ -2716,9 +2596,9 @@
                     </div>
                 </div>
                 <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <a href="javascript:void(0)" onclick="document.getElementById('waitlist-section').scrollIntoView()"
+                    <a href="javascript:void(0)" onclick="document.getElementById('pricing').scrollIntoView()"
                         class="btn btn-primary-gradient py-3 px-5 rounded-pill">
-                        <i class="fa fa-user-plus me-2"></i>Get Early Access
+                        <i class="fa fa-rocket me-2"></i>Get Started
                     </a>
                 </div>
             </div>
@@ -2876,72 +2756,17 @@
                     </div>
                 </div>
 
-                <!-- Testimonials Section Start -->
-                <div class="container-xxl py-5" id="testimonials">
-                    <div class="container py-5 px-lg-5">
-                        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h5 class="text-primary-gradient fw-medium">Early Members Love It</h5>
-                            <h1 class="mb-2">What Our Beta Users Say</h1>
-                            <p class="mb-5 text-muted">300+ early members are already building better habits with PeakRoutine.</p>
-                        </div>
-                        <div class="row g-4">
-                            <!-- Testimonial 1 -->
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="testimonial-card accent-blue">
-                                    <span class="testimonial-quote">"</span>
-                                    <div class="testimonial-stars mb-3">★★★★★</div>
-                                    <blockquote class="mb-4">"I never realized how much my late dinners were wrecking my sleep until PeakRoutine showed me the correlation. My HRV is up 18% in 6 weeks."</blockquote>
-                                    <div class="d-flex align-items-center mt-auto">
-                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3 flex-shrink-0" style="width:44px;height:44px;color:#fff;font-weight:700;font-size:1.1rem;">S</div>
-                                        <div>
-                                            <div class="fw-bold" style="font-size:0.95rem;">Sarah K.</div>
-                                            <small class="text-muted">Beta User · Seattle, WA</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial 2 -->
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="testimonial-card accent-green">
-                                    <span class="testimonial-quote">"</span>
-                                    <div class="testimonial-stars mb-3">★★★★★</div>
-                                    <blockquote class="mb-4">"I've tried every health app. PeakRoutine is the first one that actually connects the dots between my stress, sleep, and exercise. The AI insights are genuinely surprising."</blockquote>
-                                    <div class="d-flex align-items-center mt-auto">
-                                        <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle me-3 flex-shrink-0" style="width:44px;height:44px;color:#fff;font-weight:700;font-size:1.1rem;">M</div>
-                                        <div>
-                                            <div class="fw-bold" style="font-size:0.95rem;">Marcus T.</div>
-                                            <small class="text-muted">Beta User · San Francisco, CA</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial 3 -->
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <div class="testimonial-card accent-blue">
-                                    <span class="testimonial-quote">"</span>
-                                    <div class="testimonial-stars mb-3">★★★★★</div>
-                                    <blockquote class="mb-4">"The 30-day habit streaks and badges make it feel like a game. I haven't missed my morning walk in 47 days. My doctor noticed the difference in my resting heart rate."</blockquote>
-                                    <div class="d-flex align-items-center mt-auto">
-                                        <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle me-3 flex-shrink-0" style="width:44px;height:44px;color:#fff;font-weight:700;font-size:1.1rem;">P</div>
-                                        <div>
-                                            <div class="fw-bold" style="font-size:0.95rem;">Priya N.</div>
-                                            <small class="text-muted">Beta User · Austin, TX</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonials Section End -->
+            </div>
+        </section>
 
                 <!-- Pricing Section Start -->
-                <div class="container-xxl py-5" id="pricing">
+                <div class="container-fluid py-5" id="pricing">
                     <div class="container py-5 px-lg-5">
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                             <h5 class="text-primary-gradient fw-medium">Choose Your Plan</h5>
                             <h1 class="mb-2">Simple, Transparent Pricing</h1>
-                            <p class="mb-5 text-muted">Invest in your health. Cancel anytime.</p>
+                            <p class="mb-2 text-muted">Invest in your health. Cancel anytime.</p>
+                            <p class="mb-5"><span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;"><i class="fab fa-apple me-1"></i> Currently available on iOS only</span></p>
                         </div>
 
                         <!-- Promo Code -->
@@ -3022,131 +2847,14 @@
 
                         <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.6s">
                             <p class="text-muted" style="font-size:0.85rem;"><i class="fas fa-shield-alt me-1"></i> Secure payments powered by Razorpay. Cancel anytime from the app.</p>
+                            <p class="text-muted mt-2" style="font-size:0.85rem;"><i class="fab fa-android me-1"></i> Android coming soon — <a href="#contact" style="color:var(--primary);">contact us</a> to get notified.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Pricing Section End -->
 
-                <!-- Waitlist Section Start -->
-                <div class="container-xxl py-5 bg-light" id="waitlist-section">
-                    <div class="container py-5 px-lg-5">
-                        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h5 class="text-primary-gradient fw-medium">Join Our Waitlist</h5>
-                            <h1 class="mb-4">Be Among The First To Experience PeakRoutine</h1>
-                            <p class="mb-3">Sign up for early access via TestFlight and be notified when new features are released.
-                                Join our community of health enthusiasts and get exclusive updates!
-                            </p>
-                            <div class="d-flex justify-content-center gap-3 mb-5 flex-wrap">
-                                <span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;">
-                                    <i class="fab fa-apple me-1"></i> iOS — Available Now via TestFlight
-                                </span>
-                                <span class="badge rounded-pill px-3 py-2" style="background:#374151;color:#fff;font-size:0.85rem;">
-                                    <i class="fab fa-android me-1"></i> Android — Coming Soon
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="waitlist-container bg-white p-5 rounded-4 shadow-sm">
-                                    <form id="waitlistForm" onsubmit="submitWaitlist(event)">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="waitlist-name">Your Name</label>
-                                                    <input type="text" class="form-control" id="waitlist-name"
-                                                        placeholder="Enter your name" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="waitlist-email">Your Email</label>
-                                                    <input type="email" class="form-control" id="waitlist-email"
-                                                        placeholder="Enter your email" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="waitlist-reason">What interests you most about
-                                                        PeakRoutine?</label>
-                                                    <select class="form-control" id="waitlist-reason">
-                                                        <option value="">-- Select an option --</option>
-                                                        <option value="Apple Health sync">Apple Health auto-sync</option>
-                                                        <option value="AI insights">AI-powered pattern insights & HRV analysis</option>
-                                                        <option value="Sleep tracking">Sleep tracking and optimization</option>
-                                                        <option value="Habit building">Building sustainable habits with streaks</option>
-                                                        <option value="Nutrition tracking">Nutrition & hydration tracking</option>
-                                                        <option value="Mood tracking">Mood & mental health tracking</option>
-                                                        <option value="Stress management">Stress management & meditation</option>
-                                                        <option value="Gamification">Gamification, badges & milestones</option>
-                                                        <option value="Other">Other</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">Please select your device type</label>
-                                                    <div class="device-checkboxes">
-                                                        <div class="form-check form-check-inline">
-                                                            <label class="form-check-label" for="iPhone">
-                                                                iPhone
-                                                            </label>
-                                                            <input class="form-check-input" type="checkbox" id="iPhone">
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <label class="form-check-label" for="android">
-                                                                Android
-                                                            </label>
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="android">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12" id="apple-id-container" style="display: none;">
-                                                <div class="form-group">
-                                                    <label for="waitlist-apple-id">Your Apple ID</label>
-                                                    <input type="email" class="form-control" id="waitlist-apple-id"
-                                                        placeholder="Enter your Apple ID">
-                                                    <small class="form-text text-muted">We’ll use this Apple ID to
-                                                        provide you beta access to the iOS app via TestFlight.
-
-                                                    </small>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="waitlist-updates" checked>
-                                                    <label class="form-check-label" for="waitlist-updates">
-                                                        I'd like to receive product updates and news via email
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 text-center mt-4">
-                                                <button type="submit"
-                                                    class="btn btn-primary-gradient py-3 px-5 rounded-pill">
-                                                    <i class="fa fa-paper-plane me-2"></i>Join Waitlist
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div id="waitlist-response" class="text-center mt-4" style="display: none;"></div>
-
-                                    <!-- Waitlist counter -->
-                                    <!-- <div class="waitlist-counter text-center mt-5">
-                      <div class="counter-number text-primary-gradient fw-bold mb-2" id="waitlist-count">1,248</div>
-                      <p class="text-muted mb-0">people have already joined the waitlist</p>
-                    </div> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Waitlist Section End -->
-                <!-- Waitlist Section End -->
                 <!-- Contact Form Start -->
-                <div class="container-xxl py-5 bg-light" id="contact">
+                <div class="container-fluid py-5 bg-light" id="contact">
                     <div class="container py-5 px-lg-5">
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                             <h5 class="text-primary-gradient fw-medium">Contact Us</h5>
@@ -3219,7 +2927,7 @@
                         <div class="row g-5">
                             <div class="col-md-6 col-lg-3">
                                 <h4 class="text-white mb-4">Address</h4>
-                                <p><i class="fa fa-map-marker-alt me-3"></i>Seattle, Washington, USA</p>
+                                <!-- <p><i class="fa fa-map-marker-alt me-3"></i>Seattle, Washington, USA</p> -->
                                 <p><i class="fa fa-envelope me-3"></i>info@peakroutinehealth.com</p>
                                 <div class="d-flex pt-2">
                                     <a class="btn btn-outline-light btn-social"
@@ -3236,14 +2944,11 @@
                                 <a class="btn btn-link" href="javascript:void(0)"
                                     onclick="document.getElementById('feature').scrollIntoView()">Features</a>
                                 <a class="btn btn-link" href="javascript:void(0)"
-                                    onclick="document.getElementById('how-it-works').scrollIntoView()">How It Works</a>
-                                <a class="btn btn-link" href="javascript:void(0)"
-                                    onclick="document.getElementById('testimonials').scrollIntoView()">Testimonials</a>
+                                    onclick="document.getElementById('pricing').scrollIntoView()">Pricing</a>
                                 <a class="btn btn-link" href="javascript:void(0)"
                                     onclick="document.getElementById('contact').scrollIntoView()">Contact Us</a>
                                 <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app"
-                                    class="btn btn-link">Product Roadmap</a>
-                                <a href="https://peak-routine.productroad.com/board/ideas/" class="btn btn-link">Feature Request</a>
+                                    class="btn btn-link" target="_blank" rel="noopener noreferrer">Roadmap</a>
                                 <a href="privacy-policy.html" class="btn btn-link">Privacy Policy</a>
                                 <a href="terms-conditions.html" class="btn btn-link">Terms & Conditions</a>
                             </div>
@@ -3254,7 +2959,6 @@
                             <div class="row">
                                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                                     &copy; <a class="border-bottom" href="#">PeakRoutine</a>, All Rights Reserved.
-                                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                                 </div>
                                 <div class="col-md-6 text-center text-md-end">
                                     <div class="footer-menu">
@@ -3273,7 +2977,6 @@
                 <!-- Back to Top -->
                 <a href="javascript:void(0)" onclick="window.scrollTo(0,0)"
                     class="btn btn-lg btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up text-white"></i></a>
-            </div>
 
             <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -3341,41 +3044,6 @@
                         submitForm();
                     }
                 }
-
-                // Device selection and Apple ID field functionality
-                document.addEventListener('DOMContentLoaded', function () {
-                    const iPhoneCheckbox = document.getElementById('iPhone');
-                    const androidCheckbox = document.getElementById('android');
-                    const appleIdContainer = document.getElementById('apple-id-container');
-                    const appleIdInput = document.getElementById('waitlist-apple-id');
-
-                    // Ensure only one device type can be selected at a time
-                    function handleDeviceSelection(selectedCheckbox, otherCheckbox) {
-                        selectedCheckbox.addEventListener('change', function () {
-                            if (this.checked) {
-                                otherCheckbox.checked = false; // Uncheck the other device
-                            }
-                            toggleAppleIdField();
-                        });
-                    }
-
-                    // Show/hide Apple ID field based on iPhone selection
-                    function toggleAppleIdField() {
-                        if (iPhoneCheckbox.checked) {
-                            appleIdContainer.style.display = 'block';
-                        } else {
-                            appleIdContainer.style.display = 'none';
-                            appleIdInput.value = ''; // Clear the field when hidden
-                        }
-                    }
-
-                    // Set up mutual exclusivity for device checkboxes
-                    handleDeviceSelection(iPhoneCheckbox, androidCheckbox);
-                    handleDeviceSelection(androidCheckbox, iPhoneCheckbox);
-
-                    // Initialize the state
-                    toggleAppleIdField();
-                });
 
                 async function submitForm() {
                     const form = document.getElementById('contactForm');
@@ -3491,12 +3159,13 @@
                     const logoText = document.querySelector('.logo-text');
 
                     function handleScroll() {
+                        const isMobile = window.innerWidth < 992;
                         if (window.scrollY > 50) {
                             navbar.classList.add('scrolled');
-                            logoText.style.color = '#435cdd';
+                            logoText.style.color = '#1C85E8';
                         } else {
                             navbar.classList.remove('scrolled');
-                            logoText.style.color = '#ffffff';
+                            logoText.style.color = isMobile ? '#1C85E8' : '#ffffff';
                         }
                     }
 
@@ -3731,157 +3400,7 @@
                     });
                 });
 
-                // Waitlist form handler with single device selection
-                function submitWaitlist(event) {
-                    event.preventDefault();
-
-                    const name = document.getElementById('waitlist-name').value.trim();
-                    const email = document.getElementById('waitlist-email').value.trim();
-                    const reasonCode = document.getElementById('waitlist-reason').value;
-                    const subscribeUpdate = document.getElementById('waitlist-updates').checked;
-
-                    // Device selection (only one can be selected)
-                    const hasIPhone = document.getElementById('iPhone').checked;
-                    const hasAndroid = document.getElementById('android').checked;
-                    const appleId = hasIPhone ? document.getElementById('waitlist-apple-id').value.trim() : '';
-
-                    // Validation: exactly one device must be selected
-                    if (!hasIPhone && !hasAndroid) {
-                        alert('Please select your device type (iPhone or Android).');
-                        return;
-                    }
-
-                    // Validation: Apple ID required for iPhone users
-                    if (hasIPhone && !appleId) {
-                        alert('Please enter your Apple ID for iPhone notifications.');
-                        return;
-                    }
-
-                    // Determine device type for API
-                    const deviceType = hasIPhone ? 'iPhone' : 'android';
-
-                    const waitlistData = {
-                        name,
-                        email,
-                        appleId: appleId || null,
-                        deviceType: deviceType,
-                        reasonCode: reasonCode || "waitlist",
-                        subscribeUpdate
-                    };
-
-                    // Show loading state
-                    const submitButton = event.target.querySelector('button[type="submit"]');
-                    const originalButtonText = submitButton.innerHTML;
-                    submitButton.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i>Processing...';
-                    submitButton.disabled = true;
-
-                    // Make API call to the provided endpoint
-                    fetch('https://peakroutine-hfffebbwc4bjbcer.westus-01.azurewebsites.net/app/website/waitList', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(waitlistData),
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            // Show success popup
-                            showSuccessPopup();
-
-                            // Reset the form
-                            document.getElementById('waitlistForm').reset();
-
-                            // Reset device checkboxes and Apple ID field
-                            document.getElementById('iPhone').checked = false;
-                            document.getElementById('android').checked = false;
-                            document.getElementById('apple-id-container').style.display = 'none';
-
-                            // Reset button
-                            submitButton.innerHTML = originalButtonText;
-                            submitButton.disabled = false;
-                        })
-                        .catch(error => {
-                            // Handle error
-                            const responseDiv = document.getElementById('waitlist-response');
-                            responseDiv.innerHTML = `
-            <div class="error-icon mb-3">
-                <i class="fa fa-exclamation-circle fa-3x text-danger"></i>
-            </div>
-            <h4>Oops! Something went wrong</h4>
-            <p>Please try again or contact us directly.</p>
-        `;
-                            responseDiv.className = 'error';
-                            responseDiv.style.display = 'block';
-
-                            // Reset button
-                            submitButton.innerHTML = originalButtonText;
-                            submitButton.disabled = false;
-                        });
-                }
-
-
-                // Function to show success popup
-                function showSuccessPopup() {
-                    const popup = document.getElementById('successPopup');
-                    const overlay = document.getElementById('popupOverlay');
-
-                    popup.classList.add('show');
-                    overlay.classList.add('show');
-
-                    // Set up close button event
-                    document.getElementById('popupCloseBtn').onclick = closeSuccessPopup;
-
-                    // Also close when clicking overlay
-                    overlay.onclick = closeSuccessPopup;
-                }
-
-                // Function to close success popup
-                function closeSuccessPopup() {
-                    const popup = document.getElementById('successPopup');
-                    const overlay = document.getElementById('popupOverlay');
-
-                    popup.classList.remove('show');
-                    overlay.classList.remove('show');
-                }
-
-                // Initialize when DOM is loaded
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Set up close button
-                    const closeBtn = document.getElementById('popupCloseBtn');
-                    if (closeBtn) {
-                        closeBtn.addEventListener('click', closeSuccessPopup);
-                    }
-
-                    // Set up overlay close
-                    const overlay = document.getElementById('popupOverlay');
-                    if (overlay) {
-                        overlay.addEventListener('click', closeSuccessPopup);
-                    }
-                });
             </script>
-            <div class="popup-overlay" id="popupOverlay"></div>
-            <div class="success-popup" id="successPopup">
-                <div class="popup-header">
-                    <div class="popup-header-bg"></div>
-                    <div class="success-icon">
-                        <i class="fa fa-check"></i>
-                    </div>
-                </div>
-                <div class="popup-content">
-                    <h3 class="popup-title">You're on the list!</h3>
-                    <p class="popup-message">Thank you for joining our waitlist. We'll keep you updated on our launch
-                        and
-                        exciting new
-                        features.</p>
-                    <button class="popup-close-btn" id="popupCloseBtn">Got it!</button>
-                </div>
-            </div>
-            <!-- Add this HTML at the end of your body tag, before closing </body> -->
             <!-- Success Popup -->
             <div class="popup-overlay" id="contactPopupOverlay"></div>
             <div class="success-popup" id="contactSuccessPopup">
@@ -3925,8 +3444,9 @@
             <!-- Pricing & Promo Code Logic -->
             <script>
                 // Backend API base URL (context path: /app)
-                // const PAYMENT_API_BASE = 'https://peakroutine-hfffebbwc4bjbcer.westus-01.azurewebsites.net/app/website/payment';
-                const PAYMENT_API_BASE = 'http://localhost:8083/app/website/payment';
+                const PAYMENT_API_BASE = window.location.hostname === 'localhost'
+                    ? 'http://localhost:8083/app/website/payment'
+                    : 'https://peakroutine-hfffebbwc4bjbcer.westus-01.azurewebsites.net/app/website/payment';
 
                 // Razorpay Key ID (public key — safe for frontend)
                 const RAZORPAY_KEY_ID = 'rzp_live_SRewKwEFpjSJpD'; // TODO: Replace with your actual Razorpay Key ID
@@ -4051,7 +3571,7 @@
                             currency: 'USD',
                             name: 'PeakRoutine',
                             description: config.name + ' Plan \u2014 Annual Subscription',
-                            image: 'https://peakroutine.netlify.app/img/logo_final.PNG',
+                            image: 'https://www.peakroutinehealth.com/img/Peak_Routine_Logo.png',
                             order_id: orderId, // MANDATORY: ties payment to order
                             handler: async function (response) {
                                 // Step 3: Verify payment signature on server
