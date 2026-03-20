@@ -509,6 +509,75 @@
             align-items: center;
         }
 
+        /* Logging Options Cards */
+        .logging-options-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .logging-options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        @media (min-width: 576px) {
+            .logging-options-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .logging-options-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .logging-options-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        .log-option-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 6px;
+            border-radius: 14px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+
+        .log-option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .log-option-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .log-option-name {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
         .tile-icon {
             width: 24px;
             height: 24px;
@@ -2004,114 +2073,116 @@
             display: block !important;
         }
 
-        .hero-container {
+        .hero-carousel-wrapper {
+            perspective: 1200px;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            height: 700px;
-            overflow: visible;
-            /* Changed from hidden to visible to allow images to be seen */
-            background: transparent;
             margin-bottom: 200px;
+            margin-top: 100px;
             z-index: 1;
         }
 
-        .hero-image {
+        .hero-carousel {
+            position: relative;
+            width: 260px;
+            height: 480px;
+            transform-style: preserve-3d;
+            animation: heroSpin 30s linear infinite;
+        }
+
+        .hero-carousel.paused {
+            animation-play-state: paused;
+        }
+
+        .hero-carousel-item {
             position: absolute;
-            border-radius: 16px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            z-index: 2;
-            opacity: 0;
-            /* Start invisible */
-            display: block !important;
-            /* Force display */
-            max-width: 100%;
+            width: 240px;
             height: auto;
+            top: 50%;
+            left: 50%;
+            margin-left: -120px;
+            margin-top: -220px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            transition: box-shadow 0.3s ease;
+            backface-visibility: hidden;
+            overflow: hidden;
         }
 
-        /* Improved floating animations with variable timing */
-        @keyframes float1 {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
+        .hero-carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
         }
 
-        @keyframes float2 {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
+        .hero-carousel-item:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
         }
 
-        @keyframes float3 {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
+        @keyframes heroSpin {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
         }
 
-        /* No animation initially - will be added via JavaScript after appearance */
-        .float-animation-1,
-        .float-animation-2,
-        .float-animation-3 {
-            animation: none;
-        }
-
-        /* Make sure images have high enough z-index when hovered */
-        .hero-image:hover {
-            transform: scale(1.05) !important;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-
-        /* Responsive adjustments for scattered layout */
+        /* Responsive adjustments for carousel */
         @media (max-width: 992px) {
-            .hero-container {
-                height: 450px;
+            .hero-carousel-wrapper {
+                height: 420px;
+                perspective: 900px;
             }
-
-            .hero-image {
-                width: 22% !important;
+            .hero-carousel {
+                width: 200px;
+                height: 380px;
+            }
+            .hero-carousel-item {
+                width: 190px;
+                margin-left: -95px;
+                margin-top: -180px;
             }
         }
 
         @media (max-width: 768px) {
-            .hero-container {
-                height: 400px;
+            .hero-carousel-wrapper {
+                height: 380px;
+                perspective: 700px;
             }
-
-            .hero-image {
-                width: 25% !important;
+            .hero-carousel {
+                width: 170px;
+                height: 340px;
+            }
+            .hero-carousel-item {
+                width: 160px;
+                margin-left: -80px;
+                margin-top: -160px;
+                border-radius: 14px;
+            }
+            .hero-carousel-item img {
+                border-radius: 14px;
             }
         }
 
         @media (max-width: 576px) {
-            .hero-container {
-                height: 300px;
+            .hero-carousel-wrapper {
+                height: 320px;
+                perspective: 600px;
+                margin-bottom: 30px;
             }
-
-            .hero-image {
-                width: 30% !important;
+            .hero-carousel {
+                width: 140px;
+                height: 280px;
             }
-
-            /* Show only 4 images on very small screens */
-            .hero-image:nth-last-child(1),
-            .hero-image:nth-last-child(2) {
-                display: none;
+            .hero-carousel-item {
+                width: 130px;
+                margin-left: -65px;
+                margin-top: -130px;
+                border-radius: 12px;
+            }
+            .hero-carousel-item img {
+                border-radius: 12px;
             }
         }
 
@@ -2229,6 +2300,163 @@
         .health-data-direct-image { border-radius: 20px !important; box-shadow: 0 20px 60px rgba(0,0,0,0.13) !important; transition: all 0.4s ease !important; }
         .health-data-direct-image:hover { transform: translateY(-8px) scale(1.02) !important; box-shadow: 0 32px 80px rgba(28,133,232,0.2) !important; }
 
+        /* Dual image layout for correlation screenshots */
+        .step-image-dual {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            align-items: center;
+        }
+        .step-image-dual .health-data-direct-image {
+            max-width: 48%;
+        }
+
+        /* Featured AI Insight */
+        .featured-insight {
+            background: linear-gradient(135deg, #f0f4ff 0%, #fff 50%, #f0fdf4 100%);
+            border: 1px solid #c7d2fe;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(79,70,229,0.08);
+        }
+        .featured-insight-metric {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .metric-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 10px;
+            letter-spacing: -0.02em;
+        }
+        .metric-badge i { font-size: 0.85rem; }
+        .metric-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .featured-insight-text {
+            font-size: 0.88rem;
+            line-height: 1.65;
+            color: var(--gray-500);
+            margin-bottom: 14px;
+        }
+        .contributing-factors {
+            margin-bottom: 14px;
+        }
+        .factors-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gray-400);
+            margin-bottom: 8px;
+        }
+        .factors-label i { margin-right: 4px; }
+        .factor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .factor-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .factor-tag i {
+            font-size: 0.7rem;
+            color: #F6B93B;
+        }
+        .insight-recommendation {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 0.82rem;
+            line-height: 1.55;
+            color: #92400e;
+        }
+        .insight-recommendation i {
+            color: #F6B93B;
+            font-size: 1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* AI Insight cards */
+        .how-it-works .insight-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .how-it-works .insight-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: auto;
+            height: auto;
+            margin-bottom: 0;
+            overflow: visible;
+        }
+        .how-it-works .insight-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        .insight-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .insight-card-header i {
+            font-size: 0.95rem;
+        }
+        .insight-card-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--dark);
+            flex: 1;
+        }
+        .insight-confidence {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #38C172;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 20px;
+            padding: 2px 8px;
+            white-space: nowrap;
+        }
+        .insight-card-text {
+            font-size: 0.83rem;
+            color: var(--gray-500);
+            margin: 0;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
         /* TESTIMONIALS */
         .testimonial-card {
             background: #fff; border-radius: 20px; padding: 2rem;
@@ -2336,28 +2564,31 @@
                 <div class="container px-lg-5">
                     <div class="row">
                         <div class="col-12">
-                            <!-- Hero Section with Scattered Animated Images - increased size -->
-                            <div class="hero-container wow fadeInUp" data-wow-delay="0.2s">
-                                <!-- App Screenshots with staggered fade-in animations -->
-                                <img src="img/personalized_plan.jpeg" alt="Personalized Recommendations"
-                                    class="hero-image float-animation-1 wow fadeInUp" data-wow-delay="0.4s"
-                                    style="width: 22%; top: 15%; left: 5%;">
-
-                                <img src="img/dashboard1.png" alt="Health Score Dashboard"
-                                    class="hero-image float-animation-2 wow fadeInUp" data-wow-delay="0.8s"
-                                    style="width: 24%; top: 10%; left: 38%;">
-
-                                <img src="img/weekly insights.png" alt="Weekly Health Insights"
-                                    class="hero-image float-animation-3 wow fadeInUp" data-wow-delay="1.2s"
-                                    style="width: 22%; top: 80%; left: 15%;">
-
-                                <img src="img/streak.jpeg" alt="Active Days Tracking"
-                                    class="hero-image float-animation-1 wow fadeInUp" data-wow-delay="1.6s"
-                                    style="width: 23%; top: 18%; right: 5%;">
-
-                                <img src="img/mental health.jpeg" alt="Mental Health Resources"
-                                    class="hero-image float-animation-2 wow fadeInUp" data-wow-delay="2.0s"
-                                    style="width: 21%; top: 55%; right: 10%;">
+                            <!-- 3D Carousel of App Screenshots -->
+                            <div class="hero-carousel-wrapper wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="hero-carousel" id="heroCarousel">
+                                    <div class="hero-carousel-item" style="transform: rotateY(0deg) translateZ(420px);">
+                                        <img src="img/dashboard.png" alt="Health Score Dashboard">
+                                    </div>
+                                    <div class="hero-carousel-item" style="transform: rotateY(51.4deg) translateZ(420px);">
+                                        <img src="img/trends_rounded.png" alt="Health Trends">
+                                    </div>
+                                    <div class="hero-carousel-item" style="transform: rotateY(102.8deg) translateZ(420px);">
+                                        <img src="img/correlation_rounded.png" alt="AI Correlation Insight">
+                                    </div>
+                                    <div class="hero-carousel-item" style="transform: rotateY(154.3deg) translateZ(420px);">
+                                        <img src="img/Week_overview_rounded.png" alt="Weekly Overview">
+                                    </div>
+                                    <div class="hero-carousel-item" style="transform: rotateY(205.7deg) translateZ(420px);">
+                                        <img src="img/personalized_plan_2_rounded.png" alt="Personalized Health Plan">
+                                    </div>
+                                    <div class="hero-carousel-item" style="transform: rotateY(257.1deg) translateZ(420px);">
+                                        <img src="img/AI_coach_1_rounded.png" alt="AI Health Coach">
+                                    </div>
+                                    <div class="hero-carousel-item" style="transform: rotateY(308.6deg) translateZ(420px);">
+                                        <img src="img/movement_dashboard_rounded.png" alt="Movement Dashboard">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2366,10 +2597,10 @@
                     <div class="row g-5 justify-content-center text-center">
                         <div class="col-lg-8">
                             <h1 class="text-white mb-4 animated slideInDown">
-                                <br>Personalized Routines. <br> Smarter Habits. <br> Every Day.
+                                Personalized Routines. <br> Smarter Habits. <br> Every Day.
                             </h1>
                             <p class="text-white pb-3 animated slideInDown">
-                                Sync Apple Health data. Let AI find the patterns behind your energy, sleep, and recovery — then build habits that stick.
+                                PeakRoutine analyzes your body's data, builds a personalized plan, and delivers AI-backed insights and coaching — so you can build habits that actually work for you.
                             </p>
 
                             <div class="hero-buttons">
@@ -2467,7 +2698,9 @@
                     <p class="mb-5">
                         PeakRoutine is an AI-powered health platform that automatically pulls data from Apple Health
                         — sleep, HRV, steps, heart rate, and more — then surfaces personalized insights and builds
-                        sustainable habits across every dimension of your well-being. No manual entry. Just smarter health.
+                        sustainable habits across every dimension of your well-being. With built-in AI coaches,
+                        you get deeper recommendations based on your own data, so every decision is backed by
+                        what your body is actually telling you.
                     </p>
                 </div>
                 <div class="row g-4">
@@ -2541,6 +2774,18 @@
                             </div>
                             <h5 class="mb-3">Personalized Health Plans</h5>
                             <p class="m-0">A 5-step lifestyle questionnaire on day one — exercise habits, sleep schedule, sunlight, and nutrition — then AI builds a plan that truly fits your life.</p>
+                        </div>
+                    </div>
+
+                    <!-- AI Coaches -->
+                    <div class="col-lg-4 col-md-6 offset-lg-4 offset-md-3 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="feature-item bg-light rounded p-4 h-100">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
+                                style="width: 60px; height: 60px; background: linear-gradient(135deg, #6C5CE7, #a29bfe);">
+                                <i class="fa fa-comments text-white fs-4"></i>
+                            </div>
+                            <h5 class="mb-3">AI Health Coaches</h5>
+                            <p class="m-0">Chat with specialized AI coaches for sleep, nutrition, exercise, and stress. They analyze your actual health data and give personalized recommendations — like having a team of experts in your pocket.</p>
                         </div>
                     </div>
 
@@ -2692,20 +2937,82 @@
                             <h3 class="step-title">Your complete health picture, every day</h3>
                         </div>
                         <p class="step-description">
-                            One dashboard surfaces your daily health score, sleep quality, movement, sunlight, stress, and nutrition — all pulled automatically from Apple Health.
-                            No switching apps, no manual entry.
+                            One dashboard surfaces your daily health score, sleep quality, movement, sunlight, HRV, and more — all pulled automatically from Apple Health.
+                            Log mood, nutrition, and journaling entries to get a complete view of your physical and mental health in one place.
                         </p>
-                        <div class="d-flex flex-wrap gap-2 mt-3">
-                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Sleep</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Movement</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">HRV</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Sunlight</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Mood</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#eff6ff;color:#1C85E8;border:1px solid #bfdbfe;font-size:0.8rem;">Stress</span>
+                        <div class="logging-options mt-4">
+                            <div class="logging-options-grid">
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#e0e7ff;color:#4f46e5;">
+                                        <i class="fas fa-moon"></i>
+                                    </div>
+                                    <span class="log-option-name">Sleep</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#d1fae5;color:#059669;">
+                                        <i class="fas fa-walking"></i>
+                                    </div>
+                                    <span class="log-option-name">Movement</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#fce7f3;color:#db2777;">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <span class="log-option-name">HRV</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#fef9c3;color:#a16207;">
+                                        <i class="fas fa-sun"></i>
+                                    </div>
+                                    <span class="log-option-name">Sunlight</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#fef3c7;color:#d97706;">
+                                        <i class="fas fa-smile"></i>
+                                    </div>
+                                    <span class="log-option-name">Mood</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#fee2e2;color:#dc2626;">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <span class="log-option-name">Stress</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#fce7f3;color:#e11d48;">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <span class="log-option-name">Heart Rate</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#d1fae5;color:#059669;">
+                                        <i class="fas fa-apple-alt"></i>
+                                    </div>
+                                    <span class="log-option-name">Nutrition</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#dbeafe;color:#2563eb;">
+                                        <i class="fas fa-tint"></i>
+                                    </div>
+                                    <span class="log-option-name">Hydration</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#fef9c3;color:#92400e;">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                    <span class="log-option-name">Caffeine</span>
+                                </div>
+                                <div class="log-option-card">
+                                    <div class="log-option-icon" style="background:#ede9fe;color:#7c3aed;">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <span class="log-option-name">Journaling</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="step-image">
-                        <img src="img/dashboard1.png" alt="PeakRoutine Physical Health Dashboard Screen"
+                        <img src="img/dashboard.png" alt="PeakRoutine Physical Health Dashboard Screen"
                             class="health-data-direct-image">
                     </div>
                 </div>
@@ -2717,24 +3024,37 @@
                             <h3 class="step-title">AI finds the patterns you can’t see</h3>
                         </div>
                         <p class="step-description">
-                            PeakRoutine’s AI engine surfaces correlations like <strong>"Your HRV improves 23% when you sleep before 11PM"</strong> or <strong>"Exercise after 7PM reduces your deep sleep by 18%."</strong>
-                            Each insight includes a confidence score so you know what’s signal, not noise.
+                            PeakRoutine cross-references sleep, exercise, HRV, stress, mood, and more to uncover deep correlations unique to <em>your</em> body. Each insight explains what changed, why it matters, the contributing factors behind it, and a personalized recommendation to keep improving.
                         </p>
-                        <div class="d-flex flex-wrap gap-2 mt-3">
-                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Sleep vs HRV</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Exercise vs Recovery</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Stress vs Mood</span>
-                            <span class="badge rounded-pill px-3 py-2" style="background:#f0fdf4;color:#38C172;border:1px solid #bbf7d0;font-size:0.8rem;">Nutrition vs Energy</span>
-                        </div>
                     </div>
-                    <div class="step-image">
-                        <img src="img/insights.png" alt="PeakRoutine Insights and Correlation Dashboard"
+                    <div class="step-image step-image-dual">
+                        <img src="img/correlation_1_rounded.png" alt="PeakRoutine Sleep vs HRV Correlation Analysis"
+                            class="health-data-direct-image">
+                        <img src="img/correlation_2_rounded.png" alt="PeakRoutine Exercise vs Recovery Correlation"
                             class="health-data-direct-image">
                     </div>
                 </div>
 
-                <!-- Step 3: Habits & Gamification -->
+                <!-- Step 3: Personalized Plans -->
                 <div class="step">
+                    <div class="step-content">
+                        <div class="step-header">
+                            <h3 class="step-title">A health plan built around your life</h3>
+                        </div>
+                        <p class="step-description">
+                            Based on your patterns and insights, specialized AI agents craft a personalized health plan covering sleep, exercise, nutrition, and stress management. Every recommendation is grounded in your actual data and adapts as you progress.
+                        </p>
+                    </div>
+                    <div class="step-image step-image-dual">
+                        <img src="img/personalized_plan_1_rounded.png" alt="PeakRoutine AI Personalized Health Plan"
+                            class="health-data-direct-image">
+                        <img src="img/personalized_plan_2_rounded.png" alt="PeakRoutine AI Plan Recommendations"
+                            class="health-data-direct-image">
+                    </div>
+                </div>
+
+                <!-- Step 4: Habits & Gamification -->
+                <div class="step reverse">
                     <div class="step-content">
                         <div class="step-header">
                             <h3 class="step-title">Turn insights into habits that stick</h3>
@@ -2750,8 +3070,28 @@
                             <span class="badge rounded-pill px-3 py-2" style="background:#fff7ed;color:#F6B93B;border:1px solid #fed7aa;font-size:0.8rem;"><i class="fa fa-bullseye me-1"></i> Milestones</span>
                         </div>
                     </div>
-                    <div class="step-image">
-                        <img src="img/streak.jpeg" alt="PeakRoutine Streak and Active Days Dashboard"
+                    <div class="step-image step-image-dual">
+                        <img src="img/habit_1.png" alt="PeakRoutine Habit Tracking and Streaks"
+                            class="health-data-direct-image">
+                        <img src="img/habit_2.png" alt="PeakRoutine Badges and Milestones"
+                            class="health-data-direct-image">
+                    </div>
+                </div>
+
+                <!-- Step 5: AI Coaches -->
+                <div class="step">
+                    <div class="step-content">
+                        <div class="step-header">
+                            <h3 class="step-title">Expert coaches in your pocket</h3>
+                        </div>
+                        <p class="step-description">
+                            Chat with specialized AI coaches for sleep, nutrition, exercise, and stress. They analyze your actual health data and give personalized guidance — like having a team of experts available whenever you need them.
+                        </p>
+                    </div>
+                    <div class="step-image step-image-dual">
+                        <img src="img/AI_Coach_1.png" alt="PeakRoutine AI Health Coach Chat"
+                            class="health-data-direct-image">
+                        <img src="img/AI_coach_2_rounded.png" alt="PeakRoutine AI Coach Recommendations"
                             class="health-data-direct-image">
                     </div>
                 </div>
@@ -2765,7 +3105,7 @@
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                             <h5 class="text-primary-gradient fw-medium">Choose Your Plan</h5>
                             <h1 class="mb-2">Simple, Transparent Pricing</h1>
-                            <p class="mb-2 text-muted">Invest in your health. Cancel anytime.</p>
+                            <p class="mb-2 text-muted">Invest in your health.</p>
                             <p class="mb-5"><span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;"><i class="fab fa-apple me-1"></i> Currently available on iOS only</span></p>
                         </div>
 
@@ -2846,7 +3186,7 @@
                         </div>
 
                         <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.6s">
-                            <p class="text-muted" style="font-size:0.85rem;"><i class="fas fa-shield-alt me-1"></i> Secure payments powered by Razorpay. Cancel anytime from the app.</p>
+                            <p class="text-muted" style="font-size:0.85rem;"><i class="fas fa-shield-alt me-1"></i> Secure payments powered by Razorpay.</p>
                             <p class="text-muted mt-2" style="font-size:0.85rem;"><i class="fab fa-android me-1"></i> Android coming soon — <a href="#contact" style="color:var(--primary);">contact us</a> to get notified.</p>
                         </div>
                     </div>
@@ -3196,39 +3536,36 @@
 
                 // Add this to your existing JavaScript (preferably in main.js or at the end of your HTML before </body>)
                 document.addEventListener('DOMContentLoaded', function () {
-                    // Custom function to handle staggered image appearance
-                    function staggeredImageAppearance() {
-                        const heroImages = document.querySelectorAll('.hero-container .hero-image');
+                // 3D Carousel — pause on hover, responsive radius
+                    function initHeroCarousel() {
+                        const carousel = document.getElementById('heroCarousel');
+                        if (!carousel) return;
 
-                        heroImages.forEach((img, index) => {
-                            const delay = parseFloat(img.getAttribute('data-wow-delay')) || (index * 1.3 + 0.2);
+                        // Pause rotation on hover
+                        carousel.addEventListener('mouseenter', () => carousel.classList.add('paused'));
+                        carousel.addEventListener('mouseleave', () => carousel.classList.remove('paused'));
 
-                            // Set initial state
-                            img.style.opacity = '0';
-                            img.style.transform = 'translateY(20px)';
-                            img.style.transition = 'opacity 1s ease, transform 1s ease';
+                        // Adjust translateZ radius based on viewport
+                        function setCarouselRadius() {
+                            const items = carousel.querySelectorAll('.hero-carousel-item');
+                            const w = window.innerWidth;
+                            let radius = 420;
+                            if (w <= 576) radius = 220;
+                            else if (w <= 768) radius = 300;
+                            else if (w <= 992) radius = 360;
 
-                            // Delayed appearance
-                            setTimeout(() => {
-                                img.style.opacity = '1';
-                                img.style.transform = 'translateY(0)';
+                            const step = 360 / items.length;
+                            items.forEach((item, i) => {
+                                item.style.transform = 'rotateY(' + (step * i) + 'deg) translateZ(' + radius + 'px)';
+                            });
+                        }
 
-                                // Start floating animation after appearance
-                                setTimeout(() => {
-                                    if (img.classList.contains('float-animation-1')) {
-                                        img.style.animation = 'float1 6s ease-in-out infinite';
-                                    } else if (img.classList.contains('float-animation-2')) {
-                                        img.style.animation = 'float2 7s ease-in-out infinite';
-                                    } else if (img.classList.contains('float-animation-3')) {
-                                        img.style.animation = 'float3 8s ease-in-out infinite';
-                                    }
-                                }, 1000);
-                            }, delay * 1000);
-                        });
+                        setCarouselRadius();
+                        window.addEventListener('resize', setCarouselRadius);
                     }
 
-                    // Run the staggered appearance
-                    staggeredImageAppearance();
+                    initHeroCarousel();
+                });
                 });
 
                 // Variables to track current screen and total screens
