@@ -2091,10 +2091,16 @@
             height: 480px;
             transform-style: preserve-3d;
             animation: heroSpin 30s linear infinite;
+            cursor: grab;
         }
 
         .hero-carousel.paused {
             animation-play-state: paused;
+        }
+
+        .hero-carousel.dragging {
+            animation: none;
+            cursor: grabbing;
         }
 
         .hero-carousel-item {
@@ -2131,37 +2137,37 @@
         /* Responsive adjustments for carousel */
         @media (max-width: 992px) {
             .hero-carousel-wrapper {
-                height: 380px;
+                height: 400px;
                 perspective: 900px;
                 margin-top: 60px;
                 margin-bottom: 120px;
             }
             .hero-carousel {
-                width: 180px;
-                height: 340px;
+                width: 200px;
+                height: 370px;
             }
             .hero-carousel-item {
-                width: 170px;
-                margin-left: -85px;
-                margin-top: -160px;
+                width: 185px;
+                margin-left: -92px;
+                margin-top: -175px;
             }
         }
 
         @media (max-width: 768px) {
             .hero-carousel-wrapper {
-                height: 300px;
-                perspective: 700px;
+                height: 340px;
+                perspective: 750px;
                 margin-top: 40px;
-                margin-bottom: 80px;
+                margin-bottom: 160px;
             }
             .hero-carousel {
-                width: 140px;
-                height: 270px;
+                width: 165px;
+                height: 310px;
             }
             .hero-carousel-item {
-                width: 130px;
-                margin-left: -65px;
-                margin-top: -125px;
+                width: 150px;
+                margin-left: -75px;
+                margin-top: -145px;
                 border-radius: 14px;
             }
             .hero-carousel-item img {
@@ -2171,45 +2177,45 @@
 
         @media (max-width: 576px) {
             .hero-carousel-wrapper {
-                height: 220px;
-                perspective: 500px;
+                height: 270px;
+                perspective: 550px;
                 margin-top: 20px;
-                margin-bottom: 40px;
+                margin-bottom: 200px;
             }
             .hero-carousel {
-                width: 100px;
-                height: 190px;
+                width: 130px;
+                height: 240px;
             }
             .hero-carousel-item {
-                width: 95px;
-                margin-left: -47px;
-                margin-top: -90px;
-                border-radius: 10px;
+                width: 120px;
+                margin-left: -60px;
+                margin-top: -112px;
+                border-radius: 12px;
             }
             .hero-carousel-item img {
-                border-radius: 10px;
+                border-radius: 12px;
             }
         }
 
         @media (max-width: 400px) {
             .hero-carousel-wrapper {
-                height: 180px;
-                perspective: 400px;
+                height: 230px;
+                perspective: 450px;
                 margin-top: 10px;
-                margin-bottom: 30px;
+                margin-bottom: 220px;
             }
             .hero-carousel {
-                width: 80px;
-                height: 155px;
+                width: 110px;
+                height: 200px;
             }
             .hero-carousel-item {
-                width: 75px;
-                margin-left: -37px;
-                margin-top: -72px;
-                border-radius: 8px;
+                width: 100px;
+                margin-left: -50px;
+                margin-top: -95px;
+                border-radius: 10px;
             }
             .hero-carousel-item img {
-                border-radius: 8px;
+                border-radius: 10px;
             }
         }
 
@@ -3563,24 +3569,124 @@
 
                 // Add this to your existing JavaScript (preferably in main.js or at the end of your HTML before </body>)
                 document.addEventListener('DOMContentLoaded', function () {
-                // 3D Carousel — pause on hover, responsive radius
+                // 3D Carousel — hover pause, drag/swipe, responsive radius
                     function initHeroCarousel() {
                         const carousel = document.getElementById('heroCarousel');
                         if (!carousel) return;
 
-                        // Pause rotation on hover
-                        carousel.addEventListener('mouseenter', () => carousel.classList.add('paused'));
-                        carousel.addEventListener('mouseleave', () => carousel.classList.remove('paused'));
+                        let isDragging = false;
+                        let startX = 0;
+                        let currentAngle = 0;
+                        let dragAngle = 0;
+                        let autoResumeTimer = null;
+
+                        // Pause rotation on hover (desktop)
+                        carousel.addEventListener('mouseenter', () => {
+                            if (!isDragging) carousel.classList.add('paused');
+                        });
+                        carousel.addEventListener('mouseleave', () => {
+                            if (!isDragging) carousel.classList.remove('paused');
+                        });
+
+                        // --- Drag / Swipe support ---
+                        var hasMoved = false;
+                        var DRAG_THRESHOLD = 8; // px — ignore smaller movements as taps
+
+                        function getX(e) {
+                            return e.touches ? e.touches[0].clientX : e.clientX;
+                        }
+
+                        function captureCurrentAngle() {
+                            const computed = getComputedStyle(carousel);
+                            const matrix = computed.transform;
+                            if (matrix && matrix !== 'none') {
+                                const values = matrix.split('(')[1].split(')')[0].split(',');
+                                if (values.length >= 6) {
+                                    const a = parseFloat(values[0]);
+                                    const b = parseFloat(values[1]);
+                                    currentAngle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+                                } else {
+                                    currentAngle = dragAngle;
+                                }
+                            }
+                        }
+
+                        function onDragStart(e) {
+                            isDragging = true;
+                            hasMoved = false;
+                            startX = getX(e);
+                            if (autoResumeTimer) clearTimeout(autoResumeTimer);
+                            e.preventDefault();
+                        }
+
+                        function onDragMove(e) {
+                            if (!isDragging) return;
+                            var deltaX = getX(e) - startX;
+
+                            // Only start real drag after threshold
+                            if (!hasMoved && Math.abs(deltaX) >= DRAG_THRESHOLD) {
+                                hasMoved = true;
+                                captureCurrentAngle();
+                                carousel.classList.add('dragging');
+                                carousel.style.transform = 'rotateY(' + currentAngle + 'deg)';
+                            }
+
+                            if (hasMoved) {
+                                dragAngle = currentAngle + deltaX * 0.4;
+                                carousel.style.transform = 'rotateY(' + dragAngle + 'deg)';
+                            }
+                            e.preventDefault();
+                        }
+
+                        function onDragEnd() {
+                            if (!isDragging) return;
+                            isDragging = false;
+
+                            if (hasMoved) {
+                                // Actual drag — resume auto-rotation after 2s
+                                currentAngle = dragAngle;
+                                carousel.classList.remove('dragging');
+                                autoResumeTimer = setTimeout(function() {
+                                    carousel.style.transform = '';
+                                    carousel.classList.remove('paused');
+                                }, 2000);
+                            } else {
+                                // Tap — toggle play / pause
+                                if (carousel.classList.contains('paused') || carousel.classList.contains('dragging')) {
+                                    carousel.classList.remove('paused', 'dragging');
+                                    carousel.style.transform = '';
+                                } else {
+                                    captureCurrentAngle();
+                                    carousel.classList.add('paused');
+                                    carousel.style.transform = 'rotateY(' + currentAngle + 'deg)';
+                                }
+                            }
+                        }
+
+                        // Mouse events
+                        carousel.addEventListener('mousedown', onDragStart);
+                        document.addEventListener('mousemove', onDragMove);
+                        document.addEventListener('mouseup', onDragEnd);
+
+                        // Touch events
+                        carousel.addEventListener('touchstart', onDragStart, { passive: false });
+                        document.addEventListener('touchmove', onDragMove, { passive: false });
+                        document.addEventListener('touchend', onDragEnd);
+
+                        // Prevent image drag
+                        carousel.querySelectorAll('img').forEach(function(img) {
+                            img.addEventListener('dragstart', function(e) { e.preventDefault(); });
+                        });
 
                         // Adjust translateZ radius based on viewport
                         function setCarouselRadius() {
                             const items = carousel.querySelectorAll('.hero-carousel-item');
                             const w = window.innerWidth;
                             let radius = 420;
-                            if (w <= 400) radius = 140;
-                            else if (w <= 576) radius = 180;
-                            else if (w <= 768) radius = 250;
-                            else if (w <= 992) radius = 320;
+                            if (w <= 400) radius = 165;
+                            else if (w <= 576) radius = 210;
+                            else if (w <= 768) radius = 270;
+                            else if (w <= 992) radius = 340;
 
                             const step = 360 / items.length;
                             items.forEach((item, i) => {
