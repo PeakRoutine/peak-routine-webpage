@@ -31,7 +31,7 @@
     <meta name="twitter:image" content="https://www.peakroutinehealth.com/img/Peak_Routine_Logo.png">
 
     <!-- Favicon -->
-    <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2131,33 +2131,37 @@
         /* Responsive adjustments for carousel */
         @media (max-width: 992px) {
             .hero-carousel-wrapper {
-                height: 420px;
+                height: 380px;
                 perspective: 900px;
+                margin-top: 60px;
+                margin-bottom: 120px;
             }
             .hero-carousel {
-                width: 200px;
-                height: 380px;
+                width: 180px;
+                height: 340px;
             }
             .hero-carousel-item {
-                width: 190px;
-                margin-left: -95px;
-                margin-top: -180px;
+                width: 170px;
+                margin-left: -85px;
+                margin-top: -160px;
             }
         }
 
         @media (max-width: 768px) {
             .hero-carousel-wrapper {
-                height: 380px;
+                height: 300px;
                 perspective: 700px;
+                margin-top: 40px;
+                margin-bottom: 80px;
             }
             .hero-carousel {
-                width: 170px;
-                height: 340px;
+                width: 140px;
+                height: 270px;
             }
             .hero-carousel-item {
-                width: 160px;
-                margin-left: -80px;
-                margin-top: -160px;
+                width: 130px;
+                margin-left: -65px;
+                margin-top: -125px;
                 border-radius: 14px;
             }
             .hero-carousel-item img {
@@ -2167,22 +2171,45 @@
 
         @media (max-width: 576px) {
             .hero-carousel-wrapper {
-                height: 320px;
-                perspective: 600px;
+                height: 220px;
+                perspective: 500px;
+                margin-top: 20px;
+                margin-bottom: 40px;
+            }
+            .hero-carousel {
+                width: 100px;
+                height: 190px;
+            }
+            .hero-carousel-item {
+                width: 95px;
+                margin-left: -47px;
+                margin-top: -90px;
+                border-radius: 10px;
+            }
+            .hero-carousel-item img {
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-carousel-wrapper {
+                height: 180px;
+                perspective: 400px;
+                margin-top: 10px;
                 margin-bottom: 30px;
             }
             .hero-carousel {
-                width: 140px;
-                height: 280px;
+                width: 80px;
+                height: 155px;
             }
             .hero-carousel-item {
-                width: 130px;
-                margin-left: -65px;
-                margin-top: -130px;
-                border-radius: 12px;
+                width: 75px;
+                margin-left: -37px;
+                margin-top: -72px;
+                border-radius: 8px;
             }
             .hero-carousel-item img {
-                border-radius: 12px;
+                border-radius: 8px;
             }
         }
 
@@ -2583,7 +2610,7 @@
                                         <img src="img/personalized_plan_2_rounded.png" alt="Personalized Health Plan">
                                     </div>
                                     <div class="hero-carousel-item" style="transform: rotateY(257.1deg) translateZ(420px);">
-                                        <img src="img/AI_coach_1_rounded.png" alt="AI Health Coach">
+                                        <img src="img/AI_Coach_1_rounded.png" alt="AI Health Coach">
                                     </div>
                                     <div class="hero-carousel-item" style="transform: rotateY(308.6deg) translateZ(420px);">
                                         <img src="img/movement_dashboard_rounded.png" alt="Movement Dashboard">
@@ -2890,7 +2917,7 @@
                                 <div class="phone">
                                     <div class="phone-screen">
                                         <img class="screenshot" id="phoneContainer2-screenshot1"
-                                            src="img/Dashboard1.jpeg" alt="Physical Health Score Screenshot">
+                                            src="img/dashboard.png" alt="Physical Health Score Screenshot">
                                         <img class="screenshot hidden" id="phoneContainer2-screenshot2"
                                             src="img/Dashboard2.jpeg" alt="Physical Health Tracking Screenshot">
                                         <img class="screenshot hidden" id="phoneContainer2-screenshot3"
@@ -3550,9 +3577,10 @@
                             const items = carousel.querySelectorAll('.hero-carousel-item');
                             const w = window.innerWidth;
                             let radius = 420;
-                            if (w <= 576) radius = 220;
-                            else if (w <= 768) radius = 300;
-                            else if (w <= 992) radius = 360;
+                            if (w <= 400) radius = 140;
+                            else if (w <= 576) radius = 180;
+                            else if (w <= 768) radius = 250;
+                            else if (w <= 992) radius = 320;
 
                             const step = 360 / items.length;
                             items.forEach((item, i) => {
@@ -3565,7 +3593,6 @@
                     }
 
                     initHeroCarousel();
-                });
                 });
 
                 // Variables to track current screen and total screens
