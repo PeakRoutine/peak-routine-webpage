@@ -3142,9 +3142,11 @@
                             <p class="mb-5"><span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;"><i class="fab fa-apple me-1"></i> Currently available on iOS only</span></p>
                         </div>
 
-                        <!-- Promo Code -->
+                        <!-- Email + Promo Code -->
                         <div class="row justify-content-center mb-4 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="col-md-5 col-lg-4">
+                                <input type="email" id="purchaseEmail" class="form-control rounded-pill px-4 mb-3" placeholder="Your email address" style="border:2px solid var(--gray-300);font-size:0.95rem;" required>
+                                <div id="emailMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
                                 <div class="d-flex gap-2">
                                     <input type="text" id="promoCodeInput" class="form-control rounded-pill px-4" placeholder="Have a promo code?" style="border:2px solid var(--gray-300);font-size:0.95rem;">
                                     <button id="applyPromoBtn" onclick="applyPromoCode()" class="btn btn-primary-gradient rounded-pill px-4 flex-shrink-0" style="font-size:0.9rem;font-weight:600;">Apply</button>
@@ -3914,7 +3916,7 @@
             <!-- Pricing & Promo Code Logic -->
             <script>
                 // Backend API base URL (context path: /app)
-                const PAYMENT_API_BASE = window.location.hostname === 'localhost'
+                const PAYMENT_API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:')
                     ? 'http://localhost:8083/app/website/payment'
                     : 'https://peakroutine-hfffebbwc4bjbcer.westus-01.azurewebsites.net/app/website/payment';
 
@@ -4006,6 +4008,20 @@
                     const config = pricingConfig[plan];
                     if (!config) return;
 
+                    // Validate email
+                    const emailInput = document.getElementById('purchaseEmail');
+                    const emailMessage = document.getElementById('emailMessage');
+                    const email = emailInput.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    if (!email || !emailRegex.test(email)) {
+                        emailMessage.style.display = 'block';
+                        emailMessage.textContent = 'Please enter a valid email address.';
+                        emailInput.focus();
+                        return;
+                    }
+                    emailMessage.style.display = 'none';
+
                     const amount = promoApplied ? config.promoPrice : config.price;
 
                     // Disable button and show loading
@@ -4023,6 +4039,7 @@
                                 amount: amount,
                                 currency: 'USD',
                                 plan: plan,
+                                email: email,
                                 promoCode: appliedPromoCode
                             })
                         });
@@ -4033,6 +4050,18 @@
 
                         const orderData = await orderResponse.json();
                         const orderId = orderData.payload.orderId;
+
+                        // Free order — no payment needed, show success directly
+                        if (orderData.payload.free) {
+                            showPricingPopup(
+                                'Subscription Activated!',
+                                'Your ' + config.name + ' plan has been activated for free with promo code ' + appliedPromoCode + '. Check ' + email + ' for your welcome email with download instructions.',
+                                'success'
+                            );
+                            btn.disabled = false;
+                            btn.textContent = originalText;
+                            return;
+                        }
 
                         // Step 2: Open Razorpay Checkout with order_id
                         const options = {
@@ -4061,7 +4090,7 @@
                                     if (verifyResponse.ok && verifyData.status !== 'FAILED') {
                                         showPricingPopup(
                                             'Payment Successful!',
-                                            'Thank you for subscribing to PeakRoutine ' + config.name + '! Payment ID: ' + response.razorpay_payment_id + '. You will receive a confirmation email shortly.',
+                                            'Thank you for subscribing to PeakRoutine ' + config.name + '! Check ' + email + ' for your welcome email with download instructions.',
                                             'success'
                                         );
                                     } else {
@@ -4080,8 +4109,7 @@
                                 }
                             },
                             prefill: {
-                                name: '',
-                                email: ''
+                                email: email
                             },
                             theme: {
                                 color: plan === 'pro' ? '#1C85E8' : '#38C172'
