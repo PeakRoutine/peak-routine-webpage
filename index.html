@@ -3145,12 +3145,8 @@
                         <!-- Email + Promo Code -->
                         <div class="row justify-content-center mb-4 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="col-md-5 col-lg-4">
-                                <input type="text" id="purchaseName" class="form-control rounded-pill px-4 mb-3" placeholder="Your full name" style="border:2px solid var(--gray-300);font-size:0.95rem;" required>
-                                <div id="nameMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
                                 <input type="email" id="purchaseEmail" class="form-control rounded-pill px-4 mb-3" placeholder="Your email address" style="border:2px solid var(--gray-300);font-size:0.95rem;" required>
                                 <div id="emailMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
-                                <input type="tel" id="purchasePhone" class="form-control rounded-pill px-4 mb-3" placeholder="Phone number (e.g. +12025551234)" style="border:2px solid var(--gray-300);font-size:0.95rem;">
-                                <div id="phoneMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
                                 <div class="d-flex gap-2">
                                     <input type="text" id="promoCodeInput" class="form-control rounded-pill px-4" placeholder="Have a promo code?" style="border:2px solid var(--gray-300);font-size:0.95rem;">
                                     <button id="applyPromoBtn" onclick="applyPromoCode()" class="btn btn-primary-gradient rounded-pill px-4 flex-shrink-0" style="font-size:0.9rem;font-weight:600;">Apply</button>
@@ -3223,7 +3219,7 @@
                         </div>
 
                         <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.6s">
-                            <p class="text-muted" style="font-size:0.85rem;"><i class="fas fa-shield-alt me-1"></i> Secure payments powered by Razorpay.</p>
+                            <p class="text-muted" style="font-size:0.85rem;"><i class="fas fa-shield-alt me-1"></i> Secure payments powered by Dodo Payments.</p>
                             <p class="text-muted mt-2" style="font-size:0.85rem;"><i class="fab fa-android me-1"></i> Android coming soon — <a href="#contact" style="color:var(--primary);">contact us</a> to get notified.</p>
                         </div>
                     </div>
@@ -3912,18 +3908,12 @@
                 </div>
             </div>
 
-            <!-- Razorpay Checkout -->
-            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
             <!-- Pricing & Promo Code Logic -->
             <script>
                 // Backend API base URL (context path: /app)
                 const PAYMENT_API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:')
                     ? 'http://localhost:8083/app/website/payment'
                     : 'https://peakroutine-hfffebbwc4bjbcer.westus-01.azurewebsites.net/app/website/payment';
-
-                // Razorpay Key ID (public key — safe for frontend)
-                const RAZORPAY_KEY_ID = 'rzp_test_SVw1BYWMz479Sl'; // TODO: Replace with your actual Razorpay Key ID
 
                 // Pricing configuration (amounts in cents for USD) — base prices
                 const pricingConfig = {
@@ -4001,26 +3991,14 @@
                 }
 
                 /**
-                 * Razorpay Standard Checkout — Correct Integration Flow:
-                 * Step 1: Create order on server (POST /createOrder)
-                 * Step 2: Open Razorpay Checkout with order_id
-                 * Step 3: On success, verify signature on server (POST /verifyPayment)
+                 * Dodo Payments Checkout — Redirect Flow:
+                 * Step 1: Create checkout session on server (POST /createCheckout)
+                 * Step 2: Redirect to Dodo-hosted checkout URL
+                 * Step 3: Dodo redirects back on completion; webhook handles order activation
                  */
                 async function initiatePurchase(plan) {
                     const config = pricingConfig[plan];
                     if (!config) return;
-
-                    // Validate name
-                    const nameInput = document.getElementById('purchaseName');
-                    const nameMessage = document.getElementById('nameMessage');
-                    const name = nameInput.value.trim();
-                    if (!name || name.length < 2) {
-                        nameMessage.style.display = 'block';
-                        nameMessage.textContent = 'Please enter your full name.';
-                        nameInput.focus();
-                        return;
-                    }
-                    nameMessage.style.display = 'none';
 
                     // Validate email
                     const emailInput = document.getElementById('purchaseEmail');
@@ -4036,19 +4014,6 @@
                     }
                     emailMessage.style.display = 'none';
 
-                    // Phone number (required for Razorpay international payments)
-                    const phoneInput = document.getElementById('purchasePhone');
-                    const phoneMessage = document.getElementById('phoneMessage');
-                    const phone = phoneInput.value.trim();
-                    const phoneRegex = /^\+[1-9]\d{6,14}$/;
-                    if (!phone || !phoneRegex.test(phone)) {
-                        phoneMessage.style.display = 'block';
-                        phoneMessage.textContent = 'Please enter a valid phone number with country code (e.g. +12025551234).';
-                        phoneInput.focus();
-                        return;
-                    }
-                    phoneMessage.style.display = 'none';
-
                     const amount = promoApplied ? config.promoPrice : config.price;
 
                     // Disable button and show loading
@@ -4058,28 +4023,26 @@
                     btn.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i>Processing...';
 
                     try {
-                        // Step 1: Create order on server
-                        const orderResponse = await fetch(PAYMENT_API_BASE + '/createOrder', {
+                        // Step 1: Create checkout session on server
+                        const checkoutResponse = await fetch(PAYMENT_API_BASE + '/createCheckout', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
                                 amount: amount,
-                                currency: 'USD',
                                 plan: plan,
                                 email: email,
                                 promoCode: appliedPromoCode
                             })
                         });
 
-                        if (!orderResponse.ok) {
-                            throw new Error('Failed to create order. Please try again.');
+                        if (!checkoutResponse.ok) {
+                            throw new Error('Failed to create checkout session. Please try again.');
                         }
 
-                        const orderData = await orderResponse.json();
-                        const orderId = orderData.payload.orderId;
+                        const checkoutData = await checkoutResponse.json();
 
                         // Free order — no payment needed, show success directly
-                        if (orderData.payload.free) {
+                        if (checkoutData.payload.free) {
                             showPricingPopup(
                                 'Subscription Activated!',
                                 'Your ' + config.name + ' plan has been activated for free with promo code ' + appliedPromoCode + '. Check ' + email + ' for your welcome email with download instructions.',
@@ -4090,91 +4053,13 @@
                             return;
                         }
 
-                        // Step 2: Open Razorpay Checkout with order_id
-                        const options = {
-                            key: RAZORPAY_KEY_ID,
-                            amount: amount,
-                            currency: 'USD',
-                            name: 'PeakRoutine',
-                            description: config.name + ' Plan \u2014 Annual Subscription',
-                            image: 'https://www.peakroutinehealth.com/img/Peak_Routine_Logo.png',
-                            order_id: orderId, // MANDATORY: ties payment to order
-                            handler: async function (response) {
-                                // Step 3: Verify payment signature on server
-                                try {
-                                    console.log("RAZORPAY RESPONSE:", response);
-                                    const verifyResponse = await fetch(PAYMENT_API_BASE + '/verifyPayment', {
-                                        method: 'POST',
-                                        headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify({
-                                            razorpay_order_id: response.razorpay_order_id,
-                                            razorpay_payment_id: response.razorpay_payment_id,
-                                            razorpay_signature: response.razorpay_signature
-                                        })
-                                    });
-
-                                    const verifyData = await verifyResponse.json();
-                                    console.log("BACKEND VERIFY DATA:", verifyData);
-                                    if (verifyResponse.ok && verifyData.status !== 'FAILED') {
-                                        showPricingPopup(
-                                            'Payment Successful!',
-                                            'Thank you for subscribing to PeakRoutine ' + config.name + '! Check ' + email + ' for your welcome email with download instructions.',
-                                            'success'
-                                        );
-                                    } else {
-                                        showPricingPopup(
-                                            'Verification Failed',
-                                            'Your payment was received but could not be verified. Please contact us at info@peakroutinehealth.com with Payment ID: ' + response.razorpay_payment_id,
-                                            'error'
-                                        );
-                                    }
-                                } catch (verifyErr) {
-                                    showPricingPopup(
-                                        'Verification Error',
-                                        'Payment received but verification encountered an error. Please contact us at info@peakroutinehealth.com with Payment ID: ' + response.razorpay_payment_id,
-                                        'error'
-                                    );
-                                }
-                            },
-                            prefill: {
-                                name: name,
-                                email: email,
-                                contact: phone
-                            },
-                            theme: {
-                                color: plan === 'pro' ? '#1C85E8' : '#38C172'
-                            },
-                            modal: {
-                                ondismiss: function () {
-                                    // User closed the payment modal — reset button
-                                    btn.disabled = false;
-                                    btn.textContent = originalText;
-                                }
-                            }
-                        };
-
-                        const rzp = new Razorpay(options);
-                        rzp.on('payment.failed', function (response) {
-                            // Log ALL fields so we can diagnose exact Razorpay rejection reason
-                            console.error('PAYMENT FAILED — full error:', {
-                                code:        response.error.code,
-                                description: response.error.description,
-                                source:      response.error.source,
-                                step:        response.error.step,
-                                reason:      response.error.reason,
-                                order_id:    response.error.metadata && response.error.metadata.order_id,
-                                payment_id:  response.error.metadata && response.error.metadata.payment_id
-                            });
-                            showPricingPopup(
-                                'Payment Failed',
-                                'Error: ' + response.error.description +
-                                ' (Code: ' + response.error.code + ', Reason: ' + response.error.reason + '). Please try again.',
-                                'error'
-                            );
-                            btn.disabled = false;
-                            btn.textContent = originalText;
-                        });
-                        rzp.open();
+                        // Step 2: Redirect to Dodo-hosted checkout page
+                        const checkoutUrl = checkoutData.payload.checkoutUrl;
+                        if (checkoutUrl) {
+                            window.location.href = checkoutUrl;
+                        } else {
+                            throw new Error('No checkout URL received. Please try again.');
+                        }
 
                     } catch (e) {
                         showPricingPopup(
@@ -4183,13 +4068,29 @@
                             'error'
                         );
                     } finally {
-                        // Reset button after a delay (checkout may still be open)
                         setTimeout(() => {
                             btn.disabled = false;
                             btn.textContent = originalText;
                         }, 2000);
                     }
                 }
+
+                // Handle return from Dodo checkout (URL contains payment_id and status params)
+                (function handleDodoReturn() {
+                    const params = new URLSearchParams(window.location.search);
+                    const paymentId = params.get('payment_id');
+                    const status = params.get('status');
+                    if (paymentId && status === 'paid') {
+                        setTimeout(function() {
+                            showPricingPopup(
+                                'Payment Successful!',
+                                'Thank you for subscribing to PeakRoutine! Check your email for your welcome message with download instructions.',
+                                'success'
+                            );
+                            window.history.replaceState({}, '', window.location.pathname + '#pricing');
+                        }, 500);
+                    }
+                })();
 
                 function showPricingPopup(title, message, type) {
                     if (type === 'success') {
