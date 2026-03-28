@@ -3145,8 +3145,12 @@
                         <!-- Email + Promo Code -->
                         <div class="row justify-content-center mb-4 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="col-md-5 col-lg-4">
+                                <input type="text" id="purchaseName" class="form-control rounded-pill px-4 mb-3" placeholder="Your full name" style="border:2px solid var(--gray-300);font-size:0.95rem;" required>
+                                <div id="nameMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
                                 <input type="email" id="purchaseEmail" class="form-control rounded-pill px-4 mb-3" placeholder="Your email address" style="border:2px solid var(--gray-300);font-size:0.95rem;" required>
                                 <div id="emailMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
+                                <input type="tel" id="purchasePhone" class="form-control rounded-pill px-4 mb-3" placeholder="Phone number (e.g. +12025551234)" style="border:2px solid var(--gray-300);font-size:0.95rem;">
+                                <div id="phoneMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
                                 <div class="d-flex gap-2">
                                     <input type="text" id="promoCodeInput" class="form-control rounded-pill px-4" placeholder="Have a promo code?" style="border:2px solid var(--gray-300);font-size:0.95rem;">
                                     <button id="applyPromoBtn" onclick="applyPromoCode()" class="btn btn-primary-gradient rounded-pill px-4 flex-shrink-0" style="font-size:0.9rem;font-weight:600;">Apply</button>
@@ -3174,10 +3178,9 @@
                                         </div>
                                         <ul class="pricing-features">
                                             <li><i class="fas fa-check-circle text-success me-2"></i>Personalized AI health insights</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Personalized action plans</li>
                                             <li><i class="fas fa-check-circle text-success me-2"></i>Sleep, stress & activity analytics</li>
                                             <li><i class="fas fa-check-circle text-success me-2"></i>30-day habit streak tracking</li>
-                                            <li><i class="fas fa-check-circle text-success me-2"></i>Weekly & monthly trend reports</li>
-                                            <li><i class="fas fa-check-circle text-success me-2"></i>Health score & biomarker dashboard</li>
                                             <li><i class="fas fa-check-circle text-success me-2"></i>Gamification: badges, XP & levels</li>
                                         </ul>
                                         <button class="btn btn-primary-gradient w-100 py-3 rounded-pill fw-bold" onclick="initiatePurchase('pro')">
@@ -3207,7 +3210,6 @@
                                         <ul class="pricing-features">
                                             <li><i class="fas fa-check-circle text-success me-2"></i>Everything in Pro</li>
                                             <li><i class="fas fa-star text-warning me-2"></i>AI coaching chatbots (20 msgs/day)</li>
-                                            <li><i class="fas fa-star text-warning me-2"></i>Personalized action plans</li>
                                             <li><i class="fas fa-star text-warning me-2"></i>Advanced sleep & recovery coach</li>
                                             <li><i class="fas fa-star text-warning me-2"></i>Nutrition & fitness guidance</li>
                                             <li><i class="fas fa-star text-warning me-2"></i>Priority support</li>
@@ -4008,6 +4010,18 @@
                     const config = pricingConfig[plan];
                     if (!config) return;
 
+                    // Validate name
+                    const nameInput = document.getElementById('purchaseName');
+                    const nameMessage = document.getElementById('nameMessage');
+                    const name = nameInput.value.trim();
+                    if (!name || name.length < 2) {
+                        nameMessage.style.display = 'block';
+                        nameMessage.textContent = 'Please enter your full name.';
+                        nameInput.focus();
+                        return;
+                    }
+                    nameMessage.style.display = 'none';
+
                     // Validate email
                     const emailInput = document.getElementById('purchaseEmail');
                     const emailMessage = document.getElementById('emailMessage');
@@ -4021,6 +4035,19 @@
                         return;
                     }
                     emailMessage.style.display = 'none';
+
+                    // Phone number (required for Razorpay international payments)
+                    const phoneInput = document.getElementById('purchasePhone');
+                    const phoneMessage = document.getElementById('phoneMessage');
+                    const phone = phoneInput.value.trim();
+                    const phoneRegex = /^\+[1-9]\d{6,14}$/;
+                    if (!phone || !phoneRegex.test(phone)) {
+                        phoneMessage.style.display = 'block';
+                        phoneMessage.textContent = 'Please enter a valid phone number with country code (e.g. +12025551234).';
+                        phoneInput.focus();
+                        return;
+                    }
+                    phoneMessage.style.display = 'none';
 
                     const amount = promoApplied ? config.promoPrice : config.price;
 
@@ -4075,6 +4102,7 @@
                             handler: async function (response) {
                                 // Step 3: Verify payment signature on server
                                 try {
+                                    console.log("RAZORPAY RESPONSE:", response);
                                     const verifyResponse = await fetch(PAYMENT_API_BASE + '/verifyPayment', {
                                         method: 'POST',
                                         headers: { 'Content-Type': 'application/json' },
@@ -4086,7 +4114,7 @@
                                     });
 
                                     const verifyData = await verifyResponse.json();
-
+                                    console.log("BACKEND VERIFY DATA:", verifyData);
                                     if (verifyResponse.ok && verifyData.status !== 'FAILED') {
                                         showPricingPopup(
                                             'Payment Successful!',
@@ -4109,7 +4137,9 @@
                                 }
                             },
                             prefill: {
-                                email: email
+                                name: name,
+                                email: email,
+                                contact: phone
                             },
                             theme: {
                                 color: plan === 'pro' ? '#1C85E8' : '#38C172'
@@ -4125,9 +4155,20 @@
 
                         const rzp = new Razorpay(options);
                         rzp.on('payment.failed', function (response) {
+                            // Log ALL fields so we can diagnose exact Razorpay rejection reason
+                            console.error('PAYMENT FAILED — full error:', {
+                                code:        response.error.code,
+                                description: response.error.description,
+                                source:      response.error.source,
+                                step:        response.error.step,
+                                reason:      response.error.reason,
+                                order_id:    response.error.metadata && response.error.metadata.order_id,
+                                payment_id:  response.error.metadata && response.error.metadata.payment_id
+                            });
                             showPricingPopup(
                                 'Payment Failed',
-                                'Error: ' + response.error.description + '. Please try again.',
+                                'Error: ' + response.error.description +
+                                ' (Code: ' + response.error.code + ', Reason: ' + response.error.reason + '). Please try again.',
                                 'error'
                             );
                             btn.disabled = false;
