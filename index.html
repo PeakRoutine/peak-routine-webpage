@@ -3142,19 +3142,6 @@
                             <p class="mb-5"><span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;"><i class="fab fa-apple me-1"></i> Currently available on iOS only</span></p>
                         </div>
 
-                        <!-- Email + Promo Code -->
-                        <div class="row justify-content-center mb-4 wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="col-md-5 col-lg-4">
-                                <input type="email" id="purchaseEmail" class="form-control rounded-pill px-4 mb-3" placeholder="Your email address" style="border:2px solid var(--gray-300);font-size:0.95rem;" required>
-                                <div id="emailMessage" class="text-center mb-2" style="font-size:0.85rem;display:none;color:#ef4444;"></div>
-                                <div class="d-flex gap-2">
-                                    <input type="text" id="promoCodeInput" class="form-control rounded-pill px-4" placeholder="Have a promo code?" style="border:2px solid var(--gray-300);font-size:0.95rem;">
-                                    <button id="applyPromoBtn" onclick="applyPromoCode()" class="btn btn-primary-gradient rounded-pill px-4 flex-shrink-0" style="font-size:0.9rem;font-weight:600;">Apply</button>
-                                </div>
-                                <div id="promoMessage" class="text-center mt-2" style="font-size:0.85rem;display:none;"></div>
-                            </div>
-                        </div>
-
                         <div class="row g-4 justify-content-center">
                             <!-- Pro Plan -->
                             <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -3168,7 +3155,6 @@
                                     </div>
                                     <div class="pricing-body">
                                         <div class="pricing-amount">
-                                            <span class="pricing-original" id="proOriginal" style="display:none;"><s>$49.99</s></span>
                                             <span class="pricing-price" id="proPrice">$49.99</span>
                                             <span class="pricing-period">/year</span>
                                         </div>
@@ -3199,7 +3185,6 @@
                                     </div>
                                     <div class="pricing-body">
                                         <div class="pricing-amount">
-                                            <span class="pricing-original" id="eliteOriginal" style="display:none;"><s>$99.99</s></span>
                                             <span class="pricing-price" id="elitePrice">$99.99</span>
                                             <span class="pricing-period">/year</span>
                                         </div>
@@ -3921,75 +3906,6 @@
                     elite: { name: 'Elite', price: 9999, display: '$99.99' }
                 };
 
-                let promoApplied = false;
-                let appliedPromoCode = null;
-
-                async function applyPromoCode() {
-                    const input = document.getElementById('promoCodeInput');
-                    const message = document.getElementById('promoMessage');
-                    const btn = document.getElementById('applyPromoBtn');
-                    const code = input.value.trim().toUpperCase();
-
-                    if (!code) {
-                        message.style.display = 'block';
-                        message.style.color = '#ef4444';
-                        message.textContent = 'Please enter a promo code.';
-                        return;
-                    }
-
-                    // Disable inputs while validating
-                    input.disabled = true;
-                    btn.disabled = true;
-                    btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
-
-                    try {
-                        const response = await fetch(PAYMENT_API_BASE + '/validatePromo', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ code: code })
-                        });
-
-                        const data = await response.json();
-
-                        if (response.ok && data.status !== 'FAILED') {
-                            promoApplied = true;
-                            appliedPromoCode = code;
-
-                            // Update prices from backend response
-                            pricingConfig.pro.promoPrice = data.payload.proPrice;
-                            pricingConfig.pro.promoDisplay = data.payload.proDisplay;
-                            pricingConfig.elite.promoPrice = data.payload.elitePrice;
-                            pricingConfig.elite.promoDisplay = data.payload.eliteDisplay;
-
-                            document.getElementById('proOriginal').style.display = 'block';
-                            document.getElementById('proPrice').textContent = data.payload.proDisplay;
-
-                            document.getElementById('eliteOriginal').style.display = 'block';
-                            document.getElementById('elitePrice').textContent = data.payload.eliteDisplay;
-
-                            message.style.display = 'block';
-                            message.style.color = '#38C172';
-                            message.innerHTML = '<i class="fas fa-check-circle me-1"></i>Promo code applied! Prices updated.';
-
-                            btn.textContent = 'Applied';
-                        } else {
-                            input.disabled = false;
-                            btn.disabled = false;
-                            btn.textContent = 'Apply';
-                            message.style.display = 'block';
-                            message.style.color = '#ef4444';
-                            message.textContent = data.message?.info || data.message?.error || 'Invalid promo code. Please try again.';
-                        }
-                    } catch (err) {
-                        input.disabled = false;
-                        btn.disabled = false;
-                        btn.textContent = 'Apply';
-                        message.style.display = 'block';
-                        message.style.color = '#ef4444';
-                        message.textContent = 'Could not validate promo code. Please try again.';
-                    }
-                }
-
                 /**
                  * Dodo Payments Checkout — Redirect Flow:
                  * Step 1: Create checkout session on server (POST /createCheckout)
@@ -3999,22 +3915,6 @@
                 async function initiatePurchase(plan) {
                     const config = pricingConfig[plan];
                     if (!config) return;
-
-                    // Validate email
-                    const emailInput = document.getElementById('purchaseEmail');
-                    const emailMessage = document.getElementById('emailMessage');
-                    const email = emailInput.value.trim();
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                    if (!email || !emailRegex.test(email)) {
-                        emailMessage.style.display = 'block';
-                        emailMessage.textContent = 'Please enter a valid email address.';
-                        emailInput.focus();
-                        return;
-                    }
-                    emailMessage.style.display = 'none';
-
-                    const amount = promoApplied ? config.promoPrice : config.price;
 
                     // Disable button and show loading
                     const btn = event.target;
@@ -4028,10 +3928,7 @@
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
-                                amount: amount,
-                                plan: plan,
-                                email: email,
-                                promoCode: appliedPromoCode
+                                plan: plan
                             })
                         });
 
@@ -4041,19 +3938,7 @@
 
                         const checkoutData = await checkoutResponse.json();
 
-                        // Free order — no payment needed, show success directly
-                        if (checkoutData.payload.free) {
-                            showPricingPopup(
-                                'Subscription Activated!',
-                                'Your ' + config.name + ' plan has been activated for free with promo code ' + appliedPromoCode + '. Check ' + email + ' for your welcome email with download instructions.',
-                                'success'
-                            );
-                            btn.disabled = false;
-                            btn.textContent = originalText;
-                            return;
-                        }
-
-                        // Step 2: Redirect to Dodo-hosted checkout page
+                        // Redirect to Dodo-hosted checkout page (Dodo handles discounts, pricing, and $0 orders)
                         const checkoutUrl = checkoutData.payload.checkoutUrl;
                         if (checkoutUrl) {
                             window.location.href = checkoutUrl;
