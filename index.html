@@ -3138,7 +3138,19 @@
                             <h5 class="text-primary-gradient fw-medium">Choose Your Plan</h5>
                             <h1 class="mb-2">Simple, Transparent Pricing</h1>
                             <p class="mb-2 text-muted">Invest in your health.</p>
-                            <p class="mb-5"><span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;"><i class="fab fa-apple me-1"></i> Currently available on iOS only</span></p>
+                            <p class="mb-4"><span class="badge rounded-pill px-3 py-2" style="background:#1C85E8;color:#fff;font-size:0.85rem;"><i class="fab fa-apple me-1"></i> Currently available on iOS only</span></p>
+
+                            <!-- Billing Cycle Toggle -->
+                            <div class="d-flex flex-column align-items-center justify-content-center gap-2 mb-5">
+                                <div class="d-flex align-items-center gap-3">
+                                    <span id="toggleLabelMonthly" style="font-size:0.95rem;color:var(--gray-500);font-weight:500;">Monthly</span>
+                                    <div class="form-check form-switch m-0" style="transform:scale(1.4);">
+                                        <input class="form-check-input" type="checkbox" id="billingToggle" checked onchange="onBillingToggle(this)">
+                                    </div>
+                                    <span id="toggleLabelAnnual" style="font-size:0.95rem;color:var(--primary);font-weight:700;">Annual</span>
+                                </div>
+                                <span id="annualSavingBadge" style="font-size:0.85rem;color:var(--secondary);font-weight:600;">Save up to $12.00</span>
+                            </div>
                         </div>
 
                         <div class="row g-4 justify-content-center">
@@ -3154,10 +3166,10 @@
                                     </div>
                                     <div class="pricing-body">
                                         <div class="pricing-amount">
-                                            <span class="pricing-price" id="proPrice">$4.99</span>
+                                            <span class="pricing-price" id="proPrice">$4.17</span>
                                             <span class="pricing-period">/month</span>
-                                            <div style="font-size:1rem;color:var(--gray-500);font-weight:500;margin-top:4px;">Billed annually</div>
-                                            <div style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-top:6px;">☕ Less than a cup of coffee</div>
+                                            <div id="proBillingNote" style="font-size:1rem;color:var(--gray-500);font-weight:500;margin-top:4px;">Billed annually at $49.99</div>
+                                            <div id="proCatchphrase" style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-top:6px;">☕ Less than a cup of coffee a month</div>
                                         </div>
                                         <ul class="pricing-features">
                                             <li><i class="fas fa-check-circle text-success me-2"></i>Personalized AI health insights</li>
@@ -3187,10 +3199,10 @@
                                     </div>
                                     <div class="pricing-body">
                                         <div class="pricing-amount">
-                                            <span class="pricing-price" id="elitePrice">$8.99</span>
+                                            <span class="pricing-price" id="elitePrice">$8.33</span>
                                             <span class="pricing-period">/month</span>
-                                            <div style="font-size:1rem;color:var(--gray-500);font-weight:500;margin-top:4px;">Billed annually</div>
-                                            <div style="font-size:0.8rem;color:var(--secondary);font-weight:600;margin-top:6px;">🥑 Cheaper than a gym smoothie</div>
+                                            <div id="eliteBillingNote" style="font-size:1rem;color:var(--gray-500);font-weight:500;margin-top:4px;">Billed annually at $99.99</div>
+                                            <div id="eliteCatchphrase" style="font-size:0.8rem;color:var(--secondary);font-weight:600;margin-top:6px;">🥑 Cheaper than a gym smoothie a month</div>
                                         </div>
                                         <ul class="pricing-features">
                                             <li><i class="fas fa-check-circle text-success me-2"></i>Everything in Pro</li>
@@ -3501,6 +3513,9 @@
 
                 // Initialize when DOM is loaded
                 document.addEventListener('DOMContentLoaded', function () {
+                    // Initialize pricing cards from pricingConfig
+                    onBillingToggle(document.getElementById('billingToggle'));
+
                     // Set up close buttons
                     const contactCloseBtn = document.getElementById('contactPopupCloseBtn');
                     const errorCloseBtn = document.getElementById('errorPopupCloseBtn');
@@ -3905,11 +3920,58 @@
                     ? 'http://localhost:8083/app/website/payment'
                     : 'https://peakroutine-hfffebbwc4bjbcer.westus-01.azurewebsites.net/app/website/payment';
 
-                // Pricing configuration (amounts in cents for USD) — base prices
+                // Pricing configuration — annual and monthly
+                // annualSaving = monthlyPrice * 12 - annualTotal
                 const pricingConfig = {
-                    pro: { name: 'Pro', price: 4999, display: '$49.99' },
-                    elite: { name: 'Elite', price: 9999, display: '$99.99' }
+                    pro: {
+                        annual:  { monthlyDisplay: '$3.99', annualTotal: 47.88, monthlyPrice: 4.99, note: 'Billed annually at $47.88', catchphrase: '☕ Less than a cup of coffee a month' },
+                        monthly: { monthlyDisplay: '$4.99', annualTotal: 47.88, monthlyPrice: 4.99, note: 'Billed monthly',            catchphrase: '☕ Less than a cup of coffee a month' }
+                    },
+                    elite: {
+                        annual:  { monthlyDisplay: '$7.99', annualTotal: 95.88, monthlyPrice: 8.99, note: 'Billed annually at $95.88', catchphrase: '🥑 Cheaper than a gym smoothie a month' },
+                        monthly: { monthlyDisplay: '$8.99', annualTotal: 95.88, monthlyPrice: 8.99, note: 'Billed monthly',            catchphrase: '🥑 Cheaper than a gym smoothie a month' }
+                    }
                 };
+
+                // Current billing cycle state
+                let currentBillingCycle = 'annual';
+
+                function onBillingToggle(checkbox) {
+                    currentBillingCycle = checkbox.checked ? 'annual' : 'monthly';
+                    const isAnnual = currentBillingCycle === 'annual';
+
+                    // Update toggle label styles
+                    document.getElementById('toggleLabelAnnual').style.color = isAnnual ? 'var(--primary)' : 'var(--gray-500)';
+                    document.getElementById('toggleLabelAnnual').style.fontWeight = isAnnual ? '700' : '500';
+                    document.getElementById('toggleLabelMonthly').style.color = isAnnual ? 'var(--gray-500)' : 'var(--primary)';
+                    document.getElementById('toggleLabelMonthly').style.fontWeight = isAnnual ? '500' : '700';
+
+                    // Update Pro card
+                    const proCfg = pricingConfig.pro[currentBillingCycle];
+                    document.getElementById('proPrice').textContent = proCfg.monthlyDisplay;
+                    document.getElementById('proBillingNote').textContent = proCfg.note;
+                    document.getElementById('proCatchphrase').textContent = proCfg.catchphrase;
+
+                    // Update Elite card
+                    const eliteCfg = pricingConfig.elite[currentBillingCycle];
+                    document.getElementById('elitePrice').textContent = eliteCfg.monthlyDisplay;
+                    document.getElementById('eliteBillingNote').textContent = eliteCfg.note;
+                    document.getElementById('eliteCatchphrase').textContent = eliteCfg.catchphrase;
+
+                    // Update saving badge — always visible, message changes by cycle
+                    const badge = document.getElementById('annualSavingBadge');
+                    if (isAnnual) {
+                        const proSavingPct = Math.round((proCfg.monthlyPrice * 12 - proCfg.annualTotal) / (proCfg.monthlyPrice * 12) * 100);
+                        const eliteSavingPct = Math.round((eliteCfg.monthlyPrice * 12 - eliteCfg.annualTotal) / (eliteCfg.monthlyPrice * 12) * 100);
+                        const maxPct = Math.max(proSavingPct, eliteSavingPct);
+                        badge.textContent = '🎉 Save up to ' + maxPct + '% by choosing Annual!';
+                    } else {
+                        const proSavingPct = Math.round((proCfg.monthlyPrice * 12 - proCfg.annualTotal) / (proCfg.monthlyPrice * 12) * 100);
+                        const eliteSavingPct = Math.round((eliteCfg.monthlyPrice * 12 - eliteCfg.annualTotal) / (eliteCfg.monthlyPrice * 12) * 100);
+                        const maxPct = Math.max(proSavingPct, eliteSavingPct);
+                        badge.textContent = '💡 Switch to Annual and save up to ' + maxPct + '%';
+                    }
+                }
 
                 /**
                  * Dodo Payments Checkout — Redirect Flow:
@@ -3918,8 +3980,7 @@
                  * Step 3: Dodo redirects back on completion; webhook handles order activation
                  */
                 async function initiatePurchase(plan) {
-                    const config = pricingConfig[plan];
-                    if (!config) return;
+                    if (!pricingConfig[plan]) return;
 
                     // Disable button and show loading
                     const btn = event.target;
@@ -3933,7 +3994,8 @@
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
-                                plan: plan
+                                plan: plan,
+                                billingCycle: currentBillingCycle
                             })
                         });
 
