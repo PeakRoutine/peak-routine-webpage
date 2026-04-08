@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <title>PeakRoutine — Personalized Routines. Smarter Habits. Every Day.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="All-in-one AI health app to track movement, sleep, stress, and more — powered by AI and built for proactive well-being.">
-  <meta name="keywords" content="fitness app, health tracking, wellness app, peak routine, sleep tracking, mood journal, AI health analysis">
+  <meta name="description" content="AI-powered iOS health app that analyzes your body data, builds personalized plans, and delivers coaching — so you can build habits that actually work.">
+  <meta name="keywords" content="fitness app, health tracking, wellness app, peak routine, sleep tracking, mood journal, AI health analysis, iOS health app">
   <meta name="theme-color" content="#1C85E8">
   <meta name="robots" content="index, follow">
   <meta name="author" content="PeakRoutine">
@@ -13,14 +13,11 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="PeakRoutine — Build Daily Habits for Long-Term Health">
-  <meta property="og:description" content="Powered by AI, PeakRoutine analyzes your biomarkers to create personalized plans that reduce the risk of chronic conditions and stress-related burnout.">
+  <meta property="og:description" content="Powered by AI, PeakRoutine analyzes your biomarkers to create personalized plans.">
   <meta property="og:image" content="https://www.peakroutinehealth.com/img/Peak_Routine_Logo.png">
   <meta property="og:url" content="https://www.peakroutinehealth.com">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PeakRoutine — Build Daily Habits for Long-Term Health">
-  <meta name="twitter:description" content="Powered by AI, PeakRoutine analyzes your biomarkers to create personalized plans.">
-  <meta name="twitter:image" content="https://www.peakroutinehealth.com/img/Peak_Routine_Logo.png">
 
   <!-- Favicon -->
   <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -28,18 +25,19 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700;800&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- CSS -->
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <!-- Bootstrap (grid only) -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/animations.css" rel="stylesheet">
+
+  <!-- PeakRoutine CSS -->
+  <link href="css/theme.css" rel="stylesheet">
+  <link href="css/navbar.css" rel="stylesheet">
+  <link href="css/sections.css" rel="stylesheet">
 
   <!-- Schema -->
   <script type="application/ld+json">
@@ -49,1757 +47,910 @@
     "name":"PeakRoutine",
     "applicationCategory":"HealthApplication",
     "operatingSystem":"iOS",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/ComingSoon"},
+    "offers":{"@type":"Offer","price":"3.99","priceCurrency":"USD"},
     "description":"PeakRoutine empowers you to build daily habits and personalized plans that support long-term health.",
-    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"12"}
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"75"}
   }
   </script>
-
-  <style>
-    /* ── CSS Variables ── */
-    :root {
-      --primary:        #1C85E8;
-      --primary-dark:   #0f6dc9;
-      --primary-light:  #4ba1ff;
-      --secondary:      #38C172;
-      --secondary-dark: #2aa15a;
-      --secondary-light:#5fe698;
-      --accent:         #F6B93B;
-      --dark:           #1a2035;
-      --light:          #F8FAFC;
-      --background:     #FFFFFF;
-      --gray-50:        #F9FAFB;
-      --gray-100:       #F3F4F6;
-      --gray-200:       #E5E7EB;
-      --gray-300:       #D1D5DB;
-      --gray-400:       #9CA3AF;
-      --gray-500:       #6B7280;
-      --gray-700:       #374151;
-      --heading-font:   'Jost', sans-serif;
-      --body-font:      'Heebo', sans-serif;
-      --section-pad:    5rem;
-    }
-
-    /* ── Base ── */
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--body-font);
-      color: var(--gray-700);
-      line-height: 1.65;
-      background: #fff;
-      overflow-x: hidden;
-    }
-
-    h1,h2,h3,h4,h5,h6 {
-      font-family: var(--heading-font);
-      color: var(--dark);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    /* ── Gradient Utilities ── */
-    .text-primary-gradient {
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .text-secondary-gradient {
-      background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .bg-primary-gradient { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
-    .bg-secondary-gradient { background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); }
-
-    /* ── Section Labels ── */
-    .section-eyebrow {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.75rem;
-    }
-
-    /* ── Buttons ── */
-    .btn-primary-gradient {
-      background: linear-gradient(135deg, #1C85E8, #4ba1ff);
-      border: none;
-      color: #fff;
-      border-radius: 50px;
-      font-weight: 700;
-      font-family: var(--heading-font);
-      letter-spacing: 0.01em;
-      box-shadow: 0 6px 24px rgba(28,133,232,0.35);
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, filter 0.3s ease;
-    }
-    .btn-primary-gradient:hover {
-      color: #fff;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 36px rgba(28,133,232,0.45);
-      filter: brightness(1.06);
-    }
-
-    .btn-secondary-gradient {
-      background: linear-gradient(135deg, #38C172, #5fe698);
-      border: none;
-      color: #fff;
-      border-radius: 50px;
-      font-weight: 700;
-      font-family: var(--heading-font);
-      box-shadow: 0 6px 24px rgba(56,193,114,0.35);
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
-    }
-    .btn-secondary-gradient:hover {
-      color: #fff;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 36px rgba(56,193,114,0.45);
-    }
-
-    .btn-ghost {
-      background: rgba(255,255,255,0.12);
-      border: 1.5px solid rgba(255,255,255,0.45);
-      color: #fff;
-      border-radius: 50px;
-      font-weight: 600;
-      font-family: var(--heading-font);
-      backdrop-filter: blur(8px);
-      transition: all 0.3s ease;
-    }
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.22);
-      border-color: rgba(255,255,255,0.7);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* ── Navbar ── */
-    .navbar { z-index: 1000; }
-    .navbar-brand { display: flex; align-items: center; gap: 0.6rem; }
-
-    .logo {
-      width: 40px; height: 40px;
-      object-fit: contain;
-      background: #fff;
-      border-radius: 50%;
-      padding: 5px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .logo-text {
-      font-family: 'Urbanist', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.03em;
-      transition: color 0.3s ease;
-    }
-
-    .navbar-glass.scrolled .logo-text { color: #1C85E8; }
-
-    .navbar-light .navbar-nav .nav-link {
-      font-family: var(--heading-font);
-      font-weight: 500;
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.9) !important;
-      padding: 0.5rem 0.75rem;
-      transition: color 0.2s ease;
-      letter-spacing: 0.01em;
-    }
-
-    .navbar-glass.scrolled .navbar-nav .nav-link {
-      color: var(--dark) !important;
-    }
-
-    .navbar-light .navbar-nav .nav-link:hover { color: #fff !important; }
-    .navbar-glass.scrolled .navbar-nav .nav-link:hover { color: var(--primary) !important; }
-
-    @media (max-width: 991px) {
-      .navbar-light .navbar-nav .nav-link { color: var(--dark) !important; }
-      .navbar-light .navbar-collapse {
-        background: rgba(255,255,255,0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 16px;
-        margin-top: 10px;
-        padding: 1rem;
-        border: 1px solid rgba(0,0,0,0.06);
-        box-shadow: 0 16px 40px rgba(0,0,0,0.12);
-      }
-    }
-
-    .navbar-toggler {
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      padding: 0.4rem 0.6rem;
-    }
-    .navbar-glass.scrolled .navbar-toggler { color: var(--dark); }
-    .navbar-toggler:focus { box-shadow: none; }
-
-    /* ── Hero ── */
-    .hero-section {
-      position: relative;
-      background: linear-gradient(135deg, #0a5fbf 0%, #1a80e0 40%, #0d9e58 100%);
-      overflow: hidden;
-      padding-bottom: 0;
-    }
-
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(56,193,114,0.12) 0%, transparent 60%);
-      z-index: 0;
-    }
-
-    .hero-content { position: relative; z-index: 1; }
-
-    .hero-headline {
-      font-size: clamp(2.6rem, 5.5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      color: #fff;
-      text-shadow: 0 2px 32px rgba(0,0,0,0.15);
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.88);
-      line-height: 1.7;
-      max-width: 560px;
-    }
-
-    /* Carousel */
-    .hero-carousel-wrapper {
-      perspective: 1200px;
-      height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-top: 3rem;
-      padding-bottom: 2rem;
-    }
-
-    .hero-carousel {
-      position: relative;
-      width: 260px; height: 480px;
-      transform-style: preserve-3d;
-      animation: heroSpin 30s linear infinite;
-      cursor: grab;
-    }
-
-    .hero-carousel.paused { animation-play-state: paused; }
-    .hero-carousel.dragging { animation: none; cursor: grabbing; }
-
-    .hero-carousel-item {
-      position: absolute;
-      width: 240px;
-      top: 50%; left: 50%;
-      margin-left: -120px; margin-top: -220px;
-      border-radius: 22px;
-      box-shadow: 0 20px 48px rgba(0,0,0,0.28);
-      backface-visibility: hidden;
-      overflow: hidden;
-      transition: box-shadow 0.3s ease;
-    }
-
-    .hero-carousel-item img {
-      width: 100%; height: auto;
-      display: block; border-radius: 22px;
-    }
-
-    .hero-carousel-item:hover { box-shadow: 0 32px 64px rgba(0,0,0,0.38); }
-
-    @keyframes heroSpin {
-      from { transform: rotateY(0deg); }
-      to   { transform: rotateY(360deg); }
-    }
-
-    @media (max-width: 992px) {
-      .hero-carousel-wrapper { height: 380px; perspective: 900px; }
-      .hero-carousel { width: 200px; height: 370px; }
-      .hero-carousel-item { width: 185px; margin-left: -92px; margin-top: -175px; }
-    }
-    @media (max-width: 768px) {
-      .hero-carousel-wrapper { height: 320px; perspective: 750px; margin-top: 2rem; }
-      .hero-carousel { width: 165px; height: 310px; }
-      .hero-carousel-item { width: 150px; margin-left: -75px; margin-top: -145px; border-radius: 16px; }
-    }
-    @media (max-width: 576px) {
-      .hero-carousel-wrapper { height: 260px; perspective: 550px; }
-      .hero-carousel { width: 130px; height: 240px; }
-      .hero-carousel-item { width: 120px; margin-left: -60px; margin-top: -112px; border-radius: 13px; }
-    }
-
-    /* ── Stats Bar ── */
-    .stats-bar {
-      background: #fff;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.06);
-      border-bottom: 1px solid var(--gray-100);
-    }
-
-    .stat-item {
-      padding: 1.75rem 1rem;
-      text-align: center;
-    }
-
-    @media (min-width: 768px) {
-      .stat-item:not(:last-child) { border-right: 1px solid var(--gray-100); }
-    }
-
-    .stat-num {
-      font-size: 2.4rem;
-      font-family: var(--heading-font);
-      font-weight: 800;
-      line-height: 1;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--gray-500);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-    }
-
-    /* ── Problem Section ── */
-    .problem-section {
-      background: linear-gradient(135deg, #1a2035 0%, #0d2040 50%, #0a3020 100%);
-      padding: var(--section-pad) 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .problem-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 20% 30%, rgba(28,133,232,0.1) 0%, transparent 60%),
-                  radial-gradient(ellipse 50% 70% at 80% 70%, rgba(56,193,114,0.08) 0%, transparent 60%);
-    }
-
-    .problem-quote {
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-family: var(--heading-font);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-    }
-
-    .problem-quote em {
-      font-style: normal;
-      background: linear-gradient(135deg, #F6B93B, #f9d06a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .problem-pill-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 2.5rem;
-    }
-
-    /* ── Features ── */
-    .features-section {
-      background: var(--gray-50);
-      padding: var(--section-pad) 0;
-    }
-
-    /* ── How It Works ── */
-    .hiw-section {
-      background: #fff;
-      padding: var(--section-pad) 0;
-    }
-
-    .hiw-step-badge {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 0.3em 0.9em;
-      border-radius: 100px;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── App Showcase ── */
-    .showcase-section {
-      background: var(--gray-50);
-      padding: var(--section-pad) 0;
-    }
-
-    .showcase-step {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--gray-100);
-    }
-
-    .showcase-step:last-child { border-bottom: none; }
-
-    .showcase-step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      font-size: 0.8rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-
-    .showcase-images {
-      display: flex;
-      gap: 1.25rem;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .showcase-images img {
-      width: 47%;
-      max-width: 220px;
-      border-radius: 20px;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.12);
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease;
-    }
-
-    .showcase-images img:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 32px 80px rgba(28,133,232,0.2);
-    }
-
-    .showcase-images.single img {
-      width: 60%;
-      max-width: 260px;
-    }
-
-    .log-option-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 6px;
-      border-radius: 14px;
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
-      cursor: default;
-    }
-
-    .log-option-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .log-option-icon {
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-    }
-
-    .log-option-name {
-      font-size: 0.73rem;
-      font-weight: 600;
-      color: var(--dark);
-      text-align: center;
-    }
-
-    .logging-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 1.5rem;
-    }
-
-    @media (min-width: 576px) { .logging-grid { grid-template-columns: repeat(4, 1fr); } }
-    @media (min-width: 992px) { .logging-grid { grid-template-columns: repeat(5, 1fr); } }
-
-    /* ── Testimonials ── */
-    .testimonials-section {
-      background: var(--gray-50);
-      padding: var(--section-pad) 0;
-    }
-
-    .testimonial-stars {
-      color: var(--accent);
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-    }
-
-    .testimonial-text {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--gray-700);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .testimonial-avatar {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .t-quote-mark { color: rgba(28,133,232,0.07); }
-    .t-quote-mark.green { color: rgba(56,193,114,0.08); }
-    .t-quote-mark.amber { color: rgba(246,185,59,0.1); }
-
-    /* ── Pricing ── */
-    .pricing-section {
-      background: #fff;
-      padding: var(--section-pad) 0;
-    }
-
-    /* Toggle */
-    .pricing-toggle-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      margin: 1.5rem 0 0.5rem;
-    }
-
-    .toggle-label {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--gray-500);
-      transition: color 0.2s ease;
-    }
-
-    .toggle-label.active { color: var(--dark); }
-
-    .form-switch .form-check-input {
-      width: 52px; height: 28px;
-      cursor: pointer;
-      background-image: none;
-      background-color: var(--primary);
-      border-color: var(--primary);
-    }
-
-    .form-switch .form-check-input:checked { background-color: var(--primary); border-color: var(--primary); }
-    .form-switch .form-check-input:focus { box-shadow: 0 0 0 3px rgba(28,133,232,0.2); }
-
-    .savings-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: linear-gradient(135deg, rgba(56,193,114,0.12), rgba(56,193,114,0.06));
-      border: 1px solid rgba(56,193,114,0.3);
-      color: var(--secondary-dark);
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    /* Pricing cards */
-    .pricing-plan-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 0.25rem;
-    }
-
-    .pricing-price-num {
-      font-size: 3rem;
-      font-weight: 800;
-      font-family: var(--heading-font);
-      color: var(--dark);
-      line-height: 1;
-      transition: all 0.3s ease;
-    }
-
-    .pricing-period-label {
-      font-size: 0.85rem;
-      color: var(--gray-500);
-      margin-top: 0.35rem;
-    }
-
-    .pricing-features-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .pricing-features-list li {
-      padding: 0.6rem 0;
-      font-size: 0.95rem;
-      color: var(--gray-700);
-      border-bottom: 1px solid var(--gray-100);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    .pricing-features-list li:last-child { border-bottom: none; }
-
-    .pricing-badge-ribbon {
-      position: absolute;
-      top: 16px; right: -32px;
-      background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 800;
-      padding: 4px 40px;
-      transform: rotate(45deg);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* ── FAQ ── */
-    .faq-section {
-      background: var(--gray-50);
-      padding: var(--section-pad) 0;
-    }
-
-    /* ── Contact ── */
-    .contact-section {
-      background: #fff;
-      padding: var(--section-pad) 0;
-    }
-
-    .contact-card {
-      background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 16px 60px rgba(0,0,0,0.07);
-      border: 1px solid rgba(0,0,0,0.05);
-      padding: 3rem;
-    }
-
-    @media (max-width: 576px) { .contact-card { padding: 1.75rem 1.25rem; } }
-
-    .form-control-modern {
-      border: 1.5px solid var(--gray-200);
-      border-radius: 10px;
-      padding: 0.85rem 1rem;
-      font-family: var(--body-font);
-      font-size: 0.95rem;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .form-control-modern:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(28,133,232,0.15);
-      outline: none;
-    }
-
-    .form-control-modern.is-invalid {
-      border-color: #E53E3E;
-      box-shadow: 0 0 0 3px rgba(229,62,62,0.1);
-    }
-
-    .form-label-modern {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .error-msg {
-      color: #E53E3E;
-      font-size: 0.8rem;
-      margin-top: 0.3rem;
-      display: none;
-    }
-
-    /* ── Footer ── */
-    .footer-section {
-      background: linear-gradient(135deg, #0a5fbf 0%, #0d7a4c 100%);
-      color: rgba(255,255,255,0.8);
-      padding: 4rem 0 0;
-    }
-
-    .footer-section h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; }
-
-    .footer-link {
-      display: block;
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      padding: 0.3rem 0;
-      font-size: 0.9rem;
-      transition: color 0.2s ease, padding-left 0.2s ease;
-    }
-
-    .footer-link:hover { color: #fff; padding-left: 4px; }
-    .footer-link::before { content: '›'; margin-right: 8px; opacity: 0.6; }
-
-    .footer-social {
-      width: 38px; height: 38px;
-      display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.8);
-      margin-right: 0.5rem;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-
-    .footer-social:hover {
-      color: #fff;
-      background: rgba(255,255,255,0.15);
-      border-color: rgba(255,255,255,0.5);
-      transform: translateY(-3px);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.12);
-      padding: 1.25rem 0;
-      margin-top: 3rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-menu a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      margin-left: 1.25rem;
-      transition: color 0.2s;
-    }
-
-    .footer-menu a:hover { color: #fff; }
-
-    /* ── Popups ── */
-    .popup-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 9998;
-      opacity: 0; visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .popup-overlay.show { opacity: 1; visibility: visible; }
-
-    .popup-modal {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -45%);
-      width: 90%; max-width: 440px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      z-index: 9999;
-      opacity: 0; visibility: hidden;
-      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-      overflow: hidden;
-    }
-
-    .popup-modal.show {
-      opacity: 1; visibility: visible;
-      transform: translate(-50%, -50%);
-    }
-
-    .popup-header-bg {
-      height: 110px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .popup-icon-wrap {
-      position: absolute;
-      bottom: -28px; left: 50%;
-      transform: translateX(-50%);
-      width: 72px; height: 72px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1;
-    }
-
-    .popup-icon-inner {
-      width: 54px; height: 54px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; color: #fff;
-    }
-
-    .popup-body { padding: 2.5rem 2rem 2rem; text-align: center; }
-    .popup-title { font-size: 1.4rem; font-weight: 800; color: var(--dark); margin-bottom: 0.75rem; }
-    .popup-message { font-size: 0.95rem; color: var(--gray-500); margin-bottom: 1.5rem; line-height: 1.6; }
-
-    /* ── iOS Badge ── */
-    .ios-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(0,0,0,0.85);
-      color: #fff;
-      border-radius: 10px;
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      transition: all 0.25s ease;
-    }
-
-    .ios-badge:hover {
-      background: rgba(0,0,0,0.95);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* ── Trust Bar ── */
-    .trust-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-
-    .trust-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: rgba(255,255,255,0.95);
-      border-radius: 100px;
-      padding: 0.4rem 0.9rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      backdrop-filter: blur(8px);
-    }
-
-    /* ── Star Rating ── */
-    .hero-stars { color: #F6B93B; font-size: 1.1rem; letter-spacing: 0.1em; }
-
-    /* ── Back to top ── */
-    .back-to-top-modern {
-      position: fixed;
-      bottom: 28px; right: 28px;
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(28,133,232,0.4);
-      opacity: 0;
-      transform: translateY(12px) scale(0.85);
-      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      cursor: pointer;
-      z-index: 900;
-      border: none;
-      text-decoration: none;
-    }
-
-    .back-to-top-modern.visible { opacity: 1; transform: none; }
-    .back-to-top-modern:hover { transform: translateY(-4px) scale(1.1); color: #fff; }
-
-    /* ── Showcase step layout ── */
-    @media (min-width: 992px) {
-      .showcase-step.reverse .showcase-content { order: 2; }
-      .showcase-step.reverse .showcase-images  { order: 1; }
-    }
-
-    /* ── Feature tags (habit badges) ── */
-    .habit-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      background: #fff7ed;
-      color: #d97706;
-      border: 1px solid #fed7aa;
-    }
-  </style>
 </head>
 
 <body>
-  <!-- Scroll Progress -->
-  <div class="scroll-progress"></div>
 
-  <!-- Spinner -->
-  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-grow text-primary" style="width:3rem;height:3rem;" role="status">
-      <span class="visually-hidden">Loading...</span>
+<!-- Scroll Progress -->
+<div class="scroll-progress-bar"></div>
+
+<!-- Spinner -->
+<div id="pr-spinner">
+  <div class="spinner-ring"></div>
+  <div class="spinner-text">PeakRoutine</div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     DYNAMIC ISLAND NAVBAR
+════════════════════════════════════════════ -->
+<nav class="pr-nav" role="navigation" aria-label="Main navigation">
+  <div class="pr-nav-inner">
+
+    <!-- Brand -->
+    <a href="index.html" class="pr-nav-brand">
+      <img src="img/Peak_Routine_Logo.png" alt="PeakRoutine" class="pr-nav-logo">
+      <span class="pr-nav-wordmark">PeakRoutine</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="pr-nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app" target="_blank" rel="noopener">Roadmap</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- CTA -->
+    <a href="#pricing" class="pr-nav-cta desktop-only">
+      <i class="fas fa-rocket"></i> Get Started
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="pr-nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="pr-nav-mobile">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app" target="_blank" rel="noopener">Roadmap</a>
+    <a href="#contact">Contact</a>
+    <a href="#pricing" class="pr-nav-mobile-cta"><i class="fas fa-rocket"></i> Get Started — Free Trial</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <!-- Animated Background -->
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="hero-content container-pr">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Now Available on iOS — TestFlight
+    </div>
+
+    <h1 class="hero-headline">
+      Personalized Routines.<br>
+      <span class="hl-gradient">Smarter Habits.</span><br>
+      Every Day.
+    </h1>
+
+    <p class="hero-sub">
+      PeakRoutine analyzes your body's data, builds a personalized plan, and delivers AI-backed insights and coaching — so you can build habits that actually work for you.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-pr btn-pr-white btn-pr-lg">
+        <i class="fas fa-rocket" style="color:var(--primary);"></i>
+        Get Started — Free Trial
+      </a>
+      <a href="#features" class="btn-pr btn-pr-ghost btn-pr-lg">
+        See Features
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-item">
+        <i class="fas fa-heartbeat"></i>
+        <span>Works with Apple Health</span>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-robot"></i>
+        <span>AI-Powered Insights</span>
+      </div>
+      <div class="trust-item">
+        <i class="fab fa-apple"></i>
+        <span>iOS First</span>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-star" style="color:#f59e0b;"></i>
+        <span>4.8 rating from 75+ members</span>
+      </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       NAVBAR
-  ═══════════════════════════════════════════════ -->
-  <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 navbar-glass position-absolute w-100 top-0 start-0" style="z-index:999;">
-    <a href="index.html" class="navbar-brand p-0">
-      <img src="img/Peak_Routine_Logo.png" alt="PeakRoutine Logo" class="logo">
-      <span class="logo-text">PeakRoutine</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
-      <i class="fa fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav mx-auto py-0">
-        <a href="#feature"    class="nav-item nav-link nav-link-animated">Features</a>
-        <a href="#pricing"    class="nav-item nav-link nav-link-animated">Pricing</a>
-        <a href="about.html"  class="nav-item nav-link nav-link-animated">About</a>
-        <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app" class="nav-item nav-link nav-link-animated" target="_blank" rel="noopener noreferrer">Roadmap</a>
-        <a href="#contact"    class="nav-item nav-link nav-link-animated">Contact</a>
+  <!-- Phone Mockups -->
+  <div class="hero-phones">
+    <!-- Floating UI chips -->
+    <div class="hero-chip hero-chip-1">
+      <div class="chip-icon" style="background:rgba(56,193,114,0.2);">💤</div>
+      <div>
+        <div style="font-size:0.7rem;opacity:0.7;">Sleep Score</div>
+        <div style="color:#4ade80;font-weight:800;">87 / 100</div>
       </div>
-      <a href="#pricing" class="btn btn-primary-gradient btn-shimmer d-none d-lg-inline-flex align-items-center py-2 px-4" style="font-size:0.88rem;">
-        <i class="fa fa-rocket me-2"></i>Get Started
+    </div>
+
+    <div class="hero-chip hero-chip-2">
+      <div class="chip-icon" style="background:rgba(28,133,232,0.2);">💓</div>
+      <div>
+        <div style="font-size:0.7rem;opacity:0.7;">HRV Today</div>
+        <div style="color:#60a5fa;font-weight:800;">68ms ↑</div>
+      </div>
+    </div>
+
+    <div class="hero-chip hero-chip-3">
+      <div class="chip-icon" style="background:rgba(251,191,36,0.2);">🔥</div>
+      <div>
+        <div style="font-size:0.7rem;opacity:0.7;">Streak</div>
+        <div style="color:#fbbf24;font-weight:800;">45 Days</div>
+      </div>
+    </div>
+
+    <!-- Left phone -->
+    <div class="phone-mockup phone-left">
+      <div class="phone-frame">
+        <img src="img/trends_rounded.png" alt="Health Trends" class="phone-screen" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Center phone (main) -->
+    <div class="phone-mockup phone-center">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <img src="img/dashboard.png" alt="PeakRoutine Dashboard" class="phone-screen">
+        <div class="phone-glow"></div>
+      </div>
+    </div>
+
+    <!-- Right phone -->
+    <div class="phone-mockup phone-right">
+      <div class="phone-frame">
+        <img src="img/correlation_rounded.png" alt="AI Correlations" class="phone-screen" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     STATS BAR
+════════════════════════════════════════════ -->
+<section class="stats-section">
+  <div class="container-pr">
+    <div class="stats-grid">
+      <div class="stat-cell" data-reveal data-reveal-delay="1">
+        <div class="stat-val" data-count="75" data-suffix="+">75+</div>
+        <div class="stat-lbl">Early Members</div>
+      </div>
+      <div class="stat-cell" data-reveal data-reveal-delay="2">
+        <div class="stat-val" data-count="15" data-suffix="+">15+</div>
+        <div class="stat-lbl">Health Modules</div>
+      </div>
+      <div class="stat-cell" data-reveal data-reveal-delay="3">
+        <div class="stat-val" data-count="25" data-suffix="+">25+</div>
+        <div class="stat-lbl">Health Metrics</div>
+      </div>
+      <div class="stat-cell" data-reveal data-reveal-delay="4">
+        <div class="stat-val">AI</div>
+        <div class="stat-lbl">Pattern Correlations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     PROBLEM SECTION
+════════════════════════════════════════════ -->
+<section class="problem-section">
+  <div class="container-pr" style="position:relative;z-index:1;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+
+      <div data-reveal="left">
+        <div class="eyebrow" style="color:#fbbf24;">Sound familiar?</div>
+        <h2 class="problem-headline">
+          You track five apps.<br>You still don't know<br>
+          <span class="problem-highlight">why you're tired.</span>
+        </h2>
+        <p class="problem-body">
+          Health data is everywhere — but scattered across apps that never talk to each other. You know your step count. But not what it means. PeakRoutine fixes that.
+        </p>
+        <div class="problem-pills">
+          <span class="problem-pill"><i class="fas fa-times-circle"></i> 5 apps, no insights</span>
+          <span class="problem-pill"><i class="fas fa-times-circle"></i> Generic health advice</span>
+          <span class="problem-pill"><i class="fas fa-times-circle"></i> No habit accountability</span>
+          <span class="problem-pill"><i class="fas fa-times-circle"></i> Data with no context</span>
+        </div>
+      </div>
+
+      <div data-reveal="right">
+        <div class="vs-card">
+          <div class="vs-col-bad">
+            <div class="vs-label">Without PeakRoutine</div>
+            <div class="vs-item vs-item-bad"><i class="fas fa-times-circle"></i> Scattered across 5 apps</div>
+            <div class="vs-item vs-item-bad"><i class="fas fa-times-circle"></i> Generic advice</div>
+            <div class="vs-item vs-item-bad"><i class="fas fa-times-circle"></i> No pattern detection</div>
+            <div class="vs-item vs-item-bad"><i class="fas fa-times-circle"></i> Data without meaning</div>
+          </div>
+          <div class="vs-divider">vs</div>
+          <div class="vs-col-good">
+            <div class="vs-label">With PeakRoutine</div>
+            <div class="vs-item vs-item-good"><i class="fas fa-check-circle"></i> One unified dashboard</div>
+            <div class="vs-item vs-item-good"><i class="fas fa-check-circle"></i> Personalized AI plans</div>
+            <div class="vs-item vs-item-good"><i class="fas fa-check-circle"></i> AI pattern insights</div>
+            <div class="vs-item vs-item-good"><i class="fas fa-check-circle"></i> Actionable clarity</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FEATURES
+════════════════════════════════════════════ -->
+<section class="features-section" id="features">
+  <div class="container-pr">
+    <div class="section-header" data-reveal>
+      <div class="eyebrow">What PeakRoutine Does</div>
+      <h2 class="section-title">One platform.<br>Everything your health needs.</h2>
+      <p class="section-body">
+        An AI-powered health platform that automatically pulls data from Apple Health, surfaces personalized insights, and builds sustainable habits — all in one place.
+      </p>
+    </div>
+
+    <div class="bento">
+      <!-- Hero: Apple Health -->
+      <div class="bento-card bento-span-8" data-reveal style="background:linear-gradient(135deg,#eff6ff,#fff);">
+        <div style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:220px;">
+            <div class="feat-icon" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3 class="feat-title">Apple Health Auto-Sync</h3>
+            <p class="feat-body">Automatically pulls sleep, HRV, steps, resting heart rate, and calories from Apple Health. No manual entry — your data is always up to date and ready for AI analysis.</p>
+            <div class="feat-tags" style="margin-top:1rem;">
+              <span class="feat-tag feat-tag-blue">💤 Sleep</span>
+              <span class="feat-tag feat-tag-green">💓 HRV</span>
+              <span class="feat-tag feat-tag-blue">🚶 Steps</span>
+              <span class="feat-tag feat-tag-green">🔥 Calories</span>
+              <span class="feat-tag feat-tag-blue">❤️ Heart Rate</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;opacity:0.5;flex-shrink:0;" class="d-none d-md-flex">
+            <div style="background:#eff6ff;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.78rem;font-weight:700;color:#1C85E8;white-space:nowrap;"><i class="fas fa-moon me-1"></i>Sleep</div>
+            <div style="background:#f0fdf4;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.78rem;font-weight:700;color:#16a34a;white-space:nowrap;"><i class="fas fa-heartbeat me-1"></i>HRV</div>
+            <div style="background:#fef9c3;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.78rem;font-weight:700;color:#a16207;white-space:nowrap;"><i class="fas fa-walking me-1"></i>Steps</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Insights -->
+      <div class="bento-card bento-span-4" data-reveal data-reveal-delay="1">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h3 class="feat-title">AI Pattern Insights</h3>
+        <p class="feat-body">Discover correlations like "Your HRV improves when you sleep before 11PM" — with confidence scores and personalized recommendations.</p>
+      </div>
+
+      <!-- Nutrition -->
+      <div class="bento-card bento-span-4" data-reveal>
+        <div class="feat-icon" style="background:linear-gradient(135deg,#38C172,#4ade80);">
+          <i class="fas fa-apple-alt"></i>
+        </div>
+        <h3 class="feat-title">Nutrition & Hydration</h3>
+        <p class="feat-body">Log meals from millions of foods, track macros, and monitor hydration and caffeine — with personalized timing recommendations.</p>
+      </div>
+
+      <!-- Mental Health -->
+      <div class="bento-card bento-span-4" data-reveal data-reveal-delay="1">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#38C172,#4ade80);">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="feat-title">Mental Health & Journaling</h3>
+        <p class="feat-body">Track mood, stress, and daily reflections. Guided breathing exercises and meditation videos help you manage stress before it manages you.</p>
+      </div>
+
+      <!-- Habits -->
+      <div class="bento-card bento-span-4" data-reveal data-reveal-delay="2" style="background:linear-gradient(135deg,#fffbeb,#fff);">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">
+          <i class="fas fa-fire"></i>
+        </div>
+        <h3 class="feat-title">Streaks & Gamification</h3>
+        <p class="feat-body">Build habits with targets at 7, 14, 30, 90, and 365 days. Earn badges, level up, and celebrate every win — consistency has never felt this good.</p>
+      </div>
+
+      <!-- AI Coaches — full width -->
+      <div class="bento-card bento-span-8" data-reveal style="background:linear-gradient(135deg,#f5f3ff,#fff);">
+        <div style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:220px;">
+            <div class="feat-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3 class="feat-title">AI Health Coaches <span style="font-size:0.6em;background:linear-gradient(135deg,#7c3aed,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ELITE</span></h3>
+            <p class="feat-body">Chat with specialized AI coaches for sleep, nutrition, exercise, and stress. They analyze your actual health data and give personalized recommendations — like having a team of experts in your pocket, 24/7.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;flex-shrink:0;" class="d-none d-md-flex">
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.78rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fas fa-moon me-1"></i>Sleep Coach</div>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.78rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fas fa-dumbbell me-1"></i>Fitness Coach</div>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.78rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fas fa-apple-alt me-1"></i>Nutrition Coach</div>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.78rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fas fa-brain me-1"></i>Recovery Coach</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════ -->
+<section class="hiw-section" id="how-it-works">
+  <div class="container-pr">
+    <div class="section-header" data-reveal>
+      <div class="eyebrow">Simple to Start</div>
+      <h2 class="section-title">Up and running in 3 steps</h2>
+      <p class="section-body">No complicated setup. PeakRoutine gets to know you, connects to your data, and starts working on day one.</p>
+    </div>
+
+    <div class="hiw-steps">
+      <div class="hiw-step" data-reveal data-reveal-delay="1">
+        <div class="hiw-num-wrap">
+          <div class="hiw-icon-circle" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <span class="hiw-step-badge" style="background:var(--dark);">Step 1</span>
+        </div>
+        <h3 class="hiw-step-title">Tell us about your lifestyle</h3>
+        <p class="hiw-step-body">A quick 5-step questionnaire covers your exercise habits, sleep schedule, wake time, sunlight exposure, and dinner timing. Your personalized baseline is ready immediately.</p>
+      </div>
+
+      <div class="hiw-step" data-reveal data-reveal-delay="2">
+        <div class="hiw-num-wrap">
+          <div class="hiw-icon-circle" style="background:linear-gradient(135deg,#38C172,#4ade80);">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <span class="hiw-step-badge" style="background:var(--secondary);">Step 2</span>
+        </div>
+        <h3 class="hiw-step-title">Connect Apple Health</h3>
+        <p class="hiw-step-body">Grant one-time permission and PeakRoutine automatically syncs your sleep, HRV, steps, resting heart rate, and calorie data. No manual logging needed — ever.</p>
+      </div>
+
+      <div class="hiw-step" data-reveal data-reveal-delay="3">
+        <div class="hiw-num-wrap">
+          <div class="hiw-icon-circle" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">
+            <i class="fas fa-robot"></i>
+          </div>
+          <span class="hiw-step-badge" style="background:var(--primary);">Step 3</span>
+        </div>
+        <h3 class="hiw-step-title">Get your personalized plan</h3>
+        <p class="hiw-step-body">AI analyzes your patterns and surfaces insights like "Your recovery improves 23% when you sleep before 11PM." Daily health scores and habit recommendations update as you grow.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3.5rem;" data-reveal>
+      <a href="#pricing" class="btn-pr btn-pr-primary btn-pr-lg">
+        <i class="fas fa-rocket"></i> Start Your Journey
       </a>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════════ -->
-  <section class="hero-section" id="home">
-    <!-- Mesh orbs -->
-    <div class="hero-mesh">
-      <div class="mesh-orb mesh-orb-1"></div>
-      <div class="mesh-orb mesh-orb-2"></div>
-      <div class="mesh-orb mesh-orb-3"></div>
+<!-- ════════════════════════════════════════════
+     APP SHOWCASE
+════════════════════════════════════════════ -->
+<section class="showcase-section" id="showcase">
+  <div class="container-pr">
+    <div class="section-header" data-reveal>
+      <div class="eyebrow">See It In Action</div>
+      <h2 class="section-title">Everything you need, in one app</h2>
     </div>
 
-    <div class="container px-lg-5 hero-content" style="padding-top:7rem;">
-      <!-- 3D Carousel -->
-      <div class="hero-carousel-wrapper reveal-scale">
-        <div class="hero-carousel" id="heroCarousel">
-          <div class="hero-carousel-item" style="transform:rotateY(0deg)translateZ(420px);">
-            <img src="img/dashboard.png" alt="Health Score Dashboard">
-          </div>
-          <div class="hero-carousel-item" style="transform:rotateY(51.4deg)translateZ(420px);">
-            <img src="img/trends_rounded.png" alt="Health Trends">
-          </div>
-          <div class="hero-carousel-item" style="transform:rotateY(102.8deg)translateZ(420px);">
-            <img src="img/correlation_rounded.png" alt="AI Correlation">
-          </div>
-          <div class="hero-carousel-item" style="transform:rotateY(154.3deg)translateZ(420px);">
-            <img src="img/Week_overview_rounded.png" alt="Weekly Overview">
-          </div>
-          <div class="hero-carousel-item" style="transform:rotateY(205.7deg)translateZ(420px);">
-            <img src="img/personalized_plan_2_rounded.png" alt="Personalized Plan">
-          </div>
-          <div class="hero-carousel-item" style="transform:rotateY(257.1deg)translateZ(420px);">
-            <img src="img/AI_Coach_1_rounded.png" alt="AI Coach">
-          </div>
-          <div class="hero-carousel-item" style="transform:rotateY(308.6deg)translateZ(420px);">
-            <img src="img/movement_dashboard_rounded.png" alt="Movement Dashboard">
+    <!-- Step 1: Dashboard -->
+    <div class="showcase-step">
+      <div class="showcase-content">
+        <div class="showcase-step-badge" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">1</div>
+        <h3 class="showcase-title">Your complete health picture, every day</h3>
+        <p class="showcase-body">One dashboard surfaces your daily health score, sleep quality, movement, sunlight, HRV, and more — all pulled automatically from Apple Health. Log mood, nutrition, and journaling to get a complete view in one place.</p>
+        <div class="log-grid">
+          <div class="log-card"><div class="log-icon" style="background:#e0e7ff;color:#4f46e5;"><i class="fas fa-moon"></i></div><div class="log-name">Sleep</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#d1fae5;color:#059669;"><i class="fas fa-walking"></i></div><div class="log-name">Movement</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#fce7f3;color:#db2777;"><i class="fas fa-heartbeat"></i></div><div class="log-name">HRV</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#fef9c3;color:#a16207;"><i class="fas fa-sun"></i></div><div class="log-name">Sunlight</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#fef3c7;color:#d97706;"><i class="fas fa-smile"></i></div><div class="log-name">Mood</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#fee2e2;color:#dc2626;"><i class="fas fa-brain"></i></div><div class="log-name">Stress</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#d1fae5;color:#059669;"><i class="fas fa-apple-alt"></i></div><div class="log-name">Nutrition</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#dbeafe;color:#2563eb;"><i class="fas fa-tint"></i></div><div class="log-name">Hydration</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#fef9c3;color:#92400e;"><i class="fas fa-coffee"></i></div><div class="log-name">Caffeine</div></div>
+          <div class="log-card"><div class="log-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fas fa-book"></i></div><div class="log-name">Journal</div></div>
+        </div>
+      </div>
+      <div class="showcase-imgs solo">
+        <img src="img/dashboard.png" alt="PeakRoutine Dashboard" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Step 2: AI Insights -->
+    <div class="showcase-step reverse">
+      <div class="showcase-content">
+        <div class="showcase-step-badge" style="background:linear-gradient(135deg,#38C172,#4ade80);">2</div>
+        <h3 class="showcase-title">AI finds the patterns you can't see</h3>
+        <p class="showcase-body">PeakRoutine cross-references sleep, exercise, HRV, stress, mood, and more to uncover deep correlations unique to <em>your</em> body. Each insight explains what changed, why it matters, and gives a personalized recommendation.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.25rem;">
+          <span style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.8rem;font-weight:700;color:#1C85E8;"><i class="fas fa-chart-line me-1"></i>Confidence Scores</span>
+          <span style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.8rem;font-weight:700;color:#16a34a;"><i class="fas fa-link me-1"></i>Cross-Metric Correlations</span>
+          <span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.8rem;font-weight:700;color:#d97706;"><i class="fas fa-lightbulb me-1"></i>Actionable Insights</span>
+        </div>
+      </div>
+      <div class="showcase-imgs">
+        <img src="img/correlation_1_rounded.png" alt="Sleep vs HRV Correlation" loading="lazy">
+        <img src="img/correlation_2_rounded.png" alt="Exercise vs Recovery" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Step 3: Plans -->
+    <div class="showcase-step">
+      <div class="showcase-content">
+        <div class="showcase-step-badge" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">3</div>
+        <h3 class="showcase-title">A health plan built around your life</h3>
+        <p class="showcase-body">Based on your patterns and insights, specialized AI agents craft a personalized health plan covering sleep, exercise, nutrition, and stress management. Every recommendation is grounded in your actual data and adapts as you progress.</p>
+      </div>
+      <div class="showcase-imgs">
+        <img src="img/personalized_plan_1_rounded.png" alt="AI Personalized Plan" loading="lazy">
+        <img src="img/personalized_plan_2_rounded.png" alt="Plan Recommendations" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Step 4: Habits -->
+    <div class="showcase-step reverse">
+      <div class="showcase-content">
+        <div class="showcase-step-badge" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">4</div>
+        <h3 class="showcase-title">Turn insights into habits that stick</h3>
+        <p class="showcase-body">AI recommendations become daily habits with streak tracking, milestone badges, and a gamified progression system. Hit 7, 30, 90, or 365-day targets — your longest streak is always within reach.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.25rem;">
+          <span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:999px;padding:0.4rem 0.9rem;font-size:0.8rem;font-weight:700;color:#d97706;"><i class="fas fa-fire me-1"></i>Streaks</span>
+          <span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:999px;padding:0.4rem 0.9rem;font-size:0.8rem;font-weight:700;color:#d97706;"><i class="fas fa-trophy me-1"></i>Badges</span>
+          <span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:999px;padding:0.4rem 0.9rem;font-size:0.8rem;font-weight:700;color:#d97706;"><i class="fas fa-star me-1"></i>XP & Levels</span>
+          <span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:999px;padding:0.4rem 0.9rem;font-size:0.8rem;font-weight:700;color:#d97706;"><i class="fas fa-bullseye me-1"></i>Milestones</span>
+        </div>
+      </div>
+      <div class="showcase-imgs">
+        <img src="img/habit_1.png" alt="Habit Tracking" loading="lazy">
+        <img src="img/habit_2.png" alt="Badges and Milestones" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Step 5: AI Coaches -->
+    <div class="showcase-step">
+      <div class="showcase-content">
+        <div class="showcase-step-badge" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">5</div>
+        <h3 class="showcase-title">Expert coaches in your pocket</h3>
+        <p class="showcase-body">Chat with specialized AI coaches for sleep, nutrition, exercise, and stress. They analyze your actual health data and give personalized guidance — like having a team of experts available whenever you need them. <strong>Elite plan only.</strong></p>
+      </div>
+      <div class="showcase-imgs">
+        <img src="img/AI_Coach_1.png" alt="AI Coach Chat" loading="lazy">
+        <img src="img/AI_coach_2_rounded.png" alt="AI Coach Recommendations" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+<section class="testimonials-section">
+  <div class="container-pr">
+    <div class="section-header" data-reveal>
+      <div class="eyebrow">Early Members Love It</div>
+      <h2 class="section-title">Real people. Real results.</h2>
+      <p class="section-body">Hear from our early members who are already building better habits with PeakRoutine.</p>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card tc-blue" data-reveal data-reveal-delay="1">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Finally, an app that doesn't just show me numbers but tells me what to do with them. Knowing my HRV drops after late dinners changed my whole evening routine."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">A</div>
+          <div>
+            <div class="testi-name">Arjun M.</div>
+            <div class="testi-role">Software Engineer · Early Member</div>
           </div>
         </div>
       </div>
 
-      <!-- Hero Text -->
-      <div class="row justify-content-center text-center pb-5">
-        <div class="col-lg-8">
-          <h1 class="hero-headline hero-headline-animated mb-4 reveal-up">
-            Personalized Routines.<br>Smarter Habits.<br>Every Day.
-          </h1>
-          <p class="hero-sub mx-auto mb-5 reveal" style="transition-delay:0.15s;">
-            PeakRoutine analyzes your body's data, builds a personalized plan, and delivers AI-backed insights and coaching — so you can build habits that actually work for you.
-          </p>
-
-          <div class="d-flex flex-wrap justify-content-center gap-3 mb-4 reveal" style="transition-delay:0.25s;">
-            <a href="#pricing" class="btn btn-light btn-magnetic btn-shimmer py-3 px-5 rounded-pill fw-bold" style="font-size:1rem; box-shadow:0 8px 32px rgba(0,0,0,0.2);">
-              <i class="fa fa-rocket me-2" style="color:var(--primary);"></i>Get Started — Free Trial
-            </a>
+      <div class="testi-card tc-green" data-reveal data-reveal-delay="2">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I've tried every health app. PeakRoutine is different — the AI coach actually understands my sleep pattern and gives advice that fits my schedule, not a generic plan."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#38C172,#4ade80);">P</div>
+          <div>
+            <div class="testi-name">Priya S.</div>
+            <div class="testi-role">Product Manager · Early Member</div>
           </div>
+        </div>
+      </div>
 
-          <!-- Trust pills -->
-          <div class="trust-bar justify-content-center reveal" style="transition-delay:0.35s;">
-            <span class="trust-pill"><i class="fa fa-heartbeat"></i> Works with Apple Health</span>
-            <span class="trust-pill"><i class="fa fa-robot"></i> AI-Powered Correlations</span>
-            <span class="trust-pill"><i class="fa fa-mobile-alt"></i> iOS First</span>
-          </div>
-
-          <!-- Stars -->
-          <div class="mt-4 reveal" style="transition-delay:0.45s;">
-            <div class="hero-stars mb-1">
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </div>
-            <p style="color:rgba(255,255,255,0.85);font-size:0.95rem;margin:0;">Trusted by <strong style="color:#fff;">75+ early members</strong></p>
+      <div class="testi-card tc-amber" data-reveal data-reveal-delay="3">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The streak system is addictive in the best way. I've built a 45-day walking habit because I genuinely don't want to break the streak. That's design that works."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">R</div>
+          <div>
+            <div class="testi-name">Rahul K.</div>
+            <div class="testi-role">Entrepreneur · Early Member</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════════════
-       STATS BAR
-  ═══════════════════════════════════════════════ -->
-  <section class="stats-bar">
-    <div class="container px-lg-5">
-      <div class="row g-0 justify-content-center align-items-stretch reveal-stagger">
-        <div class="col-6 col-md-3 stat-item">
-          <span class="stat-num text-primary-gradient" data-count="75" data-suffix="+">75+</span>
-          <span class="stat-label">Early Members</span>
-        </div>
-        <div class="col-6 col-md-3 stat-item">
-          <span class="stat-num text-secondary-gradient" data-count="15" data-suffix="+">15+</span>
-          <span class="stat-label">Health Modules</span>
-        </div>
-        <div class="col-6 col-md-3 stat-item">
-          <span class="stat-num text-primary-gradient" data-count="25" data-suffix="+">25+</span>
-          <span class="stat-label">Health Metrics</span>
-        </div>
-        <div class="col-6 col-md-3 stat-item">
-          <span class="stat-num text-secondary-gradient">AI</span>
-          <span class="stat-label">Pattern Correlations</span>
-        </div>
-      </div>
+    <div style="text-align:center;margin-top:2.5rem;color:var(--gray-400);font-size:0.88rem;" data-reveal>
+      <span style="color:#f59e0b;">★★★★★</span>&nbsp;
+      <strong style="color:var(--dark);">4.8/5</strong> average rating from early members
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════════════
-       PROBLEM SECTION
-  ═══════════════════════════════════════════════ -->
-  <section class="problem-section">
-    <div class="container px-lg-5" style="position:relative;z-index:1;">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <span class="section-eyebrow" style="background:linear-gradient(135deg,#F6B93B,#f9d06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Sound familiar?</span>
-          <p class="problem-quote reveal-up mb-3">
-            You track five apps.<br>You still don't know<br><em>why you're tired.</em>
-          </p>
-          <p class="reveal" style="color:rgba(255,255,255,0.7);font-size:1.05rem;max-width:520px;margin:0 auto 2.5rem;line-height:1.75;transition-delay:0.15s;">
-            Health data is everywhere — but scattered across apps that never talk to each other. You know your step count. But not what it means. PeakRoutine fixes that.
-          </p>
-          <div class="problem-pill-wrap justify-content-center reveal" style="transition-delay:0.25s;">
-            <span class="problem-pill"><i class="fa fa-times-circle me-1" style="color:#F6B93B;"></i> 5 apps, no insights</span>
-            <span class="problem-pill"><i class="fa fa-times-circle me-1" style="color:#F6B93B;"></i> Generic health advice</span>
-            <span class="problem-pill"><i class="fa fa-times-circle me-1" style="color:#F6B93B;"></i> No habit accountability</span>
-            <span class="problem-pill"><i class="fa fa-times-circle me-1" style="color:#F6B93B;"></i> Data with no context</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       FEATURES
-  ═══════════════════════════════════════════════ -->
-  <section class="features-section" id="feature">
-    <div class="container px-lg-5">
-      <div class="text-center mb-5 reveal-up">
-        <span class="section-eyebrow">What PeakRoutine Does</span>
-        <h2 class="mb-3" style="font-size:clamp(2rem,4vw,3rem);">One platform.<br>Everything your health needs.</h2>
-        <p class="text-muted mx-auto" style="max-width:560px;font-size:1.05rem;">
-          An AI-powered health platform that automatically pulls data from Apple Health, surfaces personalized insights, and builds sustainable habits — all in one place.
-        </p>
-      </div>
-
-      <!-- Bento Grid -->
-      <div class="bento-grid reveal-stagger">
-
-        <!-- Hero card: Apple Health -->
-        <div class="feature-card-modern bento-hero-card" style="background:linear-gradient(135deg,#eff6ff,#fff);">
-          <div class="d-flex align-items-start gap-4 flex-wrap">
-            <div>
-              <div class="feature-icon-wrap bg-primary-gradient mb-3">
-                <i class="fa fa-heartbeat text-white"></i>
-              </div>
-              <h4 style="font-size:1.5rem;" class="mb-2">Apple Health Auto-Sync</h4>
-              <p class="text-muted mb-0" style="max-width:420px;">Automatically pulls sleep, HRV, steps, resting heart rate, and calories from Apple Health. No manual entry — your data is always up to date and ready for analysis.</p>
-            </div>
-            <div class="ms-auto d-none d-md-flex align-items-center gap-3 flex-wrap" style="opacity:0.6;">
-              <div style="background:#eff6ff;border-radius:12px;padding:0.6rem 1rem;font-size:0.8rem;font-weight:700;color:#1C85E8;white-space:nowrap;"><i class="fa fa-moon me-1"></i>Sleep</div>
-              <div style="background:#f0fdf4;border-radius:12px;padding:0.6rem 1rem;font-size:0.8rem;font-weight:700;color:#38C172;white-space:nowrap;"><i class="fa fa-heartbeat me-1"></i>HRV</div>
-              <div style="background:#fef9c3;border-radius:12px;padding:0.6rem 1rem;font-size:0.8rem;font-weight:700;color:#a16207;white-space:nowrap;"><i class="fa fa-walking me-1"></i>Steps</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- AI Insights -->
-        <div class="feature-card-modern">
-          <div class="feature-icon-wrap bg-primary-gradient">
-            <i class="fa fa-robot text-white"></i>
-          </div>
-          <h5 class="mb-2">AI Pattern Insights</h5>
-          <p class="text-muted mb-0" style="font-size:0.93rem;">Discover correlations like "Your HRV improves when you sleep before 11PM" — with confidence scores and personalized recommendations.</p>
-        </div>
-
-        <!-- Nutrition -->
-        <div class="feature-card-modern">
-          <div class="feature-icon-wrap bg-secondary-gradient">
-            <i class="fa fa-apple-alt text-white"></i>
-          </div>
-          <h5 class="mb-2">Nutrition & Hydration</h5>
-          <p class="text-muted mb-0" style="font-size:0.93rem;">Log meals from millions of foods, track macros, and monitor hydration and caffeine — all with personalized timing recommendations.</p>
-        </div>
-
-        <!-- Mental Health -->
-        <div class="feature-card-modern">
-          <div class="feature-icon-wrap bg-secondary-gradient">
-            <i class="fa fa-brain text-white"></i>
-          </div>
-          <h5 class="mb-2">Mental Health & Journaling</h5>
-          <p class="text-muted mb-0" style="font-size:0.93rem;">Track mood, stress, and daily reflections. Guided breathing exercises and meditation videos help you manage stress before it manages you.</p>
-        </div>
-
-        <!-- Habits -->
-        <div class="feature-card-modern" style="background:linear-gradient(135deg,#fffbeb,#fff);">
-          <div class="feature-icon-wrap" style="background:linear-gradient(135deg,#F6B93B,#f9d06a);">
-            <i class="fa fa-fire text-white"></i>
-          </div>
-          <h5 class="mb-2">Streaks, Badges & Milestones</h5>
-          <p class="text-muted mb-0" style="font-size:0.93rem;">Build habits with targets at 7, 14, 30, 90, and 365 days. Earn badges, level up, and celebrate every win — consistency has never felt this good.</p>
-        </div>
-
-        <!-- Plans -->
-        <div class="feature-card-modern">
-          <div class="feature-icon-wrap bg-secondary-gradient">
-            <i class="fa fa-bullseye text-white"></i>
-          </div>
-          <h5 class="mb-2">Personalized Health Plans</h5>
-          <p class="text-muted mb-0" style="font-size:0.93rem;">A 5-step lifestyle questionnaire on day one — then AI builds a plan that truly fits your life, adapting as you progress.</p>
-        </div>
-
-        <!-- AI Coaches — spans full width -->
-        <div class="feature-card-modern bento-hero-card" style="background:linear-gradient(135deg,#f5f3ff,#fff);">
-          <div class="d-flex align-items-start gap-4 flex-wrap">
-            <div>
-              <div class="feature-icon-wrap" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">
-                <i class="fa fa-comments text-white"></i>
-              </div>
-              <h4 style="font-size:1.5rem;" class="mb-2">AI Health Coaches</h4>
-              <p class="text-muted mb-0" style="max-width:500px;">Chat with specialized AI coaches for sleep, nutrition, exercise, and stress. They analyze your actual health data and give personalized recommendations — like having a team of experts in your pocket, 24/7.</p>
-            </div>
-            <div class="ms-auto d-none d-md-flex flex-column gap-2">
-              <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.8rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fa fa-moon me-1"></i>Sleep Coach</div>
-              <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.8rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fa fa-dumbbell me-1"></i>Fitness Coach</div>
-              <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.8rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fa fa-apple-alt me-1"></i>Nutrition Coach</div>
-              <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:0.5rem 0.9rem;font-size:0.8rem;font-weight:700;color:#7c3aed;white-space:nowrap;"><i class="fa fa-brain me-1"></i>Recovery Coach</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       HOW IT WORKS
-  ═══════════════════════════════════════════════ -->
-  <section class="hiw-section" id="how-it-works">
-    <div class="container px-lg-5">
-      <div class="text-center mb-5 reveal-up">
-        <span class="section-eyebrow">Simple to Start</span>
-        <h2 class="mb-3" style="font-size:clamp(2rem,4vw,3rem);">Up and running in 3 steps</h2>
-        <p class="text-muted mx-auto" style="max-width:480px;">No complicated setup. PeakRoutine gets to know you, connects to your data, and starts working on day one.</p>
-      </div>
-
-      <div class="row g-4 justify-content-center reveal-stagger">
-        <!-- Step 1 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="hiw-card-modern step-connector">
-            <span class="hiw-step-badge badge" style="background:var(--dark);">Step 1</span>
-            <div class="hiw-icon d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4" style="width:72px;height:72px;">
-              <i class="fa fa-clipboard-list text-white" style="font-size:1.6rem;"></i>
-            </div>
-            <h4 class="mb-3">Tell us about your lifestyle</h4>
-            <p class="text-muted" style="font-size:0.93rem;">A quick 5-step questionnaire covers your exercise habits, sleep schedule, wake time, sunlight exposure, and dinner timing. Your personalized baseline is ready immediately.</p>
-          </div>
-        </div>
-        <!-- Step 2 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="hiw-card-modern step-connector">
-            <span class="hiw-step-badge badge" style="background:var(--secondary);">Step 2</span>
-            <div class="hiw-icon d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4" style="width:72px;height:72px;">
-              <i class="fa fa-heartbeat text-white" style="font-size:1.6rem;"></i>
-            </div>
-            <h4 class="mb-3">Connect Apple Health</h4>
-            <p class="text-muted" style="font-size:0.93rem;">Grant one-time permission and PeakRoutine automatically syncs your sleep, HRV, steps, resting heart rate, and calorie data. No manual logging needed — ever.</p>
-          </div>
-        </div>
-        <!-- Step 3 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="hiw-card-modern">
-            <span class="hiw-step-badge badge" style="background:var(--primary);">Step 3</span>
-            <div class="hiw-icon d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4" style="width:72px;height:72px;">
-              <i class="fa fa-robot text-white" style="font-size:1.6rem;"></i>
-            </div>
-            <h4 class="mb-3">Get your personalized plan</h4>
-            <p class="text-muted" style="font-size:0.93rem;">AI analyzes your patterns and surfaces insights like "Your recovery improves 23% when you sleep before 11PM." Daily health scores and habit recommendations update as you grow.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-5 reveal">
-        <a href="#pricing" class="btn btn-primary-gradient btn-magnetic btn-shimmer py-3 px-5">
-          <i class="fa fa-rocket me-2"></i>Start Your Journey
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       APP SHOWCASE
-  ═══════════════════════════════════════════════ -->
-  <section class="showcase-section">
-    <div class="container px-lg-5">
-      <div class="text-center mb-5 reveal-up">
-        <span class="section-eyebrow">See It In Action</span>
-        <h2 style="font-size:clamp(2rem,4vw,3rem);">Everything you need, in one app</h2>
-      </div>
-
-      <!-- Step 1: Dashboard -->
-      <div class="showcase-step row g-5 align-items-center">
-        <div class="col-lg-6 showcase-content">
-          <div class="showcase-step-num bg-primary-gradient">1</div>
-          <h3 class="mb-3" style="font-size:clamp(1.6rem,3vw,2.1rem);">Your complete health picture, every day</h3>
-          <p class="text-muted mb-4" style="font-size:1rem;line-height:1.75;">
-            One dashboard surfaces your daily health score, sleep quality, movement, sunlight, HRV, and more — all pulled automatically from Apple Health. Log mood, nutrition, and journaling to get a complete view of your physical and mental health in one place.
-          </p>
-          <div class="logging-grid">
-            <div class="log-option-card"><div class="log-option-icon" style="background:#e0e7ff;color:#4f46e5;"><i class="fas fa-moon"></i></div><span class="log-option-name">Sleep</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#d1fae5;color:#059669;"><i class="fas fa-walking"></i></div><span class="log-option-name">Movement</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#fce7f3;color:#db2777;"><i class="fas fa-heartbeat"></i></div><span class="log-option-name">HRV</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#fef9c3;color:#a16207;"><i class="fas fa-sun"></i></div><span class="log-option-name">Sunlight</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#fef3c7;color:#d97706;"><i class="fas fa-smile"></i></div><span class="log-option-name">Mood</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#fee2e2;color:#dc2626;"><i class="fas fa-brain"></i></div><span class="log-option-name">Stress</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#d1fae5;color:#059669;"><i class="fas fa-apple-alt"></i></div><span class="log-option-name">Nutrition</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#dbeafe;color:#2563eb;"><i class="fas fa-tint"></i></div><span class="log-option-name">Hydration</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#fef9c3;color:#92400e;"><i class="fas fa-coffee"></i></div><span class="log-option-name">Caffeine</span></div>
-            <div class="log-option-card"><div class="log-option-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fas fa-book"></i></div><span class="log-option-name">Journaling</span></div>
-          </div>
-        </div>
-        <div class="col-lg-6 showcase-images single">
-          <img src="img/dashboard.png" alt="PeakRoutine Dashboard" class="float-screenshot">
-        </div>
-      </div>
-
-      <!-- Step 2: AI Insights -->
-      <div class="showcase-step reverse row g-5 align-items-center">
-        <div class="col-lg-6 showcase-content">
-          <div class="showcase-step-num bg-secondary-gradient">2</div>
-          <h3 class="mb-3" style="font-size:clamp(1.6rem,3vw,2.1rem);">AI finds the patterns you can't see</h3>
-          <p class="text-muted mb-4" style="font-size:1rem;line-height:1.75;">
-            PeakRoutine cross-references sleep, exercise, HRV, stress, mood, and more to uncover deep correlations unique to <em>your</em> body. Each insight explains what changed, why it matters, contributing factors, and a personalized recommendation to keep improving.
-          </p>
-          <div class="d-flex flex-wrap gap-2">
-            <span style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.82rem;font-weight:700;color:#1C85E8;"><i class="fa fa-chart-line me-1"></i>Confidence Scores</span>
-            <span style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.82rem;font-weight:700;color:#38C172;"><i class="fa fa-link me-1"></i>Cross-Metric Correlations</span>
-            <span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.82rem;font-weight:700;color:#d97706;"><i class="fa fa-lightbulb me-1"></i>Actionable Insights</span>
-          </div>
-        </div>
-        <div class="col-lg-6 showcase-images">
-          <img src="img/correlation_1_rounded.png" alt="Sleep vs HRV Correlation" class="float-screenshot">
-          <img src="img/correlation_2_rounded.png" alt="Exercise vs Recovery" class="float-screenshot-delayed">
-        </div>
-      </div>
-
-      <!-- Step 3: Personalized Plans -->
-      <div class="showcase-step row g-5 align-items-center">
-        <div class="col-lg-6 showcase-content">
-          <div class="showcase-step-num bg-primary-gradient">3</div>
-          <h3 class="mb-3" style="font-size:clamp(1.6rem,3vw,2.1rem);">A health plan built around your life</h3>
-          <p class="text-muted mb-0" style="font-size:1rem;line-height:1.75;">
-            Based on your patterns and insights, specialized AI agents craft a personalized health plan covering sleep, exercise, nutrition, and stress management. Every recommendation is grounded in your actual data and adapts as you progress.
-          </p>
-        </div>
-        <div class="col-lg-6 showcase-images">
-          <img src="img/personalized_plan_1_rounded.png" alt="AI Personalized Plan" class="float-screenshot">
-          <img src="img/personalized_plan_2_rounded.png" alt="AI Plan Recommendations" class="float-screenshot-delayed">
-        </div>
-      </div>
-
-      <!-- Step 4: Habits -->
-      <div class="showcase-step reverse row g-5 align-items-center">
-        <div class="col-lg-6 showcase-content">
-          <div class="showcase-step-num" style="background:linear-gradient(135deg,#F6B93B,#f9d06a);">4</div>
-          <h3 class="mb-3" style="font-size:clamp(1.6rem,3vw,2.1rem);">Turn insights into habits that stick</h3>
-          <p class="text-muted mb-4" style="font-size:1rem;line-height:1.75;">
-            AI recommendations become daily habits with streak tracking, milestone badges, and a gamified progression system. Hit 7, 30, 90, or 365-day targets — your longest streak is always within reach.
-          </p>
-          <div class="d-flex flex-wrap gap-2">
-            <span class="habit-badge"><i class="fa fa-fire"></i>Streaks</span>
-            <span class="habit-badge"><i class="fa fa-trophy"></i>Badges</span>
-            <span class="habit-badge"><i class="fa fa-star"></i>XP & Levels</span>
-            <span class="habit-badge"><i class="fa fa-bullseye"></i>Milestones</span>
-          </div>
-        </div>
-        <div class="col-lg-6 showcase-images">
-          <img src="img/habit_1.png" alt="Habit Tracking and Streaks" class="float-screenshot">
-          <img src="img/habit_2.png" alt="Badges and Milestones" class="float-screenshot-delayed">
-        </div>
-      </div>
-
-      <!-- Step 5: AI Coaches -->
-      <div class="showcase-step row g-5 align-items-center">
-        <div class="col-lg-6 showcase-content">
-          <div class="showcase-step-num" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">5</div>
-          <h3 class="mb-3" style="font-size:clamp(1.6rem,3vw,2.1rem);">Expert coaches in your pocket</h3>
-          <p class="text-muted mb-0" style="font-size:1rem;line-height:1.75;">
-            Chat with specialized AI coaches for sleep, nutrition, exercise, and stress. They analyze your actual health data and give personalized guidance — like having a team of experts available whenever you need them.
-          </p>
-        </div>
-        <div class="col-lg-6 showcase-images">
-          <img src="img/AI_Coach_1.png" alt="AI Coach Chat" class="float-screenshot">
-          <img src="img/AI_coach_2_rounded.png" alt="AI Coach Recommendations" class="float-screenshot-delayed">
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       TESTIMONIALS
-  ═══════════════════════════════════════════════ -->
-  <section class="testimonials-section">
-    <div class="container px-lg-5">
-      <div class="text-center mb-5 reveal-up">
-        <span class="section-eyebrow">Early Members Love It</span>
-        <h2 style="font-size:clamp(2rem,4vw,3rem);">Real people. Real results.</h2>
-        <p class="text-muted mx-auto mt-2" style="max-width:480px;">Hear from our early members who are already building better habits with PeakRoutine.</p>
-      </div>
-
-      <div class="row g-4 reveal-stagger">
-        <div class="col-lg-4 col-md-6">
-          <div class="testimonial-card-modern t-blue h-100">
-            <div class="testimonial-quote-mark t-quote-mark">"</div>
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"Finally, an app that doesn't just show me numbers but tells me what to do with them. Knowing my HRV drops after late dinners changed my whole evening routine."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar bg-primary-gradient">A</div>
-              <div>
-                <div style="font-weight:700;font-size:0.92rem;color:var(--dark);">Arjun M.</div>
-                <div style="font-size:0.8rem;color:var(--gray-500);">Software Engineer · Early Member</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="testimonial-card-modern t-green h-100">
-            <div class="testimonial-quote-mark t-quote-mark green">"</div>
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"I've tried every health app. PeakRoutine is different — the AI coach actually understands my sleep pattern and gives advice that fits my schedule, not a generic plan."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar bg-secondary-gradient">P</div>
-              <div>
-                <div style="font-weight:700;font-size:0.92rem;color:var(--dark);">Priya S.</div>
-                <div style="font-size:0.8rem;color:var(--gray-500);">Product Manager · Early Member</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="testimonial-card-modern t-amber h-100">
-            <div class="testimonial-quote-mark t-quote-mark amber">"</div>
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"The streak system is addictive in the best way. I've built a 45-day walking habit because I genuinely don't want to break the streak. That's design that works."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" style="background:linear-gradient(135deg,#F6B93B,#f9d06a);">R</div>
-              <div>
-                <div style="font-weight:700;font-size:0.92rem;color:var(--dark);">Rahul K.</div>
-                <div style="font-size:0.8rem;color:var(--gray-500);">Entrepreneur · Early Member</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Social proof numbers -->
-      <div class="text-center mt-5 reveal">
-        <p style="color:var(--gray-500);font-size:0.9rem;">
-          <span class="hero-stars me-2">★★★★★</span>
-          <strong style="color:var(--dark);">4.8/5</strong> average rating from early members
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       PRICING
-  ═══════════════════════════════════════════════ -->
-  <section class="pricing-section" id="pricing">
-    <div class="container px-lg-5">
-      <div class="text-center reveal-up">
-        <span class="section-eyebrow">Choose Your Plan</span>
-        <h2 class="mb-2" style="font-size:clamp(2rem,4vw,3rem);">Simple, transparent pricing</h2>
-        <p class="text-muted">Invest in your health. Cancel anytime.</p>
-        <span class="badge rounded-pill px-3 py-2 mt-2" style="background:#1C85E8;color:#fff;font-size:0.82rem;">
-          <i class="fab fa-apple me-1"></i> Currently available on iOS only
+<!-- ════════════════════════════════════════════
+     PRICING
+════════════════════════════════════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="container-pr">
+    <div class="section-header" data-reveal>
+      <div class="eyebrow">Choose Your Plan</div>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-body">Invest in your health. No hidden fees. Cancel anytime directly from the App Store.</p>
+      <div style="margin-top:1rem;">
+        <span style="display:inline-flex;align-items:center;gap:0.4rem;background:#eff6ff;border:1px solid #bfdbfe;color:#1C85E8;font-size:0.8rem;font-weight:700;padding:0.4rem 1rem;border-radius:999px;">
+          <i class="fab fa-apple"></i> Currently on iOS via TestFlight · App Store launching soon
         </span>
       </div>
-
-      <!-- Toggle -->
-      <div class="pricing-toggle-wrap reveal" style="transition-delay:0.1s;">
-        <span class="toggle-label" id="monthlyLabel">Monthly</span>
-        <div class="form-check form-switch mb-0">
-          <input class="form-check-input" type="checkbox" id="pricingToggle" checked>
-        </div>
-        <span class="toggle-label active" id="annualLabel">Annual</span>
-      </div>
-
-      <div class="text-center mb-5 reveal" style="transition-delay:0.15s;">
-        <span class="savings-chip" id="savingsBadge">
-          <i class="fa fa-tag"></i> Save up to 33% with Annual
-        </span>
-      </div>
-
-      <div class="row g-4 justify-content-center reveal-stagger">
-        <!-- Pro -->
-        <div class="col-lg-5 col-md-7">
-          <div class="pricing-card-modern p-0">
-            <div class="p-4 pb-0">
-              <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-3 mb-3" style="width:56px;height:56px;">
-                <i class="fas fa-chart-line text-white" style="font-size:1.3rem;"></i>
-              </div>
-              <div class="pricing-plan-name">Pro</div>
-              <p class="text-muted mb-0" style="font-size:0.88rem;">AI-powered health analytics</p>
-            </div>
-            <div class="px-4 py-3" style="border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-top:1rem;">
-              <div class="d-flex align-items-baseline gap-1">
-                <span class="pricing-price-num" id="proPrice">$3.99</span>
-                <span style="color:var(--gray-500);font-size:1rem;">/month</span>
-              </div>
-              <p class="pricing-period-label mb-1">Billed annually</p>
-              <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin:0;">☕ Less than a cup of coffee</p>
-            </div>
-            <div class="p-4">
-              <ul class="pricing-features-list mb-4">
-                <li><i class="fas fa-check-circle text-success flex-shrink-0"></i>Personalized AI health insights</li>
-                <li><i class="fas fa-check-circle text-success flex-shrink-0"></i>Sleep, Stress & Activity Analytics</li>
-                <li><i class="fas fa-check-circle text-success flex-shrink-0"></i>Nutrition & meal logging</li>
-                <li><i class="fas fa-check-circle text-success flex-shrink-0"></i>Health journaling</li>
-                <li><i class="fas fa-check-circle text-success flex-shrink-0"></i>Gamification: badges, XP & levels</li>
-              </ul>
-              <button class="btn btn-primary-gradient btn-shimmer w-100 py-3" onclick="initiatePurchase('pro', this)">
-                Get Pro
-              </button>
-              <p class="text-center mt-2 mb-0" style="font-size:0.75rem;color:var(--gray-500);">
-                <i class="fas fa-tag me-1"></i>Have a promo code? Enter at checkout.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Elite -->
-        <div class="col-lg-5 col-md-7">
-          <div class="pricing-card-modern featured p-0" style="position:relative;overflow:hidden;">
-            <div class="pricing-badge-ribbon">Popular</div>
-            <div class="p-4 pb-0">
-              <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-3 mb-3" style="width:56px;height:56px;">
-                <i class="fas fa-robot text-white" style="font-size:1.3rem;"></i>
-              </div>
-              <div class="pricing-plan-name">Elite</div>
-              <p class="text-muted mb-0" style="font-size:0.88rem;">Everything in Pro + AI coaching</p>
-            </div>
-            <div class="px-4 py-3" style="border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-top:1rem;">
-              <div class="d-flex align-items-baseline gap-1">
-                <span class="pricing-price-num" id="elitePrice">$7.99</span>
-                <span style="color:var(--gray-500);font-size:1rem;">/month</span>
-              </div>
-              <p class="pricing-period-label mb-1">Billed annually</p>
-              <p style="font-size:0.8rem;color:var(--secondary);font-weight:600;margin:0;">🥑 Cheaper than a gym smoothie</p>
-            </div>
-            <div class="p-4">
-              <ul class="pricing-features-list mb-4">
-                <li><i class="fas fa-check-circle text-success flex-shrink-0"></i>Everything in Pro</li>
-                <li><i class="fas fa-star text-warning flex-shrink-0"></i>Chat with personal AI health team</li>
-                <li><i class="fas fa-star text-warning flex-shrink-0"></i>Sleep · Fitness · Nutrition · Recovery coaches</li>
-                <li><i class="fas fa-star text-warning flex-shrink-0"></i>20 AI messages/day, resets daily</li>
-                <li><i class="fas fa-star text-warning flex-shrink-0"></i>Priority support</li>
-              </ul>
-              <button class="btn btn-secondary-gradient btn-shimmer w-100 py-3" onclick="initiatePurchase('elite', this)">
-                Get Elite
-              </button>
-              <p class="text-center mt-2 mb-0" style="font-size:0.75rem;color:var(--gray-500);">
-                <i class="fas fa-tag me-1"></i>Have a promo code? Enter at checkout.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Trust row -->
-      <div class="text-center mt-4 reveal" style="transition-delay:0.3s;">
-        <p class="text-muted" style="font-size:0.85rem;">
-          <i class="fas fa-shield-alt me-1 text-primary"></i>Secure payments by Dodo Payments &nbsp;·&nbsp;
-          <i class="fas fa-times-circle me-1 text-secondary"></i>Cancel anytime &nbsp;·&nbsp;
-          <i class="fab fa-android me-1"></i>Android coming soon
-        </p>
-      </div>
     </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════════════
-       FAQ
-  ═══════════════════════════════════════════════ -->
-  <section class="faq-section" id="faq">
-    <div class="container px-lg-5">
-      <div class="text-center mb-5 reveal-up">
-        <span class="section-eyebrow">FAQ</span>
-        <h2 style="font-size:clamp(2rem,4vw,3rem);">Common questions</h2>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-7">
-          <div class="reveal-stagger">
+    <!-- Toggle -->
+    <div class="toggle-wrap" data-reveal>
+      <span class="toggle-lbl" id="lblMonthly">Monthly</span>
+      <button class="toggle-switch annual" id="pricingToggle" aria-label="Toggle billing period"></button>
+      <span class="toggle-lbl active" id="lblAnnual">Annual</span>
+    </div>
 
-            <div class="faq-item">
-              <div class="faq-question">
-                Is my health data private and secure?
-                <div class="faq-icon"><i class="fa fa-plus"></i></div>
-              </div>
-              <div class="faq-answer">
-                Yes, absolutely. Your health data belongs to you. We never sell it, never share it with advertisers, and you have full control over what's stored and how it's used. All data is encrypted in transit and at rest.
-              </div>
-            </div>
+    <div style="text-align:center;margin-bottom:2.5rem;" data-reveal>
+      <span class="savings-badge" id="savingsBadge">
+        <i class="fas fa-tag"></i> Save up to 33% with Annual
+      </span>
+    </div>
 
-            <div class="faq-item">
-              <div class="faq-question">
-                What devices and platforms does PeakRoutine support?
-                <div class="faq-icon"><i class="fa fa-plus"></i></div>
-              </div>
-              <div class="faq-answer">
-                PeakRoutine is currently available on iOS only, with deep Apple Health integration. Android support is actively being developed — join our waitlist to be notified when it launches.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question">
-                Can I cancel my subscription anytime?
-                <div class="faq-icon"><i class="fa fa-plus"></i></div>
-              </div>
-              <div class="faq-answer">
-                Yes. You can cancel your subscription at any time directly from the app or through the App Store. There are no cancellation fees or complicated processes.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question">
-                What's the difference between Pro and Elite?
-                <div class="faq-icon"><i class="fa fa-plus"></i></div>
-              </div>
-              <div class="faq-answer">
-                Pro gives you all the core AI health analytics, personalized insights, habit tracking, and gamification features. Elite adds access to specialized AI coaches (Sleep, Fitness, Nutrition, Recovery) who analyze your personal data and give tailored recommendations in real-time — up to 20 messages per day.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question">
-                Do I need to manually enter my health data?
-                <div class="faq-icon"><i class="fa fa-plus"></i></div>
-              </div>
-              <div class="faq-answer">
-                Almost never. PeakRoutine automatically syncs sleep, HRV, steps, heart rate, and calorie data from Apple Health with one-time permission. The only things you manually log are mood, stress, nutrition, and journaling entries — which take less than 2 minutes per day.
-              </div>
-            </div>
-
+    <div class="pricing-cards" data-reveal>
+      <!-- Pro -->
+      <div class="pricing-card">
+        <div class="pricing-top">
+          <div class="pricing-icon" style="background:linear-gradient(135deg,#1C85E8,#60a5fa);">
+            <i class="fas fa-chart-line"></i>
           </div>
+          <div class="pricing-name">Pro</div>
+          <div class="pricing-tagline">AI-powered health analytics</div>
+        </div>
+        <div class="pricing-mid">
+          <div style="display:flex;align-items:baseline;gap:0.3rem;">
+            <span class="pricing-amount" id="proPrice">$3.99</span>
+            <span style="color:var(--gray-400);font-size:0.95rem;">/month</span>
+          </div>
+          <div class="pricing-period pricing-period-lbl">Billed annually</div>
+          <div class="pricing-fun">☕ Less than a cup of coffee</div>
+        </div>
+        <div class="pricing-bottom">
+          <ul class="pricing-features">
+            <li><i class="fas fa-check-circle"></i>Personalized AI health insights</li>
+            <li><i class="fas fa-check-circle"></i>Sleep, Stress & Activity Analytics</li>
+            <li><i class="fas fa-check-circle"></i>Nutrition & meal logging</li>
+            <li><i class="fas fa-check-circle"></i>Health journaling</li>
+            <li><i class="fas fa-check-circle"></i>Gamification: badges, XP & levels</li>
+          </ul>
+          <button class="btn-pr btn-pr-primary w-100" style="width:100%;justify-content:center;" onclick="initiatePurchase('pro', this)">
+            Get Pro
+          </button>
+          <div class="pricing-promo"><i class="fas fa-tag"></i> Have a promo code? Enter at checkout.</div>
+        </div>
+      </div>
+
+      <!-- Elite -->
+      <div class="pricing-card featured">
+        <div class="pricing-ribbon">Popular</div>
+        <div class="pricing-top">
+          <div class="pricing-icon" style="background:linear-gradient(135deg,#38C172,#4ade80);">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="pricing-name">Elite</div>
+          <div class="pricing-tagline">Everything in Pro + AI coaching</div>
+        </div>
+        <div class="pricing-mid">
+          <div style="display:flex;align-items:baseline;gap:0.3rem;">
+            <span class="pricing-amount" id="elitePrice">$7.99</span>
+            <span style="color:var(--gray-400);font-size:0.95rem;">/month</span>
+          </div>
+          <div class="pricing-period pricing-period-lbl">Billed annually</div>
+          <div class="pricing-fun" style="color:var(--secondary);">🥑 Cheaper than a gym smoothie</div>
+        </div>
+        <div class="pricing-bottom">
+          <ul class="pricing-features">
+            <li><i class="fas fa-check-circle"></i>Everything in Pro</li>
+            <li><i class="fas fa-star star"></i>Chat with personal AI health team</li>
+            <li><i class="fas fa-star star"></i>Sleep · Fitness · Nutrition · Recovery coaches</li>
+            <li><i class="fas fa-star star"></i>20 AI messages/day, resets daily</li>
+            <li><i class="fas fa-star star"></i>Priority support</li>
+          </ul>
+          <button class="btn-pr w-100" style="width:100%;justify-content:center;background:linear-gradient(135deg,#38C172,#4ade80);color:white;border-radius:999px;padding:0.85rem 2rem;font-weight:700;border:none;cursor:pointer;" onclick="initiatePurchase('elite', this)">
+            Get Elite
+          </button>
+          <div class="pricing-promo"><i class="fas fa-tag"></i> Have a promo code? Enter at checkout.</div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════════════
-       CONTACT
-  ═══════════════════════════════════════════════ -->
-  <section class="contact-section" id="contact">
-    <div class="container px-lg-5">
-      <div class="text-center mb-5 reveal-up">
-        <span class="section-eyebrow">Contact Us</span>
-        <h2 class="mb-3" style="font-size:clamp(2rem,4vw,3rem);">Get in touch</h2>
-        <p class="text-muted mx-auto" style="max-width:480px;">Have questions about PeakRoutine? We'd love to hear from you — we reply within 24 hours.</p>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-7 reveal-scale">
-          <div class="contact-card">
-            <form id="contactForm" novalidate>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label-modern" for="name">Your Name</label>
-                  <input type="text" class="form-control form-control-modern" id="name" name="name" placeholder="Enter your name" required>
-                  <div id="name-error" class="error-msg">Name must be at least 2 characters.</div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label-modern" for="email">Your Email</label>
-                  <input type="email" class="form-control form-control-modern" id="email" name="email" placeholder="Enter your email" required>
-                  <div id="email-error" class="error-msg">Please enter a valid email address.</div>
-                </div>
-                <div class="col-12">
-                  <label class="form-label-modern" for="subject">Subject</label>
-                  <input type="text" class="form-control form-control-modern" id="subject" name="subject" placeholder="What's this about?" required>
-                  <div id="subject-error" class="error-msg">Subject must be at least 3 characters.</div>
-                </div>
-                <div class="col-12">
-                  <label class="form-label-modern" for="message">Your Message</label>
-                  <textarea class="form-control form-control-modern" id="message" name="message" rows="5" placeholder="Tell us how we can help..." required style="resize:vertical;"></textarea>
-                  <div id="message-error" class="error-msg">Message must be at least 5 characters.</div>
-                </div>
-                <div class="col-12 text-center mt-2">
-                  <button type="submit" class="btn btn-primary-gradient btn-magnetic btn-shimmer py-3 px-5">
-                    <i class="fa fa-paper-plane me-2"></i>Send Message
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+    <!-- Trust -->
+    <div style="text-align:center;margin-top:1.5rem;color:var(--gray-400);font-size:0.82rem;" data-reveal>
+      <i class="fas fa-shield-alt" style="color:var(--primary);"></i> Secure payments by Dodo Payments
+      &nbsp;·&nbsp;
+      <i class="fas fa-times-circle" style="color:var(--secondary);"></i> Cancel anytime
+      &nbsp;·&nbsp;
+      <i class="fab fa-android"></i> Android coming soon
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════ -->
+<section class="faq-section" id="faq">
+  <div class="container-pr">
+    <div class="section-header" data-reveal>
+      <div class="eyebrow">FAQ</div>
+      <h2 class="section-title">Common questions</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item" data-reveal data-reveal-delay="1">
+        <div class="faq-q">
+          Is my health data private and secure?
+          <div class="faq-icon-wrap"><i class="fas fa-plus"></i></div>
         </div>
+        <div class="faq-a">Your health data belongs to you. We never sell it, never share it with advertisers, and you have full control over what's stored and how it's used. All data is encrypted in transit and at rest.</div>
+      </div>
+
+      <div class="faq-item" data-reveal data-reveal-delay="1">
+        <div class="faq-q">
+          What devices and platforms does PeakRoutine support?
+          <div class="faq-icon-wrap"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">PeakRoutine is currently available on iOS via TestFlight, with deep Apple Health integration. The App Store launch is coming soon. Android support is actively being developed.</div>
+      </div>
+
+      <div class="faq-item" data-reveal data-reveal-delay="1">
+        <div class="faq-q">
+          How do I access the app after purchase?
+          <div class="faq-icon-wrap"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">After your purchase is confirmed, you'll receive an email with your TestFlight download link and onboarding instructions. The whole process takes less than 2 minutes.</div>
+      </div>
+
+      <div class="faq-item" data-reveal data-reveal-delay="1">
+        <div class="faq-q">
+          Can I cancel my subscription anytime?
+          <div class="faq-icon-wrap"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">Yes. You can cancel your subscription at any time directly from the app or through the App Store. There are no cancellation fees or complicated processes.</div>
+      </div>
+
+      <div class="faq-item" data-reveal data-reveal-delay="1">
+        <div class="faq-q">
+          What's the difference between Pro and Elite?
+          <div class="faq-icon-wrap"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">Pro gives you all the core AI health analytics, personalized insights, habit tracking, and gamification features. Elite adds access to specialized AI coaches (Sleep, Fitness, Nutrition, Recovery) who analyze your personal data and give tailored recommendations in real-time — up to 20 messages per day.</div>
+      </div>
+
+      <div class="faq-item" data-reveal data-reveal-delay="1">
+        <div class="faq-q">
+          Do I need to manually enter my health data?
+          <div class="faq-icon-wrap"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">Almost never. PeakRoutine automatically syncs sleep, HRV, steps, heart rate, and calorie data from Apple Health with one-time permission. The only things you manually log are mood, stress, nutrition, and journaling entries — which take less than 2 minutes per day.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════════ -->
-  <footer class="footer-section">
-    <div class="container px-lg-5">
-      <div class="row g-5">
-        <!-- Brand -->
-        <div class="col-lg-4 col-md-6">
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <img src="img/Peak_Routine_Logo.png" alt="PeakRoutine" style="width:36px;height:36px;border-radius:50%;background:#fff;padding:4px;">
-            <span style="font-family:'Urbanist',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:-0.02em;">PeakRoutine</span>
+<!-- ════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="container-pr">
+    <div class="section-header" data-reveal>
+      <div class="eyebrow">Contact Us</div>
+      <h2 class="section-title">Get in touch</h2>
+      <p class="section-body">Have questions about PeakRoutine? We'd love to hear from you — we reply within 24 hours.</p>
+    </div>
+
+    <div class="contact-card" data-reveal="scale">
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">Your Name</label>
+            <input type="text" class="form-input" id="name" name="name" placeholder="Enter your name" required>
+            <div class="form-error" id="nameError">Name must be at least 2 characters.</div>
           </div>
-          <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;max-width:280px;">
-            Building smarter health habits through personalized AI insights. Available on iOS.
-          </p>
-          <p style="color:rgba(255,255,255,0.7);font-size:0.88rem;margin-bottom:0.75rem;">
-            <i class="fa fa-envelope me-2" style="opacity:0.7;"></i>info@peakroutinehealth.com
-          </p>
-          <div class="mt-2">
-            <a href="https://www.instagram.com/peak.routine/" class="footer-social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/peakroutine/" class="footer-social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
+          <div class="form-group">
+            <label class="form-label" for="email">Your Email</label>
+            <input type="email" class="form-input" id="email" name="email" placeholder="Enter your email" required>
+            <div class="form-error" id="emailError">Please enter a valid email address.</div>
           </div>
         </div>
-
-        <!-- Links -->
-        <div class="col-lg-2 col-md-3 col-6">
-          <h4>Product</h4>
-          <a href="#feature"  class="footer-link">Features</a>
-          <a href="#pricing"  class="footer-link">Pricing</a>
-          <a href="#how-it-works" class="footer-link">How It Works</a>
-          <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app" class="footer-link" target="_blank" rel="noopener noreferrer">Roadmap</a>
+        <div class="form-group">
+          <label class="form-label" for="subject">Subject</label>
+          <input type="text" class="form-input" id="subject" name="subject" placeholder="What's this about?" required>
+          <div class="form-error" id="subjectError">Subject must be at least 3 characters.</div>
         </div>
-
-        <div class="col-lg-2 col-md-3 col-6">
-          <h4>Company</h4>
-          <a href="about.html"           class="footer-link">About Us</a>
-          <a href="#contact"             class="footer-link">Contact</a>
-          <a href="privacy-policy.html"  class="footer-link">Privacy Policy</a>
-          <a href="terms-conditions.html" class="footer-link">Terms & Conditions</a>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-input" id="message" name="message" rows="5" placeholder="Tell us how we can help..." required style="resize:vertical;"></textarea>
+          <div class="form-error" id="msgError">Message must be at least 5 characters.</div>
         </div>
+        <div style="text-align:center;margin-top:0.5rem;">
+          <button type="submit" class="btn-pr btn-pr-primary btn-pr-lg">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
-        <!-- CTA -->
-        <div class="col-lg-4 col-md-6">
-          <h4>Start Today</h4>
-          <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:1.25rem;line-height:1.6;">
-            Join 75+ early members building better habits with PeakRoutine.
-          </p>
-          <a href="#pricing" class="btn btn-ghost py-2 px-4 d-inline-flex align-items-center gap-2">
-            <i class="fa fa-rocket"></i>Get Started
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container-pr" style="position:relative;z-index:1;">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div>
+        <div class="footer-brand-logo">
+          <img src="img/Peak_Routine_Logo.png" alt="PeakRoutine" class="footer-logo-img">
+          <span class="footer-wordmark">PeakRoutine</span>
+        </div>
+        <p class="footer-desc">Building smarter health habits through personalized AI insights. Available on iOS via TestFlight.</p>
+        <div class="footer-email">
+          <i class="fas fa-envelope" style="opacity:0.5;"></i>
+          info@peakroutinehealth.com
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/peak.routine/" class="footer-social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
           </a>
+          <a href="https://www.linkedin.com/company/peakroutine/" class="footer-social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Product -->
+      <div>
+        <div class="footer-col-title">Product</div>
+        <a href="#features" class="footer-link">Features</a>
+        <a href="#pricing" class="footer-link">Pricing</a>
+        <a href="#how-it-works" class="footer-link">How It Works</a>
+        <a href="https://peak-routine.productroad.com/roadmap/peak-routine-ios-app" class="footer-link" target="_blank" rel="noopener">Roadmap</a>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <div class="footer-col-title">Company</div>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="#contact" class="footer-link">Contact</a>
+        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+        <a href="terms-conditions.html" class="footer-link">Terms & Conditions</a>
+      </div>
+
+      <!-- CTA -->
+      <div>
+        <div class="footer-col-title">Start Today</div>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.88rem;line-height:1.7;margin-bottom:1.25rem;">
+          Join 75+ early members building better habits with PeakRoutine.
+        </p>
+        <a href="#pricing" class="btn-pr btn-pr-ghost">
+          <i class="fas fa-rocket"></i> Get Started
+        </a>
+        <div style="margin-top:1.5rem;color:rgba(255,255,255,0.35);font-size:0.78rem;">
+          <i class="fab fa-apple" style="margin-right:0.35rem;"></i>iOS · TestFlight
+          &nbsp;·&nbsp;
+          <i class="fab fa-android" style="margin-right:0.35rem;"></i>Android Soon
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div class="container px-lg-5">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-          <span>© <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">PeakRoutine</a>, All Rights Reserved.</span>
-          <div class="footer-menu">
-            <a href="index.html">Home</a>
-            <a href="privacy-policy.html">Privacy</a>
-            <a href="terms-conditions.html">Terms</a>
-          </div>
-        </div>
+      <span>© <a href="index.html" style="color:rgba(255,255,255,0.55);">PeakRoutine</a> 2025. All Rights Reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="index.html">Home</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-conditions.html">Terms</a>
       </div>
-    </div>
-  </footer>
-
-  <!-- ═══════════════════════════════════════════════
-       POPUPS
-  ═══════════════════════════════════════════════ -->
-  <div class="popup-overlay" id="popupOverlay"></div>
-
-  <div class="popup-modal" id="successPopup">
-    <div class="popup-header-bg" style="background:linear-gradient(135deg,#1C85E8,#38C172);">
-      <div class="popup-icon-wrap">
-        <div class="popup-icon-inner" style="background:linear-gradient(135deg,#38C172,#1C85E8);">
-          <i class="fa fa-check"></i>
-        </div>
-      </div>
-    </div>
-    <div class="popup-body">
-      <h3 class="popup-title">Message Sent!</h3>
-      <p class="popup-message">Thank you for reaching out. We've received your message and will get back to you shortly.</p>
-      <button class="btn btn-primary-gradient popup-close-btn py-2 px-5">Got it!</button>
     </div>
   </div>
+</footer>
 
-  <div class="popup-modal" id="errorPopup">
-    <div class="popup-header-bg" style="background:linear-gradient(135deg,#E53E3E,#ED8936);">
-      <div class="popup-icon-wrap">
-        <div class="popup-icon-inner" style="background:linear-gradient(135deg,#E53E3E,#ED8936);">
-          <i class="fa fa-exclamation-triangle"></i>
-        </div>
+<!-- ════════════════════════════════════════════
+     POPUPS
+════════════════════════════════════════════ -->
+<div class="popup-overlay" id="popupOverlay"></div>
+
+<div class="popup-modal" id="successPopup">
+  <div class="popup-header" style="background:linear-gradient(135deg,#1C85E8,#38C172);">
+    <div class="popup-icon-ring">
+      <div class="popup-icon-inner" style="background:linear-gradient(135deg,#38C172,#1C85E8);">
+        <i class="fas fa-check"></i>
       </div>
     </div>
-    <div class="popup-body">
-      <h3 class="popup-title">Something Went Wrong</h3>
-      <p class="popup-message">We couldn't send your message. Please try again or email us directly at info@peakroutinehealth.com</p>
-      <button class="btn popup-close-btn py-2 px-5" style="background:linear-gradient(135deg,#E53E3E,#ED8936);color:#fff;border-radius:50px;font-weight:700;">Try Again</button>
+  </div>
+  <div class="popup-body">
+    <h3 class="popup-title">Message Sent!</h3>
+    <p class="popup-msg">Thank you for reaching out. We've received your message and will get back to you within 24 hours.</p>
+    <button class="btn-pr btn-pr-primary popup-close" style="margin:0 auto;">Got it!</button>
+  </div>
+</div>
+
+<div class="popup-modal" id="errorPopup">
+  <div class="popup-header" style="background:linear-gradient(135deg,#ef4444,#f97316);">
+    <div class="popup-icon-ring">
+      <div class="popup-icon-inner" style="background:linear-gradient(135deg,#ef4444,#f97316);">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
     </div>
   </div>
+  <div class="popup-body">
+    <h3 class="popup-title">Something Went Wrong</h3>
+    <p class="popup-msg">We couldn't send your message. Please try again or email us directly at info@peakroutinehealth.com</p>
+    <button class="btn-pr popup-close" style="margin:0 auto;background:linear-gradient(135deg,#ef4444,#f97316);color:white;border-radius:999px;padding:0.75rem 2rem;font-weight:700;border:none;cursor:pointer;">Close</button>
+  </div>
+</div>
 
-  <!-- Back to Top -->
-  <button class="back-to-top-modern" aria-label="Back to top">
-    <i class="bi bi-arrow-up"></i>
-  </button>
+<!-- Back to Top -->
+<button class="back-top" aria-label="Back to top">
+  <i class="bi bi-arrow-up"></i>
+</button>
 
-  <!-- ═══════════════════════════════════════════════
-       SCRIPTS
-  ═══════════════════════════════════════════════ -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="js/main.js"></script>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main-v2.js"></script>
 
-  <!-- Firebase Analytics -->
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
-    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js';
-    const app = initializeApp({
-      apiKey: "AIzaSyAEI2eroMLwuSQIQzwXTht5lMsOicQ8z2k",
-      authDomain: "peakroutine-netlify.firebaseapp.com",
-      projectId: "peakroutine-netlify",
-      storageBucket: "peakroutine-netlify.firebasestorage.app",
-      messagingSenderId: "748430388771",
-      appId: "1:748430388771:web:c202380aa99e256e9acb96",
-      measurementId: "G-9T15SDH888"
-    });
-    getAnalytics(app);
-  </script>
+<!-- Firebase Analytics -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js';
+  const app = initializeApp({
+    apiKey: "AIzaSyAEI2eroMLwuSQIQzwXTht5lMsOicQ8z2k",
+    authDomain: "peakroutine-netlify.firebaseapp.com",
+    projectId: "peakroutine-netlify",
+    storageBucket: "peakroutine-netlify.firebasestorage.app",
+    messagingSenderId: "748430388771",
+    appId: "1:748430388771:web:c202380aa99e256e9acb96",
+    measurementId: "G-9T15SDH888"
+  });
+  getAnalytics(app);
+</script>
 </body>
 </html>
