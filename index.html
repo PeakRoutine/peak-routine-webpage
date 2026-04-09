@@ -261,7 +261,7 @@
       z-index: 0;
     }
 
-    .hero-content { position: relative; z-index: 1; }
+    .hero-content { position: relative; z-index: 1; isolation: isolate; }
 
     .hero-headline {
       font-size: clamp(2.6rem, 5.5vw, 4rem);
@@ -270,6 +270,11 @@
       letter-spacing: -0.04em;
       color: #fff;
       text-shadow: 0 2px 32px rgba(0,0,0,0.15);
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      transform: none;
+      font-style: normal;
     }
 
     .hero-sub {
@@ -277,6 +282,9 @@
       color: rgba(255,255,255,0.88);
       line-height: 1.7;
       max-width: 560px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* Carousel */
@@ -288,7 +296,15 @@
       justify-content: center;
       position: relative;
       margin-top: 3rem;
+      margin-bottom: 1.25rem;
       padding-bottom: 2rem;
+      z-index: 1;
+    }
+
+    .hero-text-block {
+      position: relative;
+      z-index: 3;
+      margin-top: 0.5rem;
     }
 
     .hero-carousel {
@@ -340,6 +356,7 @@
       .hero-carousel-wrapper { height: 260px; perspective: 550px; }
       .hero-carousel { width: 130px; height: 240px; }
       .hero-carousel-item { width: 120px; margin-left: -60px; margin-top: -112px; border-radius: 13px; }
+      .hero-text-block { margin-top: 0.25rem; }
     }
 
     /* ── Stats Bar ── */
@@ -1013,7 +1030,7 @@
       </div>
 
       <!-- Hero Text -->
-      <div class="row justify-content-center text-center pb-5">
+      <div class="row justify-content-center text-center pb-5 hero-text-block">
         <div class="col-lg-8">
           <h1 class="hero-headline hero-headline-animated mb-4 reveal-up">
             Personalized Routines.<br>Smarter Habits.<br>Every Day.

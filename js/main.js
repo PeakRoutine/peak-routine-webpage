@@ -102,28 +102,17 @@
     const headline = document.querySelector('.hero-headline-animated');
     if (!headline) return;
 
-    const text = headline.innerHTML;
-    // Split by <br> tags first to preserve line breaks
-    const parts = text.split(/(<br\s*\/?>)/gi);
-    let result = '';
+    // Keep headline visually straight and centered without per-word skew/stagger.
+    headline.style.opacity = '0';
+    headline.style.transform = 'translateY(18px)';
+    headline.style.transition = 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
 
-    parts.forEach(part => {
-      if (/^<br/i.test(part)) {
-        result += part;
-      } else {
-        part.split(' ').forEach((word, i, arr) => {
-          result += `<span class="hero-word" style="transition-delay:${i * 0.07}s">${word}</span>`;
-          if (i < arr.length - 1) result += ' ';
-        });
-      }
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        headline.style.opacity = '1';
+        headline.style.transform = 'none';
+      });
     });
-
-    headline.innerHTML = result;
-
-    // Trigger after short delay
-    setTimeout(() => {
-      headline.querySelectorAll('.hero-word').forEach(w => w.classList.add('visible'));
-    }, 200);
   })();
 
   // ── Stats Count-Up ──
