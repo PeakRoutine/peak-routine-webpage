@@ -6,7 +6,7 @@
    Blue-White iOS-First Premium Theme
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 /* ── Design Tokens ── */
 :root {
@@ -46,12 +46,12 @@
   --white:   #ffffff;
 
   /* Typography */
-  --font-display: 'Syne', sans-serif;
-  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Manrope', sans-serif;
 
   /* Spacing */
-  --section-y: 7rem;
-  --container-max: 1200px;
+  --section-y: 6.5rem;
+  --container-max: 1180px;
 
   /* Radius */
   --radius-sm:  8px;
@@ -100,10 +100,12 @@ html {
 body {
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
   color: var(--gray-700);
-  background: var(--white);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -111,10 +113,15 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: var(--dark);
+  text-wrap: balance;
 }
 
 img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; color: inherit; }
+
+section {
+  scroll-margin-top: 110px;
+}
 
 /* ── Utility ── */
 .container-pr {
@@ -166,6 +173,15 @@ a { text-decoration: none; color: inherit; }
   height: 2px;
   background: var(--grad-primary);
   border-radius: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(28, 133, 232, 0.22);
+  outline-offset: 3px;
 }
 
 /* ── Buttons ── */
@@ -261,6 +277,17 @@ a { text-decoration: none; color: inherit; }
 .btn-pr-sm {
   padding: 0.6rem 1.25rem;
   font-size: 0.85rem;
+}
+
+.section-body,
+.hero-sub,
+.problem-body,
+.showcase-body,
+.feat-body,
+.testi-text,
+.pricing-tagline,
+.popup-msg {
+  text-wrap: pretty;
 }
 
 /* ── Glass Card ── */
