@@ -91,7 +91,17 @@
   color: white;
 }
 
+.pr-nav-links a.is-active {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+
 .pr-nav.scrolled .pr-nav-links a:hover {
+  background: var(--gray-100);
+  color: var(--dark);
+}
+
+.pr-nav.scrolled .pr-nav-links a.is-active {
   background: var(--gray-100);
   color: var(--dark);
 }
@@ -192,7 +202,17 @@
   color: white;
 }
 
+.pr-nav-mobile a.is-active {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+}
+
 .pr-nav.scrolled .pr-nav-mobile a:hover {
+  background: var(--gray-100);
+  color: var(--dark);
+}
+
+.pr-nav.scrolled .pr-nav-mobile a.is-active {
   background: var(--gray-100);
   color: var(--dark);
 }
